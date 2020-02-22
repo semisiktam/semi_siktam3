@@ -314,11 +314,106 @@ public class QnaDao {
 		
 		return listCount;
 	}
-	
 
-	
-	
-	
-	
-	
+
+
+	public int getListAdminCount(Connection con) {
+		int listAdminCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("listAdminCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			
+			if(rset.next()) {
+				listAdminCount = rset.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listAdminCount;
+	}
+
+
+
+	public ArrayList<Qna> selectAdminList(Connection con, int currentPage, int limit) {
+		ArrayList<Qna> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAdminList");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage-1)*limit+1;
+			int endRow = startRow + limit -1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Qna>();
+			
+			while(rset.next()) {
+				Qna q = new Qna();
+				
+				q.setqNo(rset.getInt(1)); 
+				q.setUserId(rset.getString("QWRITER"));
+				q.setqTitle(rset.getString("QTITLE"));
+				q.setqContext(rset.getString("QCONTEXT"));
+				q.setqReply(rset.getString("QREPLY"));
+				q.setqDate(rset.getDate("QDATE"));
+				
+				list.add(q);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+
+
+
+	/**
+	 * 관리자에서 답글 등록
+	 * @param con
+	 * @param qno
+	 * @return
+	 */
+	public int updateAdminList(Connection con, int qno, String qReply) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAdminList");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, qReply);
+			pstmt.setInt(2, qno);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

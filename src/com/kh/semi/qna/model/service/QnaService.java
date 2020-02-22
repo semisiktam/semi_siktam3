@@ -109,6 +109,39 @@ public int insertQna(Qna q) {
 		return listCount;
 	}
 
+	public int getListAdminCount() {
+		Connection con = getConnection();
+		
+		int listAdminCount = qDao.getListAdminCount(con);
+		
+		close(con);
+		
+		return listAdminCount;
+	}
+
+	public ArrayList<Qna> selectAdminList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Qna> list = qDao.selectAdminList(con,currentPage,limit);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int updateAdminList(int qno, String qReply) {
+		Connection con = getConnection();
+		
+		int result = qDao.updateAdminList(con, qno, qReply);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }
 
 
