@@ -1,26 +1,26 @@
-package com.kh.semi.eventBanner.controller;
+package com.kh.semi.reservation.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventBanner.model.service.EventBannerService;
-import com.kh.semi.eventBanner.model.vo.EventBanner;
+import com.kh.semi.reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class eventSelectOneServlet
+ * Servlet implementation class ReservationDelete
  */
-@WebServlet("/eSelctOne.ev")
-public class eventSelectOneServlet extends HttpServlet {
+@WebServlet("/reservationdelete.rc")
+public class ReservationDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventSelectOneServlet() {
+    public ReservationDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +29,11 @@ public class eventSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String rNo = request.getParameter("rNo");
+		String shopPid = request.getParameter("shopPid");
 		
-		String eno = request.getParameter("eno");
+		int result = new ReservationService().reservationDelete(rNo);
 		
-		EventBannerService es = new EventBannerService();
-		
-		EventBanner eb = es.eSelectOne(eno);
-		
-		String page = "";
-		
-		if(eb != null) {
-			page = "views/admin_eventBannerSelect.jsp";
-			request.setAttribute("EventBanner", eb);
-			
-		}else {
-			request.setAttribute("msg", "문의사항 상세보기 실패");
-		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
-	
 		
 	}
 

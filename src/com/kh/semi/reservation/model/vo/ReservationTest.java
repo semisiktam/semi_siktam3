@@ -15,6 +15,7 @@ public class ReservationTest implements Serializable{
 	private String shopDay;
 	private String shopStartTime;
 	private String shopEndTime;
+	private String menuNo;
 	private String menuName;
 	private String menuImg;
 	private int menuPrice;
@@ -22,9 +23,10 @@ public class ReservationTest implements Serializable{
 	private int total;
 	
 	public ReservationTest() {}
-	
-	public ReservationTest(String userId, String shopPid,String shopName, String shopAddr, String shopDay, String shopStartTime,
-			String shopEndTime, String menuName, String menuImg, int menuPrice, int menuCount, int total) {
+
+	public ReservationTest(String userId, String shopPid, String shopName, String shopAddr, String shopDay,
+			String shopStartTime, String shopEndTime, String menuNo, String menuName, String menuImg, int menuPrice,
+			int menuCount, int total) {
 		super();
 		this.userId = userId;
 		this.shopPid = shopPid;
@@ -33,6 +35,7 @@ public class ReservationTest implements Serializable{
 		this.shopDay = shopDay;
 		this.shopStartTime = shopStartTime;
 		this.shopEndTime = shopEndTime;
+		this.menuNo = menuNo;
 		this.menuName = menuName;
 		this.menuImg = menuImg;
 		this.menuPrice = menuPrice;
@@ -48,7 +51,6 @@ public class ReservationTest implements Serializable{
 		this.userId = userId;
 	}
 
-	
 	public String getShopPid() {
 		return shopPid;
 	}
@@ -97,6 +99,14 @@ public class ReservationTest implements Serializable{
 		this.shopEndTime = shopEndTime;
 	}
 
+	public String getMenuNo() {
+		return menuNo;
+	}
+
+	public void setMenuNo(String menuNo) {
+		this.menuNo = menuNo;
+	}
+
 	public String getMenuName() {
 		return menuName;
 	}
@@ -104,7 +114,7 @@ public class ReservationTest implements Serializable{
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
-	
+
 	public String getMenuImg() {
 		return menuImg;
 	}
@@ -128,7 +138,7 @@ public class ReservationTest implements Serializable{
 	public void setMenuCount(int menuCount) {
 		this.menuCount = menuCount;
 	}
-	
+
 	public int getTotal() {
 		return total;
 	}
@@ -137,16 +147,17 @@ public class ReservationTest implements Serializable{
 		this.total = total;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "ReservationTest [userId=" + userId + ", shopPid=" + shopPid + ", shopName=" + shopName + ", shopAddr="
 				+ shopAddr + ", shopDay=" + shopDay + ", shopStartTime=" + shopStartTime + ", shopEndTime="
-				+ shopEndTime + ", menuName=" + menuName + ", menuImg=" + menuImg + ", menuPrice=" + menuPrice
-				+ ", menuCount=" + menuCount + ", total=" + total + "]";
+				+ shopEndTime + ", menuNo=" + menuNo + ", menuName=" + menuName + ", menuImg=" + menuImg
+				+ ", menuPrice=" + menuPrice + ", menuCount=" + menuCount + ", total=" + total + "]";
 	}
-
-	
-
 	
 	
 }

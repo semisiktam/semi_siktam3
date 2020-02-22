@@ -10,7 +10,8 @@
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage(); 
+	int endPage = pi.getEndPage();
+	String howSelect = (String)request.getAttribute("howSelect");
 	/* Member mem = (Member)session.getAttribute("member"); */
 %>   
 
@@ -200,10 +201,19 @@
         <br>
 		
         <script>
-        
-        	
             $(function(){
-				
+            	
+            	<%if(howSelect.equals("rowScore")) {%>
+		    	   $("#selectArray").val("rowScore").attr("selected", "selected");
+	    		<%}else if(howSelect.equals("highScore")){%>
+	   				$("#selectArray").val("highScore").attr("selected", "selected");
+	    		<%}%>
+            	
+            	$('#selectArray').on('change',function(){
+					var selectHow = $(this).val();
+					location.href="/siktam/rPage.ro?shopPid=<%=s.getShopPid()%>&howSelect="+selectHow;
+				});
+            	
             	$('#star_grade_review a').click(function(event){
             		
             		event.preventDefault ? event.preventDefault() : (event.returnValue = false);
@@ -217,7 +227,7 @@
             		
             		alert("버튼 입력");
             			
-	            	$('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="+$('#star_grade_review a.on').length+"&rContent="+$('#reviewText').val()); 
+	            	<%-- $('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="+$('#star_grade_review a.on').length+"&rContent="+$('#reviewText').val()); --%> 
             		
             	});
             	
@@ -243,7 +253,9 @@
 					$("#star_grade a").eq(4).addClass("on").prevAll("a").addClass("on").preventEvent();
 				<% } %>
 				
-        });
+				
+				
+            });
             
         <% if(m != null) {%>
         
@@ -261,7 +273,10 @@
         <%}%>
         
         
-        $("#select1").on({
+	    
+	    
+           
+        <%-- $("#select1").on({
             click: function () {
             	var selecthow = $('#selectArray').val();
             	console.log(selecthow);
@@ -336,7 +351,7 @@
             		}
             	});
             }
-        });
+        }); --%>
 
         </script>
 

@@ -23,7 +23,7 @@ public class ReservationPay extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationPay() {
+    public ReservationPay() { 
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,12 +42,13 @@ public class ReservationPay extends HttpServlet {
 		int total = 0;
 		ArrayList<ReservationTest> list = new ArrayList<ReservationTest>();
 		
-		for(int i=0; i<mlist.length; i=i+3) {
+		for(int i=0; i<mlist.length; i=i+4) {
 			ReservationTest rt = new ReservationTest();
 			
 			rt.setMenuName(mlist[i]);
 			rt.setMenuPrice(Integer.parseInt(mlist[i+1]) * Integer.parseInt(mlist[i+2]));
 			rt.setMenuCount(Integer.parseInt(mlist[i+2]));
+			rt.setMenuNo(mlist[i+3]);
 			
 			total = (Integer.parseInt(mlist[i+1]) * Integer.parseInt(mlist[i+2]));
 			sum += total;

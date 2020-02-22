@@ -8,6 +8,8 @@ public class PayInfo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5335010840198086515L;
+	private String rNo;
+	private String rshopPid;
 	private String rshopName;
 	private String rshopAddr;
 	private String rmenuName;
@@ -17,15 +19,33 @@ public class PayInfo implements Serializable{
 	
 	public PayInfo(){}
 
-	public PayInfo(String rshopName, String rshopAddr, String rmenuName, String rmenuCount, String rmenuPrice,
-			int totalPay) {
+	public PayInfo(String rNo, String rshopPid, String rshopName, String rshopAddr, String rmenuName, String rmenuCount,
+			String rmenuPrice, int totalPay) {
 		super();
+		this.rNo = rNo;
+		this.rshopPid = rshopPid;
 		this.rshopName = rshopName;
 		this.rshopAddr = rshopAddr;
 		this.rmenuName = rmenuName;
 		this.rmenuCount = rmenuCount;
 		this.rmenuPrice = rmenuPrice;
 		this.totalPay = totalPay;
+	}
+
+	public String getrNo() {
+		return rNo;
+	}
+
+	public void setrNo(String rNo) {
+		this.rNo = rNo;
+	}
+
+	public String getRshopPid() {
+		return rshopPid;
+	}
+
+	public void setRshopPid(String rshopPid) {
+		this.rshopPid = rshopPid;
 	}
 
 	public String getRshopName() {
@@ -82,10 +102,10 @@ public class PayInfo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "PayInfo [rshopName=" + rshopName + ", rshopAddr=" + rshopAddr + ", rmenuName=" + rmenuName
-				+ ", rmenuCount=" + rmenuCount + ", rmenuPrice=" + rmenuPrice + ", totalPay=" + totalPay + "]";
+		return "PayInfo [rNo=" + rNo + ", rshopPid=" + rshopPid + ", rshopName=" + rshopName + ", rshopAddr="
+				+ rshopAddr + ", rmenuName=" + rmenuName + ", rmenuCount=" + rmenuCount + ", rmenuPrice=" + rmenuPrice
+				+ ", totalPay=" + totalPay + "]";
 	}
-	
-	
+
 	
 }
