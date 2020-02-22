@@ -67,6 +67,7 @@ public class Pay extends HttpServlet {
 			menuList.append(",");
 		}
 		
+		System.out.println(menuList);
 		menu = menuList.toString();
 		
 		String[] dateArr = date.split("-");

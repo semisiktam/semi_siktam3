@@ -67,4 +67,16 @@ public class ReservationService {
 		return mrList;
 	}
 
+	public int reservationUpdate(String userid, String shopPid, String resNo, Date rdate, String time, String menu) {
+		Connection con = getConnection();
+		int result = rDao.reservationUpdate(con,userid,shopPid,resNo,rdate,time,menu);
+		
+		if (result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

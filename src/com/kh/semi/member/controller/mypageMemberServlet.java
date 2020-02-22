@@ -51,7 +51,20 @@ public class mypageMemberServlet extends HttpServlet {
 		ArrayList<Shop> fsList = new ArrayList<Shop>();
 		fsList = ms.selectFSList(m.getUserId());
 		
+		
 		System.out.println(mrList);
+		
+		for(int i=0; i<mrList.size(); i++) {
+			//System.out.println("Menu_Name : " + mrList.get(i).getmNo());
+			
+			String[] MenuArr = mrList.get(i).getmNo().split(",");
+			String addMenu = "";
+			for(int j=1; j<MenuArr.length; j+=4) {
+				System.out.println(MenuArr[j]);
+				addMenu += MenuArr[j]+" / ";
+			}
+			mrList.get(i).setmNo(addMenu);
+		}
 		System.out.println(fsList);
 		
 

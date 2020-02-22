@@ -28,6 +28,7 @@ public class eventShopDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String eno = request.getParameter("eno");
 		String check = request.getParameter("check");
 		
 		EventShopService es = new EventShopService();
@@ -35,7 +36,7 @@ public class eventShopDeleteServlet extends HttpServlet {
 		int result = es.deleteShop(check);
 		
 		if(result > 0) {
-			response.sendRedirect("/siktam/eSelectList.ev");
+			response.sendRedirect("esList.es?eno="+eno);
 		}else {
 			request.setAttribute("msg", "업체 삭제 실패");
 		}

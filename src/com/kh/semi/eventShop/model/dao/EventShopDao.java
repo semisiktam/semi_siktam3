@@ -150,4 +150,31 @@ public class EventShopDao {
 		return result;
 	}
 
+	public int insertEventShop(Connection con,EventShop es, String eno, String insertCheck) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertEventShop");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, eno);
+			pstmt.setString(2, insertCheck);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
 }

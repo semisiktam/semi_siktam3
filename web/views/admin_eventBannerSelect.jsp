@@ -129,15 +129,16 @@ width: 17%;
 							var $shopName =$('<td>').text(value.shopName);
 							var $sAddr =$('<td>').text(value.sAddr);
 							var $sPhone =$('<td>').text(value.sPhone);
-							
-							var $input = $('<input type="button" class="inputButton" onclick="shopInsert();" value="등록">');
+							var $td =$('<td>')
+							var $input = $('<input type="button" class="inputButton" onclick="shopInsert(this);" value="등록">');
 					
 							$tr.append($shopPid);
 							$tr.append($userId);
 							$tr.append($shopName);
 							$tr.append($sAddr);
 							$tr.append($sPhone);
-							$tr.append($input);
+							$td.append($input);
+							$tr.append($td);
 							
 						
 							$('#listArea1').append($tr);	
@@ -150,14 +151,23 @@ width: 17%;
 					}
 				});
 			});
-			
-			function shopInsert(){
-				var insertCheck = $('.inputButton').parent().children('td').eq(0).text();
+			<%-- $('.inputButton').click(function() {
+				var insertCheck = $(this).parent().children('td').eq(0).text();
 				console.log(insertCheck);
 				var conis = confirm("업체를 등록하시겠습니까?");
 				if(conis == true){
 					location.href="/siktam/esInsert.es?insertCheck="+insertCheck+"&eno="+<%=eno%>;
 				} 
+			}); --%>
+			
+			
+			function shopInsert(item){
+				var insertCheck = $(item).parent().siblings(":eq(0)").text();
+				console.log(insertCheck);
+				
+				if(confirm("업체를 등록하시겠습니까?")){
+					location.href="/siktam/esInsert.es?insertCheck="+insertCheck+"&eno=<%=eno%>";
+				}
 			}
 			
 		</script>
@@ -212,7 +222,7 @@ width: 17%;
 				console.log(check);
 				var conf = confirm("정말 삭제 하시겠습니까?");
 				if(conf == true){
-					location.href="/siktam/esDelete.es?check="+check;
+					location.href="/siktam/esDelete.es?check="+check+"&eno=<%=eno%>";
 				}
 				
 				
