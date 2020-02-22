@@ -16,7 +16,7 @@
     <%@ include file="common/header.jsp" %>
 
     <!-- 이 안에 작업하기 -->
-            <form action="/siktam/mInsert2.me" method="ㅋ" onsubmit="return validate();">
+            <form action="/siktam/mInsert2.me" method="get" onsubmit="return validate();">
                 <div class="wrap" align="center">
                     <h1 align="center">회원가입</h1>
                     <h4 align="center">회원정보 입력</h4><br>

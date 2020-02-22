@@ -106,6 +106,7 @@
 							<td><%=r.getMenuName()%></td>
 							<td><%=r.getMenuPrice()%></td>
 							<td>0</td>
+							<td style="display:none"><%=r.getMenuNo()%></td>
 							<td><img src="/siktam/resources/images/leftArrow.png" alt=""
 								width="10" height="10" class="bt_down" /><img
 								src="/siktam/resources/images/rightArrow.png" alt="" width="10"
@@ -144,21 +145,7 @@
 			</div>
 		</div>
 	</form>
-	<script>
-		$(function() {
-			$('#timepicker').timepicker({
-				timeFormat : 'HH:mm',
-				interval : 30,
-				minTime :'<%=list.get(0).getShopStartTime()%>',
-				maxTime :'<%=list.get(0).getShopEndTime()%>',
-				defaultTime : '<%=list.get(0).getShopStartTime()%>',
-				startTime : '00:00',
-				dynamic : false,
-				dropdown : true,
-				scrollbar : true
-			});
-		});
-	</script>
+	
 	<script>
 		$(function() {
 			$('.bt_up').click(function() {
@@ -171,6 +158,7 @@
 					m0.push($('#tbl tr:eq('+i+')').children().eq(1).text());
 				    m0.push($('#tbl tr:eq('+i+')').children().eq(2).text());
 					m0.push($('#tbl tr:eq('+i+')').children().eq(3).text());
+					m0.push($('#tbl tr:eq('+i+')').children().eq(4).text());
 				}
 					
 				$.ajax({
@@ -190,23 +178,26 @@
 			        $('#menuName').remove();
 			        $('#menuCount').remove();
 			        $('#menuPrice').remove();
+			        $('#menuNo').remove();
 			          
 			        for(var i=0; i<data.length; i++){
 			        	var $tr = $('<tr>');
 			        	var $menuName = $('<td>').text(data[i].menuName);
 			        	var $menuCount = $('<td>').text(data[i].menuCount);
 			        	var $menuPrice = $('<td>').text(data[i].menuPrice);
-			        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">')
-			        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">')
-			        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">')
-			        	   
+			        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">');
+			        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">');
+			        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">');
+			        	var $hdMN = $('<input type="hidden" id="menuNo" name="menuNo" value="'+data[i].menuNo+'">');
+			        	
 			        	$tr.append($menuName);
 			        	$tr.append($hdN)
 			        	$tr.append($menuCount);
 			        	$tr.append($hdC)
 			        	$tr.append($menuPrice);
 			        	$tr.append($hdP)
-			        	   
+			        	$tr.append($hdMN);   
+			        	
 			        	$('#resultTable').append($tr);
 			        	   
 			        	$td = $('<td>'); 
@@ -232,6 +223,7 @@
 					m0.push($('#tbl tr:eq('+i+')').children().eq(1).text());
 					m0.push($('#tbl tr:eq('+i+')').children().eq(2).text());
 					m0.push($('#tbl tr:eq('+i+')').children().eq(3).text());
+					m0.push($('#tbl tr:eq('+i+')').children().eq(4).text());
 				}
 						 
 				$.ajax({
@@ -250,22 +242,25 @@
 				        $('#menuName').remove();
 				        $('#menuCount').remove();
 				        $('#menuPrice').remove();
+				        $('#menuNo').remove();
 				          
 				        for(var i=0; i<data.length; i++){
 				        	var $tr = $('<tr>');
 				        	var $menuName = $('<td>').text(data[i].menuName);
 				        	var $menuCount = $('<td>').text(data[i].menuCount);
 				        	var $menuPrice = $('<td>').text(data[i].menuPrice);
-				        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">')
-				        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">')
-				        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">')
+				        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">');
+				        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">');
+				        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">');
+				        	var $hdMN = $('<input type="hidden" id="menuNo" name="menuNo" value="'+data[i].menuNo+'">');
 				        	   
 				        	$tr.append($menuName);
-				        	$tr.append($hdN)
+				        	$tr.append($hdN);
 				        	$tr.append($menuCount);
-				        	$tr.append($hdC)
+				        	$tr.append($hdC);
 				        	$tr.append($menuPrice);
-				        	$tr.append($hdP)
+				        	$tr.append($hdP);
+				        	$tr.append($hdMN);
 				        	   
 				        	$('#resultTable').append($tr);
 				        	   
@@ -281,6 +276,22 @@
 				}
 			});
 		})
+	</script>
+
+	<script>
+		$(function() {
+			$('#timepicker').timepicker({
+				timeFormat : 'HH:mm',
+				interval : 30,
+				minTime :'<%=list.get(0).getShopStartTime()%>',
+				maxTime :'<%=list.get(0).getShopEndTime()%>',
+				defaultTime : '<%=list.get(0).getShopStartTime()%>',
+				startTime : '<%=list.get(0).getShopStartTime()%>',
+				dynamic : false,
+				dropdown : true,
+				scrollbar : true
+			});
+		});
 	</script>
 
 	<script>

@@ -315,7 +315,7 @@
                             <form action="/siktam/myMenulist.menu" method="get" class=myMenu>
                             <input type="hidden" name="shopPid" value="<%=slist.get(i).getShopPid()%>">
                             <h4 align="center"><%=slist.get(i).getShopName() %></h4>
-                            <p align="center"><small><%=slist.get(i).getsAddr() %></small></p>
+                            <%-- <p align="center"><small><%=slist.get(i).getsAddr() %></small></p> --%>
                             </form>
                         </div>
                     
@@ -351,7 +351,7 @@
 
 
 
-        <!-- <div class ="content" id="content3">
+        <div class ="content" id="content3">
             <h3 id="contentTxt" align="left">다가오는 예약 목록</h3 id="contentTxt">
             
             
@@ -420,7 +420,7 @@
             
             
            
-        </div> -->
+        </div>
         </div>
     </div>
     <script>

@@ -26,9 +26,9 @@
 <div id="area1">
     <div id="container">
         <div id="search" class="component">
-            <input type="text" placeholder="위치를 입력해주세요" id="search-text" class="form-control" style="display: inline-block;">
+            <input type="text" placeholder="위치를 입력해주세요" id="search-text" class="form-control" style="display: inline-block;" <%-- value="<%= skeyword %>" --%>>
             
-            <a href="#" class="btn btn-default btn-lg" id="searchbtn">
+            <a class="btn btn-default btn-lg" id="searchbtn">
                 <span class="glyphicon glyphicon-ok" onclick='search();'></span> 검색
             </a>
         </div>
@@ -62,7 +62,7 @@
             </tr>
             <tr>
             	<td></td>
-                <td><input type="checkbox" value="찜/탕" id='b11' class="table-check" name="category" ><label for='b11'>찜/탕</label></td>
+                <td><input type="checkbox" value="찜탕" id='b11' class="table-check" name="category" ><label for='b11'>찜/탕</label></td>
                 <td><input type="checkbox" value="프랜차이즈" id='b12' class="table-check" name="category" ><label for='b12'>프랜차이즈</label></td>
                 <td></td>
                 <td></td>
@@ -126,7 +126,6 @@
 	<script>
 		function search(){
 	 		 location.href="<%=request.getContextPath()%>/searchMain.sc?keyword="+$('#search-text').val(); 
-			
 		}
 		$(function(){
 			
@@ -152,6 +151,7 @@
 		     var clist = [];
 		     var plist = [];
 		     
+		     console.log(line);
 		     $("input[name='table']:checked").each(function(i){
 		            tlist.push($(this).val());
 		     });
@@ -173,50 +173,63 @@
 		        	"line" : line,
 		        	"key" : key
 		        },success:function(data){
-		        	console.log(data);
-		            $('#tbl').find('tr').remove();
-		            for(var i=0; i<data.length; i++){
-		           	   var $tr = $('<tr>');
-		           	   var $shopPid = $('<td style="display:none">').text(data[i].shopPid);
-		           	   var $tdI = $('<td id="img">');
-		           	   var $shopImg = $('<img src="/siktam/resources/images/'+data[i].shopImg+'"  style="width:100%" alt="Image" class="img-thumbnail">');
-		           	   var $tdT = $('<td id="txt"  style="word-break:break-all">');
-		           	   var $h4 = $('<h4>');
-		           	   var $shopName = $('<b>').text(data[i].shopName);
-		           	   var $ul = $('<ul>');
-		           	   var $li = $('<li>');
-		           	   var $li2 = $('<li>');
-		           	   var $star = $('<span class="star">').text("★" +data[i].star);
-		           	   var $reviewCount = $('<span class="review_num">').text("리뷰 " +data[i].reviewCount);
-		           	   var $reservationCount = $('<span class="reserve_num">').text("예약 " + data[i].reservationCount);
-		           	   var $shopAddr = $('<span class="area">').text(data[i].shopAddr);
-		           	   var $tableType = $('<span class="tableInfo">').text(data[i].tableType);
-		           	   var $MenuCategory = $('<span class="sectors">').text(data[i].MenuCategory);
-		           	   /* var $li3 = $('<li>');
-		           	   var $mainMenu = $('<span class="mainMenu">'); */
-		           	   $tdI.append($shopImg);
-		           	   
-		           	   $h4.append($shopName);
-		           	   
-		           	   $li.append($star).append($reviewCount).append($reservationCount);
-		           	   $li2.append($shopAddr).append($shopAddr).append($tableType).append($MenuCategory);
-		           	   $ul.append($li);
-		           	   $ul.append($li2);
-		           	   
-		           	   $tdT.append($h4);
-		           	   $tdT.append($ul);
-		           	   
-		           	   $tr.append($shopPid);
-		           	   $tr.append($tdI);
-		           	   $tr.append($tdT);
-		           	   
-		           	   $('#tbl').append($tr);
-		            } 
-		        },error:function(){
-	            	 console.log("에러");
-	            }
-			})
-		})
+		               console.log(data);
+		               $('#tbl').find('tr').remove();
+		               for(var i=0; i<data.length; i++){
+		            	   var $tr = $('<tr>');
+		            	   var $shopPid = $('<td style="display:none">').text(data[i].shopPid);
+		            	   var $tdI = $('<td id="img">');
+		            	   var $shopImg = $('<img src="/siktam/resources/images/'+data[i].shopImg+'"  style="width:100%" alt="Image" class="img-thumbnail">');
+		            	   var $tdT = $('<td id="txt"  style="word-break:break-all">');
+		            	   var $h4 = $('<h4>');
+		            	   var $shopName = $('<b>').text(data[i].shopName);
+		            	   var $ul = $('<ul>');
+		            	   var $li = $('<li>');
+		            	   var $li2 = $('<li>');
+		            	   var $star = $('<span class="star">').text("★" +data[i].star);
+		            	   var $reviewCount = $('<span class="review_num">').text("리뷰 " +data[i].reviewCount);
+		            	   var $reservationCount = $('<span class="reserve_num">').text("예약 " + data[i].reservationCount);
+		            	   var $shopAddr = $('<span class="area">').text(data[i].shopAddr);
+		            	   var $tableType = $('<span class="tableInfo">').text(data[i].tableType);
+		            	   var $MenuCategory = $('<span class="sectors">').text(data[i].MenuCategory);
+		            	   /* var $li3 = $('<li>');
+		            	   var $mainMenu = $('<span class="mainMenu">'); */
+		            	   $tdI.append($shopImg);
+		            	   
+		            	   $h4.append($shopName);
+		            	   
+		            	   $li.append($star).append($reviewCount).append($reservationCount);
+		            	   $li2.append($shopAddr).append($shopAddr).append($tableType).append($MenuCategory);
+		            	   $ul.append($li);
+		            	   $ul.append($li2);
+		            	   
+		            	   $tdT.append($h4);
+		            	   $tdT.append($ul);
+		            	   
+		            	   $tr.append($shopPid);
+		            	   $tr.append($tdI);
+		            	   $tr.append($tdT);
+		            	   
+		            	   $('#tbl').append($tr);
+		            	   
+		            	   $(function(){
+		           			
+		           			$("#tbl td").mouseenter(function(){
+		           				$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
+		           			}).mouseout(function(){
+		           				$(this).parent().css({"background":"white"});
+		           			}).click(function(){
+		           				//console.log($(this).parent().children().eq(0).text());
+		           				var shopPid = $(this).parent().children().eq(0).text();
+		           				location.href="<%=request.getContextPath()%>/sSelect.so?shopPid=" + shopPid;
+		           			});
+		           		});
+		               } 
+		            },error:function(){
+		            	 console.log("에러");
+		            }
+			});      
+		});
 	</script>
    <!--  <script>
          function check(){
