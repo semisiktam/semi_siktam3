@@ -105,6 +105,7 @@
         <div id="titleText">
             <h1><b><%=mr.get(0).getShopName() %></b>(예약변경)</h1>
             <p><%=mr.get(0).getsAddr() %></p>
+            <input type="hidden" name="resNo" value="<%=mr.get(0).getResNo() %>">
             <input type="hidden" name="shopPid" value="<%= mr.get(0).getShopPid() %>"/>
 			<input type="hidden" name="shopName" value="<%=mr.get(0).getShopName()%>"/>
 			<input type="hidden" name="shopAddr" value="<%=mr.get(0).getsAddr()%>"/>
@@ -116,7 +117,7 @@
     <div id="date-time">
         <div id="date">
             <p><span class="glyphicon glyphicon-calendar"></span> 예약 일자</p>    
-            <p><input type="text" id="datepicker1" placeholder="<%=mr.get(0).getrDate() %>"><p>
+            <p><input type="text" id="datepicker1" name="date" placeholder="<%=mr.get(0).getrDate() %>"><p>
         </div>
         
         <div id="time">
@@ -139,6 +140,7 @@
                     <td><%=me.getMenuName() %></td>
                     <td><%=me.getMenuPrice() %></td>
                     <td>0</td>
+                    <td style="display:none"><%=me.getMenuNo()%></td>
                     <td>
                         <img src="/siktam/resources/images/leftArrow.png" alt="" width="10" height="10" class="bt_down" />
                         <img src="/siktam/resources/images/rightArrow.png" alt="" width="10" height="10" class="bt_up"/>
@@ -209,6 +211,7 @@
 				m0.push($('#tbl tr:eq('+i+')').children().eq(1).text());
 			    m0.push($('#tbl tr:eq('+i+')').children().eq(2).text());
 				m0.push($('#tbl tr:eq('+i+')').children().eq(3).text());
+				m0.push($('#tbl tr:eq('+i+')').children().eq(4).text());
 			}
 				
 			$.ajax({
@@ -228,23 +231,26 @@
 		        $('#menuName').remove();
 		        $('#menuCount').remove();
 		        $('#menuPrice').remove();
+		        $('#menuNo').remove();
 		          
 		        for(var i=0; i<data.length; i++){
 		        	var $tr = $('<tr>');
 		        	var $menuName = $('<td>').text(data[i].menuName);
 		        	var $menuCount = $('<td>').text(data[i].menuCount);
 		        	var $menuPrice = $('<td>').text(data[i].menuPrice);
-		        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">')
-		        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">')
-		        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">')
-		        	   
+		        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">');
+		        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">');
+		        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">');
+		        	var $hdMN = $('<input type="hidden" id="menuNo" name="menuNo" value="'+data[i].menuNo+'">');
+		        	
 		        	$tr.append($menuName);
 		        	$tr.append($hdN)
 		        	$tr.append($menuCount);
 		        	$tr.append($hdC)
 		        	$tr.append($menuPrice);
 		        	$tr.append($hdP)
-		        	   
+		        	$tr.append($hdMN);   
+		        	
 		        	$('#resultTable').append($tr);
 		        	   
 		        	$td = $('<td>'); 
@@ -270,6 +276,7 @@
 				m0.push($('#tbl tr:eq('+i+')').children().eq(1).text());
 				m0.push($('#tbl tr:eq('+i+')').children().eq(2).text());
 				m0.push($('#tbl tr:eq('+i+')').children().eq(3).text());
+				m0.push($('#tbl tr:eq('+i+')').children().eq(4).text());
 			}
 					 
 			$.ajax({
@@ -288,22 +295,25 @@
 			        $('#menuName').remove();
 			        $('#menuCount').remove();
 			        $('#menuPrice').remove();
+			        $('#menuNo').remove();
 			          
 			        for(var i=0; i<data.length; i++){
 			        	var $tr = $('<tr>');
 			        	var $menuName = $('<td>').text(data[i].menuName);
 			        	var $menuCount = $('<td>').text(data[i].menuCount);
 			        	var $menuPrice = $('<td>').text(data[i].menuPrice);
-			        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">')
-			        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">')
-			        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">')
+			        	var $hdN = $('<input type="hidden" id="menuName" name="menuName" value="'+data[i].menuName+'">');
+			        	var $hdC = $('<input type="hidden" id="menuCount" name="menuCount" value="'+data[i].menuCount+'">');
+			        	var $hdP = $('<input type="hidden" id="menuPrice" name="menuPrice" value="'+data[i].menuPrice+'">');
+			        	var $hdMN = $('<input type="hidden" id="menuNo" name="menuNo" value="'+data[i].menuNo+'">');
 			        	   
 			        	$tr.append($menuName);
-			        	$tr.append($hdN)
+			        	$tr.append($hdN);
 			        	$tr.append($menuCount);
-			        	$tr.append($hdC)
+			        	$tr.append($hdC);
 			        	$tr.append($menuPrice);
-			        	$tr.append($hdP)
+			        	$tr.append($hdP);
+			        	$tr.append($hdMN);
 			        	   
 			        	$('#resultTable').append($tr);
 			        	   
@@ -324,21 +334,7 @@
     </script>
 
     <!-- 메뉴탭키 -->
-    <script>
-        $(document).ready(function(){
-	
-        $('ul.tabs li').click(function(){
-            var tab_id = $(this).attr('data-tab');
 
-            $('ul.tabs li').removeClass('current');
-            $('.tab-content').removeClass('current');
-
-            $(this).addClass('current');
-            $("#"+tab_id).addClass('current');
-        })
-
-    });
-    </script>
 
     <!-- 푸터 시작 -->
     <%@ include file="common/footer.jsp" %>
