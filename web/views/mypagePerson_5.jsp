@@ -93,16 +93,29 @@
                     <tbody>
                       <%for(MemberReservationList rr : mrList){ %>
 	                        <tr class="reservationTr">
+	                        	<input type="hidden" class="reserveNo" value="<%=rr.getResNo() %>" />
+	                        	<input type="hidden" class="shopPid" value="<%=rr.getShopPid() %>" />
 	                            <td><%=rr.getShopName() %></td>
 	                            <td><%=rr.getrDate() %></td>
 	                            <td><%=rr.getrTime() %></td>
-	                            <td><%=rr.getMenuName() %></td>
-	                            <td><%=rr.getAcceptYN() %></td>
+	                            <td ><%=rr.getmNo() %></td>
+	                            <%if(rr.getAcceptYN().equals("W")){ %>
+	                            <td>대기중</td>
+	                            <%} else if(rr.getAcceptYN().equals("Y")){%>
+	                            <td>수락</td>
+	                            <%} else { %>
+	                            <td>거절</td>
+	                            <%} %>
 	                            <!-- 변경 클릭 시 예약변경 페이지로 이동 -->
-	                            <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="location.href='modify_3.html'"> &nbsp;
-	                            <input type="button" value="취소" class="confirm" id="cancel" onclick="location.href='mypagePerson_5.html'"></td>
+	                            <td colspan="2">
+	                            	<!-- <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="modify();"> &nbsp; -->
+	                            	<input type="button" value="변경" class="confirm" id="change"> &nbsp;
+	                            	<input type="button" value="취소" class="cancel" id="cancel" onclick="location.href='mypagePerson_5.html'">
+	                            </td>
 	                        </tr>
                        <% } %>
+                       
+
                        <!--  <tr class="reservationTr">
                             <td>역전우동</td>
                             <td>2020.01.24</td>
@@ -172,7 +185,7 @@
                     	<%for(MemberReservationList rp : mrList){ %>
                         <tr class="reservationTr">
                             <td><%=rp.getShopName() %></td>
-                            <td><%=rp.getMenuName() %></td>
+                            <td><%=rp.getmNo() %></td>
                             <td><%=rp.getTotalPay() %></td>
                             <td><%=rp.getPayType() %></td>
                         </tr>
@@ -214,11 +227,6 @@
             function test1(){
                 document.getElementById('modal1').style.display = "block";
                 document.getElementById('content2').style.display = "none";
-
-                /* var popupX = (document.body.offsetWidth / 2) - (200 / 2);// 초기값 var popupX = (document.body.offsetWidth / 2) - (200 / 2);
-                var popupY= (document.body.offsetHeight / 2) - (300 / 2);
-
-                window.open("mypageShopReservationList_5.jsp","popup",'width=300, height=400, scrollbars= no, toolbar=no, menubar=no,location=no,left='+ popupX + ', top='+ popupY+"'"); */ 
             }
 
             function test2(){
@@ -234,9 +242,31 @@
                 document.getElementById('modal2').style.display = "none";
                 document.getElementById('content2').style.display = "block";
             }
-            /* function informationChange(){
-                window.open("registerPerson_5_7.jsp");
+            
+            /*  function modify(){
+            	var reserveNo = $("#reserveNo").val();
+            	var shopPid = $("#shopPid").val();
+            	location.href="/siktam/reserveModify.rm?reserveNo=" + reserveNo +"&shopPid="+shopPid;
             } */
+             
+             /* function modify(){
+             	var reserveNo = $(".reserveNo").val();
+             	var shopPid = $(".shopPid").val();
+             	location.href="/siktam/reserveModify.rm?reserveNo=" + reserveNo +"&shopPid="+shopPid;
+             }
+             */
+            
+            $(".confirm").click(function(){
+            	var reserveNo = $(this).parent().siblings(":eq(0)").val();
+            	/* console.log(reserveNo); */
+            	
+            	var shopPid = $(this).parent().siblings(":eq(1)").val();
+            	/* console.log(shopPid); */
+            	location.href="/siktam/reserveModify.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
+            });
+            
+            
+            
             
             /*예약내역 ajax
              DB에서 값은 넘어오는데 출력이 안됨

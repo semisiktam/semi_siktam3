@@ -269,7 +269,7 @@ public ArrayList<MemberReservationList> selectUserReserve(Connection con, String
 			mrListVo.setShopName(rset.getString("SHOP_NAME"));
 			mrListVo.setrDate(rset.getDate("RESERVE_DATE"));
 			mrListVo.setrTime(rset.getString("RESERVE_TIME"));
-			mrListVo.setMenuName(rset.getString("MENU_NAME"));
+			/*mrListVo.setMenuName(rset.getString("MENU_NAME"));*/
 			mrListVo.setAcceptYN(rset.getString("ACCEPT_YN"));
 			mrListVo.setPayType(rset.getString("PAY_TYPE"));
 			mrListVo.setTotalPay(rset.getInt("TOTAL_PAY"));

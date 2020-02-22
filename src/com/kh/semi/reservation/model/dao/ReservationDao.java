@@ -1,5 +1,7 @@
 package com.kh.semi.reservation.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.semi.member.model.vo.MemberReservationList;
 import com.kh.semi.reservation.model.vo.ReservationTest;
-import static com.kh.semi.common.JDBCTemplate.*;
 public class ReservationDao {
 
 	private Properties prop;
@@ -68,6 +70,60 @@ public class ReservationDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	/**
+	 * 탐희 마이페이지 예약,결제내역 
+	 * @param con
+	 * @param userid
+	 * @param reserveNo
+	 * @return
+	 */
+	public ArrayList<MemberReservationList> reservationModify(Connection con, String userid, String reserveNo) {
+		ArrayList<MemberReservationList> mrList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("reservationModify");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.setString(2, reserveNo);
+			
+			rset = pstmt.executeQuery();
+			
+			mrList = new ArrayList<MemberReservationList>();
+			while(rset.next()) {
+				MemberReservationList mr = new MemberReservationList();
+				mr.setResNo(rset.getString("RESERVE_NO"));
+				mr.setmNo(rset.getString("MENU_NO"));
+				mr.setpNo(rset.getString("PAY_NO"));
+				mr.setShopPid(rset.getString("SHOP_PID"));
+				mr.setsAddr(rset.getString("SHOP_ADDR"));
+				mr.setsStartTime(rset.getString("SHOP_STARTTIME"));
+				mr.setsEndTime(rset.getString("SHOP_ENDTIME"));
+				mr.setsDay(rset.getString("SHOP_DAY"));
+				mr.setMenuImg(rset.getString("MENU_IMG"));
+				mr.setMenuPrice(rset.getInt("MENU_PRICE"));
+				mr.setShopName(rset.getString("SHOP_NAME"));
+				mr.setrDate(rset.getDate("RESERVE_DATE"));
+				mr.setrTime(rset.getString("RESERVE_TIME"));
+				mr.setMenuName(rset.getString("MENU_NAME"));
+				mr.setAcceptYN(rset.getString("ACCEPT_YN"));
+				mr.setPayType(rset.getString("PAY_TYPE"));
+				mr.setTotalPay(rset.getInt("TOTAL_PAY"));
+				
+				mrList.add(mr);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mrList;
 	}
 
 }
