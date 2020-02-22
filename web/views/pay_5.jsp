@@ -24,6 +24,8 @@
         <div id="titleText">
             <h1><b><%= list.get(0).getRshopName() %></b>(결제하기)</h1>
             <p><%= list.get(0).getRshopAddr() %></p>
+            <input type=hidden id="rNo" name="rNo" value=<%=list.get(0).getrNo()%>>
+            <input type=hidden id="cNo" name="cNo" value=<%=mc.getCouponNo()%>>
         </div>
     </div>
 
@@ -111,14 +113,6 @@
                                 <td class="menu"><%= pi.getRmenuName() %> X <%= pi.getRmenuCount()%>개</td>
                                 <td><%= pi.getRmenuPrice() %></td>
                             </tr>
-                            <!-- <tr class="menupan">
-                                <td class="menu">김치우동 X 1개</td>
-                                <td>3,500원</td>
-                            </tr>
-                            <tr class="menupan">
-                                <td class="menu">어묵우동 X 1개</td>
-                                <td>3,500원</td>
-                            </tr> -->
                         <%} %>    
                         </table>
                     </div>
@@ -140,6 +134,7 @@
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
                   <input type="button" id="payment" value="결제하기" onclick="location.href = 'payPrint_1.jsp'">
+                  <input type="button" id="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>
             </div>
         </div>
@@ -147,6 +142,11 @@
     </div>
     </div>
     
+    <script>
+    	$('#cancle').click(function(){
+    		location.href="<%=request.getContextPath()%>/searchMain.sc?rNo="+'<%=list.get(0).getrNo()%>'+"shopPid="+'<%=list.get(0).getRshopPid()%>';
+    	});
+    </script>
 
     <script>
         // 사용 가능한 마일리지 사용할 마일리지 보여주기 A가 사용 가능 B가 사용가능한

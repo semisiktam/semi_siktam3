@@ -21,16 +21,36 @@
 	<script src="/siktam/resources/js/jquery-3.4.1.min.js"></script>
 	<script>
 	 	
-	 	function deleteBtn(obj){
-	 		$('#fr').attr('action','/siktam/DeleteMenuServlet').submit();
-	 	}
 	 	
 	 	function insertBtn(obj){
 	 		$('#fr').attr('action','/siktam/InsertMenuServlet').submit();
 	 	}
 	 	
 	 	$(function(){
-			$(".btn").click(function(){
+	 		$("#insert").click(function(){
+				var shopPid = $(this).parent().parent().children().eq(0).children().val();
+				
+				/* var menuNo = $(this).parent().parent().children().eq(1).children().val(); */
+
+				
+				var menuName = $(this).parent().parent().children().eq(1).children().val();
+				/* var menuImg = $(this).parent().parent().children().eq(3).children().val(); */
+				var menuImg = 'shop.png';
+				var menuPrice = $(this).parent().parent().children().eq(3).children().val();
+				var menuInfo = $(this).parent().parent().children().eq(4).children().val();
+				console.log(shopPid+menuName+menuImg+menuPrice+menuInfo);
+				if(confirm("메뉴를 등록하시겠습니까?")){
+					location.href="<%=request.getContextPath()%>/InsertMenuServlet?shopPid="+shopPid +
+																					"&menuName=" + menuName +
+																					"&menuImg=" + menuImg +
+																					"&menuPrice=" + menuPrice + 
+																					"&menuInfo=" + menuInfo;
+				}
+	 		});
+	 	});
+	 	
+	 	$(function(){
+			$(".btnModify").click(function(){
 				//console.log($(this).parent().children().eq(0).text());
 				var shopPid = $(this).parent().parent().children().eq(0).children().val();
 				
@@ -43,15 +63,30 @@
 				var menuPrice = $(this).parent().parent().children().eq(4).children().val();
 				var menuInfo = $(this).parent().parent().children().eq(5).children().val();
 				
-				alert(menuName);
-				location.href="<%=request.getContextPath()%>/UpdateMenuServlet?shopPid="+shopPid + 
-																				"&menuNo=" + menuNo +
-																				"&menuName=" + menuName +
-																				"&menuImg=" + menuImg +
-																				"&menuPrice=" + menuPrice + 
-																				"&menuInfo=" + menuInfo;
+				if(confirm("메뉴를 수정하시겠습니까?")){
+					location.href="<%=request.getContextPath()%>/UpdateMenuServlet?shopPid="+shopPid + 
+																					"&menuNo=" + menuNo +
+																					"&menuName=" + menuName +
+																					"&menuImg=" + menuImg +
+																					"&menuPrice=" + menuPrice + 
+																					"&menuInfo=" + menuInfo;
+				}
 			});
 		});
+	 	$(function(){
+			$(".btnDelete").click(function(){
+				var menuNo=$(this).parent().parent().children().eq(1).children().val();
+				/* console.log(menuNo); */
+				var shopPid = $(this).parent().parent().children().eq(0).children().val();
+				if(confirm("메뉴를 삭제할텐가 씨벌새끼야??")){
+					location.href="<%=request.getContextPath()%>/DeleteMenuServlet?shopPid="+shopPid + 
+																						"&menuNo=" + menuNo;
+				}
+			});
+			
+	 	});
+	 	
+	 	
 	</script>
 	
 </head>
@@ -88,17 +123,36 @@
                             <td><input type="file" name="menuImg" value="<%=me.getMenuImg()%>"></td>
                             <td><input type="text" name="menuPrice" value="<%=me.getMenuPrice()%>"></td>
                             <td><input type="text" name="menuInfo" value="<%=me.getMenuInfo()%>"></td>
-                            <td><input type="submit" value="수정" class="btn" id="change"></td>
+                            <td><input type="submit" value="수정" class="btn btnModify" id="modify">
+                            	<input type="submit" value="삭제" class="btn2 btnDelete" id="delete">
+                            </td>
                         </tr>
                         <%} %>
-                    <%}%>
+                        <tr class="reservationTr">
+	                      	<td style="display:none"><input type="text" name="shopPid" value="<%=shopPid%>"></td>
+                            <td><input type="text" name="menuName" placeholder="메뉴명을 입력해주세요"></td>
+                            <td><input type="file" name="menuImg" placeholder="메뉴사진"></td>
+                            <td><input type="text" name="menuPrice" placeholder="메뉴 가격"></td>
+                            <td><input type="text" name="menuInfo" placeholder="메뉴에 관한 간단한 설명"></td>
+                            <td><input style="width:130px" type="submit" value="메뉴 등록하기" class="btn btnInsert" id="insert"></td>
+                        </tr>
+                    <%}else{%>
+                    	<tr class="reservationTr">
+	                      	<td style="display:none"><input type="text" name="shopPid" value="<%=shopPid%>"></td>
+                            <td><input type="text" name="menuName" placeholder="메뉴명을 입력해주세요"></td>
+                            <td><input type="file" name="menuImg" placeholder="메뉴사진"></td>
+                            <td><input type="text" name="menuPrice" placeholder="메뉴 가격"></td>
+                            <td><input type="text" name="menuInfo" placeholder="메뉴에 관한 간단한 설명을 입력해주세요"></td>
+                            <td><input style="width:130px" type="submit" value="메뉴 등록하기" class="btn btnInsert" id="insert"></td>
+                            
+                        </tr>
+                    <%} %>
                     	
                         
                     </tbody>
                 </table><br><!-- 
                 <button id="plus" class="btn" name="plus">추가하기</button><br><br><br> -->
-                <button class="btn" name="confirm">완료</button>
-                <button class="btn" name="cencel" onclick="location.href='views/mypageShop_5.jsp'">취소</button>
+                <a href="/siktam/views/mypageShop_5.jsp"><button class="btn3">마이페이지로 돌아가기</button></a>
             </div>
         </div>
         </div>

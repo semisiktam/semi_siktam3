@@ -46,7 +46,7 @@ public class ShopService {
 		return list;
 	}
 
-	public void insertShop(Shop s) {
+	public int insertShop(Shop s) {
 		int result=0;
 		Connection con= getConnection();
 		result=sDao.insertShop(con,s);
@@ -55,6 +55,7 @@ public class ShopService {
 		}else {
 			rollback(con);
 		}
+		return result;
 		
 	}
 
