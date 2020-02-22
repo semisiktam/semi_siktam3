@@ -1,4 +1,4 @@
-package com.kh.semi.eventBanner.controller;
+package com.kh.semi.eventShop.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventBanner.model.service.EventBannerService;
-import com.kh.semi.eventBanner.model.vo.EventBanner;
+import com.kh.semi.eventShop.model.service.EventShopService;
 
 /**
- * Servlet implementation class eventSelectOneServlet
+ * Servlet implementation class eventShopDeleteServlet
  */
-@WebServlet("/eSelctOne.ev")
-public class eventSelectOneServlet extends HttpServlet {
+@WebServlet("/esDelete.es")
+public class eventShopDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventSelectOneServlet() {
+    public eventShopDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,26 +28,17 @@ public class eventSelectOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String check = request.getParameter("check");
 		
-		String eno = request.getParameter("eno");
+		EventShopService es = new EventShopService();
 		
-		EventBannerService es = new EventBannerService();
+		int result = es.deleteShop(check);
 		
-		EventBanner eb = es.eSelectOne(eno);
-		
-		String page = "";
-		
-		if(eb != null) {
-			page = "views/admin_eventBannerSelect.jsp";
-			request.setAttribute("EventBanner", eb);
-			
+		if(result > 0) {
+			response.sendRedirect("/siktam/eSelectList.ev");
 		}else {
-			request.setAttribute("msg", "문의사항 상세보기 실패");
+			request.setAttribute("msg", "업체 삭제 실패");
 		}
-		
-		request.getRequestDispatcher(page).forward(request, response);
-	
-		
 	}
 
 	/**
