@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* 전체 div */
+#area1{
+    width: 100%;
+    height: 100%;
+}
+/* 윗부분 전체 div*/
+#container{
+    padding-top: 80px;
+    width: 70%;
+    /* border: 1px solid; */
+    margin: 0 auto;
+}
+/* 검색, 선택된필터, 정렬방법 div*/
+#container .component{
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    right: 0;
+}
+/* --------------------------------------------------- */
+/* 검색 */
+#search{
+    text-align: center;
+    width: 60%;
+    margin: auto;
+}
+/* 검색 input-text */
+#search-text{
+    height: 44px;
+    width: 60%;
+}
+
+#searchbtn{
+    background: rgb(13, 78, 100);
+    color: white;
+    font-weight: bold;
+}
+
+/* --------------------------------------------------- */
+/*  정렬방법 dropdown 버튼*/
+#list-sort{
+    text-align:right;
+}
+/* 정렬방법 dropdown 목록*/
+.component ul{
+    margin: right;
+    text-align: right;
+}
+
+#sortbtn{
+    background: rgb(13, 78, 100);
+    height: 35px;
+    width: 100px;
+    color: white;
+    font-weight: bold;
+}
+/* --------------------------------------------------- */
+/* 테이블,음식,가격대 table */
+
+
+/* 테이블,음식,가격대 table 행이름*/
+.table-rowName{
+    padding: 10px;
+    width: 10%;
+    text-align: center;
+    font-weight: bold;
+}
+.table-rowName h5{
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2em;
+
+}
+#table-result{
+    background: white;
+}
+/* 테이블,음식,가격대 table checkbox*/
+
+/* --------------------------------------------------- */
+
+/* --------------------------------------------------- */
+/* 아랫부분 결과창 table */
+#result #tbl{
+    border: 1px solid #d9d9d9;
+    margin: auto;
+    cursor: pointer;
+    width: 100%;
+}
+/* 아랫부분 결과창 table img */
+#result #img{
+    width: 150px;
+    padding: 1px;
+}
+/* 아랫부분 결과창 table text */
+#result #txt{
+    padding: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 업체 정보 별점 */
+.star{
+    color:rgb(255, 158, 13);
+    font-weight: bold;
+}
+/* 업체 정보 | 표시 */
+.review_num::before, .reserve_num::before{
+    content:" | ";
+    color:gray;
+}
+/* 업체 정보 > 표시 */
+.tableInfo::before, .sectors::before{
+    content:" > ";
+    color:gray;
+}
+
+td{
+    padding: 0.5%;
+}
+
+#table1 label{
+    cursor: pointer;
+}
+
+#table2{
+    border: 5px solid #d9d9d9;
+    width: 100%;
+    background: #d9d9d9;        
+}
+
+#tr1, #tr2, #tr3{
+	border-top: 1px solid #d9d9d9;
+}
+	
+#table1{
+	width: 100%;
+	margin: auto;
+}

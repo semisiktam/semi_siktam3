@@ -1,0 +1,313 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#detailbox{
+    height: auto;
+    /* border: 1px solid black; */
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 70px;
+
+}
+
+/* 상단이미지 */
+.pagemainimg{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 500px;
+    background-image: url(../images/detailimg.png);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+/* 2020.02.10 수정 시작(현희) < 즐겨찾기 추가 >  */
+.bookmark{
+    position: absolute;
+    background: white;
+    z-index: 3000;
+    top: 100px;
+    right: 18%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+.bookmark p{
+    color: #eee;
+    font-size: 18px;
+    
+}
+
+
+/* 2020.02.10 수정 끝 (현희) */
+
+
+
+/* 상세정보/리뷰 */
+.pageselect{
+    /* border: 1px solid black; */
+    position: absolute;
+    width: 70%;
+    margin-top: -35px;
+}
+.pageselect div{
+    /* border: 1px solid black; */
+    display: inline-block;
+    width: 49.60%;
+    text-align: center;
+    height: 44px;
+    border-radius: 10px;
+    margin-bottom: -10px;
+    cursor: pointer;
+
+}
+#information{
+    background: white;
+}
+#review{
+    background: gray;
+    color: white;
+}
+.pageselect div span{
+    /* border: 1px solid black; */
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: -webkit-baseline-middle;
+}
+
+/* 매장명/예약하기 */
+#pagetop{
+    /* border: 1px solid black; */
+    height: auto;
+    width: 100%;
+    z-index: 30;
+    background: white;
+    position: relative;
+}   
+#pagetop h3{
+    /* border: 1px solid black; */
+    text-align: center;
+    font-size: 43px;
+    padding: 50px 0 30px 0;
+    margin: 0 auto;
+}
+#pagetop span{
+    /* border: 1px solid black; */
+    text-align: center;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+#reservation{
+    /* border: 1px solid black; */
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background: rgb(13, 78, 100);
+    color: white;
+    cursor: pointer;
+}
+
+
+/* 매장정보 */
+#pageinfo{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: auto;
+
+}
+#pageinfodiv{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;    
+
+}
+#infospan{
+    font-size: 23px;
+    font-weight: bold;
+    display: inline-block;
+}
+#infohr{
+    display: inline-block;
+    width: 87%;
+    padding: 0px 0px 0px 15px;
+    vertical-align: super;
+}
+.pageicon{
+    display: inline-block;
+    padding: 25px;
+}
+.iconimg{
+    width: 50px;
+}
+.icontext{
+    font-weight: bold;
+    color: gray;
+}
+.infop{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.infop2{
+    display: inline-block;
+}
+/* 매장 메뉴 */
+#pagemenu{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: auto;
+}
+
+#pagemenudiv{
+    width: 90%;
+    margin: 0 auto;
+}
+#menuspan{
+    font-size: 23px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom : 30px;
+    
+}
+#menuhr{
+    display: inline-block;
+    width: 92%;
+    padding: 0px 0px 0px 15px;
+    vertical-align: super;
+    
+    
+}
+.menubox{
+    /* border: 1px solid; */
+    width: 45.4%;
+    display: inline-block;
+    height: 150px;
+    background: #e5e5e5;
+    padding: 1%;
+    margin: 1%;
+    cursor: pointer;
+}
+.menuimg{
+    display: inline-block;
+    width: 140px;
+    background: white;
+    margin: 1%;
+    height: 140px;
+}
+.menutext{
+    display: inline-block;
+    width: 57%;
+    margin-left: 2px;
+    vertical-align: top;
+}
+.menuimg img{    
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid; */
+    display: inline-block;
+    margin: 0 auto;
+    box-shadow: 1px 1px 3px grey;
+}
+.menubox h4{
+    font-size: 19px;
+    margin-top: 10px;
+}
+.menubox p{
+    color: gray;
+    font-size: 14px;
+    margin-top: 7px;
+}
+.menuprice{
+    color: black !important;
+    font-size: 17px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 매장주소 */
+#pageaddress{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: auto;
+}
+
+#pageaddressdiv{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#addressspan{
+    font-size: 23px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom : 30px;
+    
+}
+#addresshr{
+    display: inline-block;
+    width: 86%;
+    padding: 0px 0px 0px 15px;
+    vertical-align: super;
+    
+    
+}
+#addinfo{
+    width: 55%;
+    /* border: 1px solid; */
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 139px;
+}
+#map{
+    width: 40%;
+    height: 150px;
+    display: inline-block;
+}
+#map iframe{
+    width: 100%;
+    height: 100%;
+}
+#daumRoughmapContainer1578697903624{
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 100px;
+}
+#mapButton{
+	background: rgb(13, 78, 100);
+    height: 35px;
+    width: auto;
+    color: white;
+    font-weight: bold;
+    /* margin-top: 10px; */
+    cursor: pointer;
+    padding: 0px 10px 0px 10px;
+}

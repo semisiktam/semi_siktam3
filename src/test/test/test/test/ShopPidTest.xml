@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="true"?>
+
+-<response>
+
+
+-<header>
+
+<resultCode>00</resultCode>
+
+<resultMsg>NORMAL SERVICE.</resultMsg>
+
+</header>
+
+
+-<body>
+
+
+-<items>
+
+
+-<item>
+<wkplNm>삼성전자로지텍주식회사</wkplNm>
+
+<bzowrRgstNo>124815****</bzowrRgstNo>
+
+<!-- <dataCrtYm>201905</dataCrtYm>
+
+<ldongAddrMgplDgCd>41</ldongAddrMgplDgCd>
+
+<ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd>
+
+<ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd>
+
+<seq>570948</seq>
+
+<wkplJnngStcd>1</wkplJnngStcd> -->
+
+
+<!-- <wkplRoadNmDtlAddr>경기도 수원시 영통구 삼성로</wkplRoadNmDtlAddr>
+
+<wkplStylDvcd>1</wkplStylDvcd> -->
+
+</item>
+
+</items>
+
+<numOfRows>1</numOfRows>
+
+<pageNo>10</pageNo>
+
+<totalCount>16</totalCount>
+
+</body>
+
+</response>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{"fields":[{"id":"bzowrRgstNo"},{"id":"dataCrtYm"},{"id":"ldongAddrMgplDgCd"},{"id":"ldongAddrMgplSgguCd"},{"id":"ldongAddrMgplSgguEmdCd"},{"id":"seq"},{"id":"wkplJnngStcd"},{"id":"wkplNm"},{"id":"wkplRoadNmDtlAddr"},{"id":"wkplStylDvcd"}],"records":[{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201909","seq":"21860663","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201910","seq":"22169582","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201911","seq":"22672424","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201908","seq":"21257410","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201912","seq":"23271692","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201901","seq":"2859531","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201907","seq":"20756666","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"202001","seq":"23779344","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201903","seq":"1873588","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"},{"wkplStylDvcd":"1","ldongAddrMgplDgCd":"11","dataCrtYm":"201811","seq":"3853755","ldongAddrMgplSgguEmdCd":"101","ldongAddrMgplSgguCd":"680","wkplNm":"(주)케이에이치정보교육원","wkplJnngStcd":"1","bzowrRgstNo":"851870****","wkplRoadNmDtlAddr":"서울특별시 강남구 테헤란로14길"}]}

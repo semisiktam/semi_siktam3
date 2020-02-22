@@ -1,0 +1,358 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 70px;
+    background: rgb(13, 78, 100);
+    position:fixed;
+    z-index: 5000;
+}
+footer{
+    /* border: 1px solid black; */
+    width: 100%;
+    position: bottom;
+    height: 100px;
+    bottom: 0px;
+    background: rgb(13, 78, 100);
+
+}
+
+/* 바디 */
+#all{
+    height: auto;
+    /* border: 1px solid black; */
+    width: 70%;
+    margin: 0 auto;
+    /* padding-top: 70px; */
+
+}
+
+.pagemainimg{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 500px;
+    background-image: url(../images/detailimg.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.pageselect{
+    /* border: 1px solid black; */
+    position: absolute;
+    width: 70%;
+    margin-top: -35px;
+}
+
+.pageselect div{
+    /* border: 1px solid black; */
+    display: inline-block;
+    width: 49.62%;
+    text-align: center;
+    height: 44px;
+    border-radius: 10px;
+    margin-bottom: -10px;
+    cursor: pointer;
+
+}
+
+#information{
+    background: gray;
+    color: white;
+    
+}
+#review{
+    background: white;
+    color : black
+}
+.pageselect div span{
+    /* border: 1px solid black; */
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: -webkit-baseline-middle;
+}
+
+#pagetop{
+    /* border: 1px solid black; */
+    height: auto;
+    width: 100%;
+    z-index: 30;
+    background: white;
+    position: relative;
+}   
+#pagetop h3{
+    /* border: 1px solid black; */
+    text-align: center;
+    font-size: 43px;
+    padding: 50px 0 30px 0;
+    margin: 0 auto;
+}
+#pagetop span{
+    /* border: 1px solid black; */
+    text-align: center;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+#score{
+    height: auto;
+    /* border: 1px solid black; */
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 70px;
+    text-align: center;
+    display: flex;
+
+}
+.scoreIn{
+    display: inline-block;
+}
+#number{
+    float: left;
+    width: 50%;
+}
+
+#scoreNumber{
+    width: 100%;
+    height: 30%;
+}
+#numberScore{
+    width: 100%;
+    height: 10%;
+}
+
+#scores{
+    width: 60%;
+    height: 200px;
+    float: left;
+}
+.var{
+    width: 70%;
+    height: 15px;
+}
+
+.jum{
+    text-align: center;
+}
+
+#wReview{
+    float: left;
+    /* border: 1px solid; */
+    width: 10%;
+    height: 30px;
+    border-radius: 20px;
+    border: 3px solid #eee;
+    position: relative;
+}
+#wReviewbtn{
+    width: 100%;
+    height: 100%;
+    /* border-radius: 10%; */
+    /* background: white; */
+    color: balck;
+    font-weight: bold;
+    opacity: 0;
+}
+#wReview p{
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    z-index: -300;
+    font-weight: bold;
+    color: gray;
+}
+#select1{
+    float: right;
+    margin-top: -15px;
+}
+#select1 label{
+    color: gray;
+}
+#select1 select{
+    width: 80px;
+    height: 30px;
+}
+
+/* 리뷰 */
+.allReview{
+
+}
+.personInfo{
+    background: #eee;
+    height: 25px;
+    padding: 3%;
+}
+.id1{
+    width: 30px;
+    height: 30px;
+}
+.bottomBtn{
+    display: inline-block;
+    float: right;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    border: 3px solid gray;
+    border-radius: 50%;
+    top: -5px;
+    color: gray;
+    background: white;
+    font-size: 22px;
+}
+#btn1{
+
+}
+#personReview1{
+
+}
+.personReview{
+    padding: 3%;
+    
+}
+#star_view1{
+
+}
+
+.personReview p{
+    font-size: 13px;
+    color: #464646;
+}
+
+.idLabel{
+    vertical-align: top;
+    color: gray;
+}
+.reviewBtn{
+    float: right;
+    margin-top: 10px;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border: 1px solid;
+    top: -10px;
+    opacity: 0;
+}
+
+    /* 막대 바 */
+progress{
+    background-color: yellow;
+    border: 0;
+    height: 18px;
+    border-radius: 9px;
+}
+
+progress::-webkit-progress-bar{
+    background-color: white;
+    border: 0;
+    height: 18px;
+    border-radius: 9px;
+}
+progress::-webkit-progress-value{
+    background-color: gold;
+    border: 0;
+    height: 18px;
+    border-radius: 9px;
+}
+progress::-moz-progress-bar{
+    background-color: black;
+    border: 0;
+    height: 18px;
+    border-radius: 9px;
+}
+
+/* .starR{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-indent: -9999px;
+    cursor: pointer;
+  }
+  .starR.on{background-position:0 0;color: gold;} */
+/* 별점 */
+#star_grade a{
+    text-decoration: none;
+    color: lightgray;
+    font-size: 30pt;
+}
+#star_grade a.on{
+    color: gold;
+    
+}
+
+#star_grade_review a{
+    text-decoration: none;
+    color: lightgray;
+    font-size: 12pt;
+}
+#star_grade_review a.on{
+    color: gold;
+}
+
+#star_view1 a{
+    text-decoration: none;
+    color: lightgray;
+    font-size: 20pt;
+}
+#star_view1 a.on{
+    color: gold;
+}
+
+#star_view2 a{
+    text-decoration: none;
+    color: lightgray;
+    font-size: 12pt;
+}
+#star_view2 a.on{
+    color: gold;
+}
+
+#star_view3 a{
+    text-decoration: none;
+    color: lightgray;
+    font-size: 12pt;
+}
+#star_view3 a.on{
+    color: gold;
+}
+
+
+
+/* 별점 끝 */
+#reviewText{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    resize: none;
+    font-size: 13pt;
+}
+#rwbtn{
+    float: right;
+    margin-top: 10px;
+}
+
+.reviewImg{
+    width: 100%;
+    height: 100%;
+}
+
+.imgDiv{
+    width: 200px;
+    height: 200px;
+    /* margin: 0 auto; */
+    /* border: 1px solid; */
+    box-shadow: 0px 0px 2px grey;
+}
+
+
+

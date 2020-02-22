@@ -1,0 +1,76 @@
+@charset "UTF-8";
+.wrap{
+    /* 전체 div */
+    width:80%;
+    height:680px;
+    /* border: 1px solid black; */
+    margin:auto; 
+    padding-top: 100px;
+}
+.regist{
+    /* 회원가입 폼 table */
+    margin-left: auto; 
+    margin-right: auto;
+}
+.form-control{
+    /* 회원가입 폼 input태그들 */
+    height:30px;
+    width:250px
+}
+
+.tel-control{
+	/* 전화번호 input 태그 */
+    height:30px;
+    width:69px;
+}
+#pid1{
+    /* 회원가입 폼 주민번호 앞자리 */
+    height:30px;
+    width:100px;
+}
+#pid2{
+    /* 회원가입 폼 주민번호 뒷자리 */
+    height:30px;
+    width:20px;
+}
+
+table {
+    /* 회원가입 테이블 간격 조절하는 css */
+    border-collapse: separate;
+    border-spacing: 17px 15px;
+}
+
+#confirm{
+    /* 휴대폰 인증 버튼 */
+    background: rgb(13, 78, 100);
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    width:90px;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.btn {
+    /* 회원가입 버튼 */
+    height: 35px;
+    font-weight: bold;
+    width:80px;
+    background-color:rgb(13, 78, 100);
+    color:#fff;
+    /* padding: 5px 0; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* margin: 4px; */
+    cursor: pointer;
+
+    /* border-radius:10px; */
+
+}

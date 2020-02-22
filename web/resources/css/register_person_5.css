@@ -1,0 +1,113 @@
+.wrap{
+    /* 전체 div */
+    width:80%;
+    height:1000px;
+    border: 1px solid black;
+    margin:auto; 
+    padding-top: 100px;
+}
+.regist{
+    /* 회원가입 폼 table */
+    margin-left: auto; 
+    margin-right: auto;
+}
+.form-control{
+    /* 회원가입 폼 input태그들 */
+    height:30px;
+    width:250px;
+}
+
+.tel-control{
+	/* 전화번호 input 태그 */
+    height:30px;
+    width:69px;
+}
+#pid1{
+    /* 회원가입 폼 주민번호 앞자리 */
+    height:30px;
+    width:100px;
+}
+#pid2{
+    /* 회원가입 폼 주민번호 뒷자리 */
+    height:30px;
+    width:20px;
+}
+
+table {
+    /* 회원가입 테이블 간격 조절하는 css */
+    border-collapse: separate;
+    border-spacing: 17px 15px;
+}
+
+#confirm{
+    /* 휴대폰 인증 버튼 */
+    width:90px;
+    height:30px;
+    background-color: rgb(13, 78, 100);
+    color:#fff;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn {
+    /* 회원가입 버튼 */
+    width:482px;
+    height:50px;
+    background-color:rgb(13, 78, 100);
+    /* border: none; */
+    color:#fff;
+    /* padding: 5px 0; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    /* margin: 4px; */
+    cursor: pointer;
+
+    /* border-radius:10px; */
+
+}
+
+
+#chkwrap1{
+    width:480px;
+    text-align: left;
+    padding-bottom: 10px;
+    
+
+}
+#chkwrap2{
+    border: 1px solid lightgray;
+    width:480px;
+    text-align: left;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+} 
+.all-chk{
+    border-bottom: 1px solid lightgray;
+    background: rgb(82, 82, 82);
+    color:white;
+    height: 37px;
+} 
+.chk-info{
+    list-style:none;
+    
+} 
+label{
+    font-size:14px;
+    vertical-align: sub;
+    padding-left:3px;
+}
+.chk_1{
+    vertical-align:-2px;
+    
+}
+
+

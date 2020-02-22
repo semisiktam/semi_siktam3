@@ -1,0 +1,57 @@
+@charset "UTF-8";
+.wrap{
+    width:70%;
+    height:900px;
+    /* border: 1px solid black; */
+    margin:auto; 
+    padding-top: 50px;
+    }
+
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top:40px;
+    font-size:14px;
+    }
+
+    th, td {
+    text-align: center;
+    padding: 16px;
+    }
+
+    th:first-child, td:first-child {
+    text-align: left;
+    }
+
+    table thead tr{
+        border-bottom: 3px solid #036;
+        font-size:16px;
+    }
+
+    fieldset{
+        margin-top:20px;
+        border: none;
+        text-align: left;
+        font-size:14px;
+    }
+
+    #searchTxt{
+        margin-left:10px;
+        width:17%;
+        height:30px;
+    }
+
+    #searchBtn{
+        background: rgb(13, 78, 100);
+        width:60px;
+        height: 35px;
+        color: white;
+        font-weight: bold;
+        font-size:14px;
+    }
+    
+    a{
+      color:black;
+    }

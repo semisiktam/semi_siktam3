@@ -1,0 +1,90 @@
+@charset "UTF-8";
+.wrap{
+    width:70%;
+    height:900px;
+    /* border: 1px solid black; */
+    margin:auto; 
+    padding-top: 100px;
+}
+.qnaDiv{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    /* border: 1px solid #ddd; */
+    margin-top:40px;
+    font-size:14px;
+}
+
+form{
+    display : block;
+    margin-top:0em;
+}
+
+#qna_write{
+    width:100%;
+    margin: 0 auto;
+    margin-bottom : 25px;
+}
+
+.qna_tab{
+    width:80%;
+    margin: 0 auto;
+    border-top : 1px solid #036;
+
+}
+
+tbody{
+    border-color:inherit;
+    vertical-align: middle;
+}
+
+.qna_tab td{
+    border-bottom: 1px solid #c3c3c3;
+    padding: 10px 0 10px 12px;
+}
+
+.qna_write_td{
+    font-size: 16px;
+    background-color: #f2f2f2;
+    /* text-align: center; */
+    font-weight: bold;
+    width:100px;
+}
+
+#qna_write_title_input{
+    width: 90%;
+    padding: 6px;
+    border: 1px solid #b3b3b3;
+    font-size: 12px;
+    color: #707070;
+    font-family: "굴림", "Verdana", "Arial";
+}
+
+.qna_write_textarea{
+    width: 90%;
+    height: 180px;
+    padding: 6px;
+    border: 1px solid #b3b3b3;
+    font-size: 12px;
+    color: #707070;
+    font-family: "굴림", "Verdana", "Arial";
+}
+
+#submitBtn{
+    background: rgb(13, 78, 100);
+    width:80px;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    margin-top:10px;
+}
+#deleteBtn{
+    background: rgb(13, 78, 100);
+    width:80px;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size:14px;
+    margin-top:10px;
+}

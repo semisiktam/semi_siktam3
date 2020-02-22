@@ -1,0 +1,376 @@
+*{
+    list-style: none;
+}
+/* 전체 div 틀 */
+#wrap{
+    width: 70%;
+    height: auto;
+    /* border: 1px solid orange; */
+    margin: auto;
+    padding-top: 100px;
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+/* 각 div 틀 */
+.content{
+    width:100%;
+    /* height:260px; */
+    /* border: 1px solid blue; */
+    display: inline-block;
+    position: relative;
+    padding-top:30px;
+}
+
+/* 매장 아이콘 */
+#imgDiv{
+    display: inline-block;
+    width: 28%;
+    padding: 16px;
+    margin-top: 15px;
+}
+#storeImg{
+    width: 125px;
+    height: 125px;
+    background-image: url(../../resources/images/boy.png);
+    background-size: cover;
+    /* border: 1px solid; */
+    margin: 0 auto;
+}
+
+/* 업체 정보 있는 div */
+#storeInfo1{
+    display: inline-block;
+    width: 63%;
+    height: 139px;
+    /* border: 1px solid; */
+    margin-bottom: 0px;
+    vertical-align: top;
+    margin-top: 22px;
+}
+
+/* 업체 정보 ul */
+.storeInfo2{
+    list-style:none;
+    font-size:large;
+    text-align: left;
+    /* line-height:210%; */
+}
+.storeInfo2 li{
+    margin-bottom: 1%;
+    color: #4c4c4c;
+    width: 100%;
+    position: relative;
+}
+#userName{
+    margin-bottom: 20px;
+}
+
+
+/* 수정하기, 확인하기 버튼 */
+.btn1{
+    position: absolute;
+    right: 10px;
+    width: 100px;
+    font-size: 12px;
+    height: 25px;
+    background: rgb(13, 78, 100);
+    font-weight: bold;
+    color: white;
+
+}
+
+/* 각 목록 타이틀명 h3태그 */
+#contentTxt{
+    padding-left:8px;
+    padding-bottom:8px;
+}
+
+
+/* 내가 등록한 업체 */
+#registStore{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: auto;
+    text-align: left;
+    box-shadow: 0px 0px 4px grey;
+}
+#registStore ul{
+    /* border: 1px solid black; */
+    display: inline-block;
+    width: 100%;
+    /* height: 212px; */
+    white-space: nowrap;
+    overflow-x: scroll;
+    position: relative;
+}
+#registStore li{
+    display: inline-block;
+    position: relative;
+    top: -10px;
+}
+
+/* 내가 등록한 업체 큰 틀 div */
+.registStore1{
+    width: 99%;
+    height: 218px;
+    background: rgb(238, 238, 238);
+    display: inline-block;
+    position: relative;
+    overflow: auto;
+}
+
+/* 내가 등록한 업체 작은 틀 div */
+.registStore2{
+    width: 185px;
+    height: 185px;
+    background: white;
+    /* float: left; */
+    margin: 2px;
+    display: inline-block;
+    box-shadow: 0px 0px 4px grey;
+    margin: 4%;
+    margin-right: 5px;
+}
+.registStore2Add{
+    width: 185px;
+    height: 185px;
+    background: white;
+    /* float: left; */
+    margin: 2px;
+    display: inline-block;
+    position: relative;
+    position: absolute;
+    overflow: hidden;
+    margin-left: 8px;
+}
+
+
+/* 2020.02.10 수정 시작(현희) < 즐겨찾기 추가 >  */
+
+
+.bookmark{
+    position: absolute;
+    background: white;
+    z-index: 3000;
+    top: 15px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+.bookmark p{
+    color: #eee;
+    font-size: 18px;
+    
+}
+
+
+/* 2020.02.10 수정 끝 (현희) */
+
+
+
+/* 내가 등록한 업체 사진 */
+.registStoreImg{
+}
+
+/* 내가 등록한 업체 추가 버튼 틀 */
+#plusBtn1{
+    height: 100%;
+    position: absolute;
+    top: 76px;
+    left: 76px;
+}
+
+/* 내가 등록한 업체 추가 버튼 */
+#plusBtn2{
+    background: rgb(13, 78, 100);
+    height: 35px;
+    width: 35px;
+    color: white;
+    font-weight: bold;
+    font-size:21px;
+
+}
+
+/* 다가오는 예약 목록 큰 틀 div */
+.reserve1{
+    width:99%;
+    height:230px;
+    background:rgb(238, 238, 238);
+    display: inline-block;
+    position: relative;
+    overflow:scroll;
+}
+
+/* 다가오는 예약 목록 작은 틀 div */
+.reserve2{
+    width:200px;
+    height:200px;
+    background: white;
+    float:left;
+    margin:2px;
+    text-align: center;
+    box-shadow: 0px 0px 4px grey;
+}
+
+
+
+/* 다가오는 예약 목록 버튼 */
+#plusBtn3{
+    display:inline-block;
+    position:absolute;
+    top:93px;
+    right:65px;
+
+}
+
+/* 다가오는 예약 목록 텍스트 div */
+.reserve3{
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
+
+/* 모달 창 */
+#modal1 {
+    display: none;
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:1;
+  }
+  
+  #modal1 h2 {
+    margin:0;   
+  }
+  
+  #modal1 button {
+    display:inline-block;
+    width:100px;
+    margin-left:calc(100% - 100px - 10px);
+    background: rgb(13, 78, 100);
+    height: 35px;
+    width: 100px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  #modal1 .modal_content {
+    width:100%;
+    height: 100%;
+    margin:0 auto;
+    padding:20px 10px;
+    background:#fff;
+    border:2px solid #666;
+  }
+  
+  #modal1 .modal_layer {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:-1;
+  }
+
+  #modal2 {
+    display: none;
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:1;
+  }
+  
+  #modal2 h2 {
+    margin:0;   
+  }
+  
+  #modal2 button {
+    display:inline-block;
+    width:100px;
+    margin-left:calc(100% - 100px - 10px);
+    background: rgb(13, 78, 100);
+    height: 35px;
+    width: 100px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  #modal2 .modal_content {
+    width:100%;
+    height: 100%;
+    margin:0 auto;
+    padding:20px 10px;
+    background:#fff;
+    border:2px solid #666;
+  }
+  
+  #modal2 .modal_layer {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:-1;
+  }
+/* 모달 창 끝 */
+
+#reservationTb1{
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    width: 100%;
+    border-top: 1px solid #ccc;
+}
+#reservationTb2{
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    width: 100%;
+    border-top: 1px solid #ccc;
+}
+
+
+tr,td{
+    text-align: center;
+    padding: 16px;
+    border-bottom: 1px solid #ccc;
+    margin: 0 auto;
+}
+
+thead th{
+    /* border-right: 1px solid #ccc; */
+    /* border-left: 1px solid #ccc; */
+    color: #369;
+    border-bottom: 3px solid #036;
+    margin: 0 auto;
+}
+
+th{
+    text-align: center;
+    padding: 16px;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    margin: 0 auto;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+/* .reservationTr{
+    width: 100%;
+    height: 100%;
+} */
+td input{
+    background: rgb(13, 78, 100);
+    height: 35px;
+    width: 55px;
+    color: white;
+    font-weight: bold;
+}
+

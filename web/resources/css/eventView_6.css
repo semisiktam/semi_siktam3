@@ -1,0 +1,95 @@
+@charset "UTF-8";
+@font-face { font-family: 'CookieRunOTF-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+#mainBanner{
+    height: auto;
+    width: 100%;
+    border: 1px solid black;
+    position: relative;
+}
+/* 배경이미지 */
+#mainImg{
+     /* background-image: url(../images/back.jpg); */
+     height: 100%;
+     width: 100%;
+     /* opacity: 0.4; */
+     position: absolute;
+     z-index: -100;
+     background-size: cover;
+     background-position: center;
+     background: #fff5dc;
+}
+
+#mainText{
+    text-align: center;
+    margin-top: 200px;
+}
+#mainText h1{
+    font-size: 65px;
+    font-weight: lighter;
+    font-family: 'CookieRunOTF-Bold';
+    color: #0d4e64;
+}
+#mainText h2{
+    color: red;
+    font-family: 'CookieRunOTF-Bold';
+    font-size: 70px;
+}
+/* 뷰바디 */
+#viewBody{
+    width: 70%;
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    margin-top: 100px;
+    position: relative;
+    margin-bottom: 35px;
+}
+/* 배너 메뉴 */
+.bannerMenu{
+    width: 30%;
+    /* border: 1px solid; */
+    background: white;
+    margin: 1.4%;
+    display: inline-block;
+    box-shadow: 2px 4px 5px grey;
+}
+/* 업체별 이미지 */
+.menuImg{
+    width: 90%;
+    /* border: 1px solid; */
+    padding: 4%;
+}
+
+
+.menuImg img{
+    width: 100%;
+}
+
+
+/* 업체별 텍스트 */
+.menuText{
+    padding: 10px;
+}
+.menuText h3{
+    text-align: center;
+    margin: 10px;
+}
+.rank{
+    color: #ea8200;
+}
+.storeName{
+
+}
+.menuText p{
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+    color:gray;
+}
+.menuText input{
+    color: white;
+    background: #ea8200;
+    border-radius: 10px;
+    width: 47%;
+    height: 30px;
+}
