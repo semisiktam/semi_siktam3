@@ -1,12 +1,14 @@
 package com.kh.semi.reservation.model.service;
 
 import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
 import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
-import com.kh.semi.member.model.vo.MemberReservationList;
 import com.kh.semi.reservation.model.dao.ReservationDao;
 import com.kh.semi.reservation.model.vo.ReservationTest; 
 public class ReservationService {
@@ -21,20 +23,38 @@ public class ReservationService {
 		close(con);
 		return list;
 	}
-	
-	/**
-	 * 탐희 마이페이지 예약 결제 내역
-	 * @param userid
-	 * @param reserveNo
-	 * @return
-	 */
-	public ArrayList<MemberReservationList> reservationModify(String userid, String reserveNo) {
+
+	public int reservationInsert(String userId, String shopPid, Date rdate,
+			String time, String menu) {
+		
 		Connection con = getConnection();
 		
-		ArrayList<MemberReservationList> mrList = rDao.reservationModify(con,userid,reserveNo);
+		int result = rDao.reservationInsert(con,userId,shopPid,rdate,time,menu);
+		
+		if (result > 0) commit(con);
+		else rollback(con);
 		
 		close(con);
-		return mrList;
+		
+		return result;
+	}
+
+	public String reservationNo(String userId, String shopPid) {
+		
+		Connection con = getConnection();
+		
+		String rNo = rDao.reservationNo(con,userId,shopPid);
+		return rNo;
+	}
+
+	public int reservationDelete(String rNo) {
+		
+		Connection con = getConnection();
+		
+		int result = rDao.reservationDelete(rNo);
+		
+				
+		return result;
 	}
 
 }
