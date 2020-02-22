@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.eventBanner.model.service.EventBannerService;
-import com.kh.semi.eventBanner.model.vo.EventBanner;
 
 /**
- * Servlet implementation class eventInsertServlet
+ * Servlet implementation class eventDeleteServlet
  */
-@WebServlet("/evInsert.ev")
-public class eventInsertServlet extends HttpServlet {
+@WebServlet("/evDelete.ev")
+public class eventDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventInsertServlet() {
+    public eventDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +28,17 @@ public class eventInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eventName = request.getParameter("eventName");
-		String eventImg = request.getParameter("eventImg");
-		System.out.println(eventName+"  "+eventImg);
-		EventBanner eb = new EventBanner(eventName,eventImg);
+		String check1 = request.getParameter("check1");
 		
-		EventBannerService es= new EventBannerService();
-		
-		int result = es.InsertEvent(eb);
+		EventBannerService ebs = new EventBannerService();
 
-		System.out.println("servlet"+result);
-		
+		int result = ebs.deleteEvent(check1);
+		System.out.println(result);
 		if(result > 0) {
-			response.sendRedirect("eSelectList.ev");			
+			response.sendRedirect("/siktam/eSelectList.ev");
 		}else {
-			request.setAttribute("msg", "등록실패");
+			request.setAttribute("msg", "업체 삭제 실패");
 		}
-		
 	}
 
 	/**
