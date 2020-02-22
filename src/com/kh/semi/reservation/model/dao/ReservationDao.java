@@ -124,12 +124,22 @@ public class ReservationDao {
 		return rNo;
 	}
 
-	public int reservationDelete(String rNo) {
+	public int reservationDelete(Connection con, String rNo) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("");
-		
+		String sql = prop.getProperty("reservationDelete");
+		System.out.println(rNo);
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println(result);
 		return result;
 	}
 	

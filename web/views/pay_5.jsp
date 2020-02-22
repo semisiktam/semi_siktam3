@@ -74,8 +74,8 @@
                 </div>    
                     <div id="mileageDiv">
                         <div>
-                            <input type="text" class="mileage" id="A" value="0"><label id="won1">원 <--</label>
-                            <input type="text" class="mileage" id="B" value='<%= mc.getMileage() %>' style="text-align: left;"><label id="won2">원</label>
+                            <input type="text" class="mileage" id="useMile" name="useMile" value="0"><label id="won1">원 <--</label>
+                            <input type="text" class="mileage" id="getMile" name="getMile" value='<%= mc.getMileage() %>' style="text-align: left;"><label id="won2">원</label>
                         </div>
                         <p>(사용가능 마일리지)</p>
                     </div>
@@ -86,11 +86,9 @@
                     <div id="sub-title">
                         <p class="title-1"><b>할인쿠폰 선택</b></p>
                     </div>
-                    <input type="text" list="mylist" style="width: 75%;height: 30px;font-size: 15px;">
+                    <input type="text" list="mylist" id="coupon" style="width: 75%;height: 30px;font-size: 15px;">
                     <datalist id="mylist">
-                        <option value="1,000원 할인">생일 기념 할인 쿠폰</option>
-                        <option value="1,000원 할인">오픈 이벤트 기념 할인 쿠폰</option>
-                        <option value="2,000원 할인">첫 가입 기념 할인 쿠폰</option>
+                        <option value="0원 할인">쿠폰 없음</option>
                     </datalist>
                     <button id="couponclick">적용</button>
                     
@@ -104,7 +102,7 @@
                         <p class="title-1"><b>주문내역</b></p>
                     </div>
                     <div id="sub-sub-title2">
-                        <p class="title-1"><b>역전우동-역삼점</b></p>
+                        <p class="title-1"><b><%= list.get(0).getRshopName() %></b></p>
                     </div>
                     <div id="menulist">
                         <table id="menutable" >
@@ -144,7 +142,27 @@
     
     <script>
     	$('#cancle').click(function(){
-    		location.href="<%=request.getContextPath()%>/searchMain.sc?rNo="+'<%=list.get(0).getrNo()%>'+"shopPid="+'<%=list.get(0).getRshopPid()%>';
+    		location.href="<%=request.getContextPath()%>/reservationdelete.rc?rNo="+'<%=list.get(0).getrNo()%>'
+    	});
+    </script>
+    
+    <script>
+    	$('#coupon').click(function(){
+    		$.ajax({
+    			url:"/siktam/coupon.cc",
+    			 traditional : true,
+		         dataType:"json",
+    			type:"get",
+    			data:{
+ 					"cNo" : '<%=mc.getCouponNo()%>'   				
+    			},success:function(data){
+    				console.log(data);
+    				var $coupon ;
+    				
+    			},error:{
+    				
+    			}
+    		});
     	});
     </script>
 
@@ -159,13 +177,6 @@
             })
         })
 
-        // <!-- 쿠폰선택 눌리면 popup창뜸 -->
-        // function open() {
-        //     var url = "termsOfUse2_5.jsp";
-        //     var name = "popup test";
-        //     var option = "width = 800, height = 500, top = 100, left = 200, location = no"
-        //     window.open(url, name, option);
-        // }
 
     // 전체동의 체크박스
         function allselect(chd) {
@@ -184,19 +195,10 @@
 
     </script>
 
-
-
-
-
-
-
-
-   
-
-
-    
-
     <!-- 푸터 시작 -->
     <%@ include file="common/footer.jsp" %>
 </body>
 </html>
+
+
+
