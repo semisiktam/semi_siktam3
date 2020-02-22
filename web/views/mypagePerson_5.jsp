@@ -102,9 +102,9 @@
 	                            <%if(rr.getAcceptYN().equals("W")){ %>
 	                            <td>대기중</td>
 	                            <%} else if(rr.getAcceptYN().equals("Y")){%>
-	                            <td>수락</td>
+	                            <td>예약확정</td>
 	                            <%} else { %>
-	                            <td>거절</td>
+	                            <td>예약거절</td>
 	                            <%} %>
 	                            <!-- 변경 클릭 시 예약변경 페이지로 이동 -->
 	                            <td colspan="2">
