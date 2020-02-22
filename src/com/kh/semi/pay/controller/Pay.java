@@ -1,7 +1,9 @@
 package com.kh.semi.pay.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.pay.model.service.payService;
 import com.kh.semi.pay.model.vo.PayInfo;
+import com.kh.semi.reservation.model.service.ReservationService;
 
 /**
  * Servlet implementation class Pay
@@ -36,9 +39,6 @@ public class Pay extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 	    Member m = (Member)session.getAttribute("member");
-	    //마일리지/쿠폰 번호
-	    Member mc = new payService().payinfo(m.getUserId());
-	    System.out.println(m.getUserId());
 	    //결제 정보
 	    String shopName = request.getParameter("shopName");
 	    String shopAddr = request.getParameter("shopAddr");
@@ -47,29 +47,82 @@ public class Pay extends HttpServlet {
 		String[] menuPrice = request.getParameterValues("menuPrice");
 		int total = Integer.parseInt(request.getParameter("hdtotal"));
 		
+		//예약 insert 정보
+		String[] menuNo = request.getParameterValues("menuNo");
 		String time = request.getParameter("time");
 		String date = request.getParameter("date");
 		String shopPid = request.getParameter("shopPid");
+		StringBuilder menuList = new StringBuilder();
+		String menu = null;
 		
-		System.out.println(time);
-		
-		PayInfo pi = null;
-		ArrayList<PayInfo>list = new ArrayList<PayInfo>();
-		for(int i=0; i<menuName.length; i++) {
-			pi = new PayInfo();
-			pi.setRshopName(shopName);
-			pi.setRshopAddr(shopAddr);
-			pi.setRmenuName(menuName[i]);
-			pi.setRmenuCount(menuCount[i]);
-			pi.setRmenuPrice(menuPrice[i]);
-			pi.setTotalPay(total);
+		for(int k=0; k<menuName.length; k++) {
 			
-			list.add(pi);
+			menuList.append(menuNo[k]);
+			menuList.append(",");
+			menuList.append(menuName[k]);
+			menuList.append(",");
+			menuList.append(menuCount[k]);
+			menuList.append(",");
+			menuList.append(menuPrice[k]);
+			menuList.append(",");
 		}
 		
-		for(PayInfo pi2 : list) {
-			System.out.println(pi2);
+		menu = menuList.toString();
+		
+		String[] dateArr = date.split("-");
+		int[] intdate = new int[dateArr.length];
+		
+		Date rdate = null;
+		for(int i=0; i<dateArr.length; i++) {
+			intdate[i] = Integer.parseInt(dateArr[i]);
+			System.out.println(intdate[i]);
 		}
+		
+		rdate = new Date(new GregorianCalendar(
+				intdate[0],intdate[1]-1,intdate[2]).getTimeInMillis());
+		
+		System.out.println(m.getUserId());
+		System.out.println(shopPid);
+		System.out.println(rdate);
+		System.out.println(time);
+		System.out.println(menu);
+		//예약 insert
+		int result = new ReservationService().reservationInsert(m.getUserId(),shopPid,rdate,time,menu); 
+		/*String userId, String shopPid, Date rDate, String rTime, int mNo*/
+		
+		//마일리지/쿠폰 번호
+		
+		//예약번호
+		String rNo = null;
+		
+		if(result > 0) {
+			rNo = new ReservationService().reservationNo(m.getUserId(),shopPid);
+		}
+		
+		//payInfo
+		PayInfo pi = null;
+		ArrayList<PayInfo>list = null;
+		
+		if(rNo != null) {
+			list = new ArrayList<PayInfo>();
+			for(int j=0; j<menuName.length; j++) {
+				System.out.println(menuNo[j]);
+				pi = new PayInfo();
+				pi.setrNo(rNo);
+				pi.setRshopPid(shopPid);
+				pi.setRshopName(shopName);
+				pi.setRshopAddr(shopAddr);
+				pi.setRmenuName(menuName[j]);
+				pi.setRmenuCount(menuCount[j]);
+				pi.setRmenuPrice(menuPrice[j]);
+				pi.setTotalPay(total);
+				
+				list.add(pi);
+			}
+		}
+		
+		Member mc = new payService().payinfo(m.getUserId());
+		System.out.println(m.getUserId());
 		
 		String page ="";
 		
