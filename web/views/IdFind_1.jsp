@@ -158,7 +158,7 @@
  				}, success:function(result){
  					 
  					if(!result==""){
- 						alert(result);
+ 						alert("찾으시는 아이디는 [ " + result + " ] 입니다");
  					}else{
  						alert("해당하는 아이디가 없습니다");
  					}
@@ -184,7 +184,7 @@
 				}, success:function(result){
 					 
 					if(!result==""){
-						alert(result);
+						alert("찾으시는 아이디는 [ " + result + " ] 입니다");
 					}else{
 						alert("해당하는 아이디가 없습니다");
 					}

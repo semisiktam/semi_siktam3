@@ -1,16 +1,21 @@
 package com.kh.semi.black.model.service;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.semi.black.model.dao.BlackDao;
 import com.kh.semi.black.model.vo.BlackList;
-
-import static com.kh.semi.common.JDBCTemplate.*;
+import com.kh.semi.member.model.dao.MemberDao;
 
 public class BlackService {
 	private Connection con;
 	private BlackDao bDao = new BlackDao();
+	private MemberDao mDao = new MemberDao();
 	
 	public int getListCount() {
 		con = getConnection();
@@ -53,6 +58,21 @@ public class BlackService {
 		
 		close(con);
 		
+		return result;
+	}
+
+	public int deleteZero() {
+		con = getConnection();
+		
+		bDao.updateZero(con);
+		
+		int result = bDao.deleteZero(con);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+				
 		return result;
 	}
 
