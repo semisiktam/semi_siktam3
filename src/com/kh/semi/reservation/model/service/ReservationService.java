@@ -52,9 +52,11 @@ public class ReservationService {
 		
 		Connection con = getConnection();
 		
-		int result = rDao.reservationDelete(rNo);
+		int result = rDao.reservationDelete(con,rNo);
 		
-				
+		System.out.println(result);
+		if(result >0) commit(con);
+		else rollback(con);
 		return result;
 	}
 	

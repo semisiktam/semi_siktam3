@@ -1,4 +1,4 @@
-package com.kh.semi.reservation.controller;
+package com.kh.semi.coupon.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.reservation.model.service.ReservationService;
+import com.google.gson.Gson;
+import com.kh.semi.coupon.model.service.CouponService;
+import com.kh.semi.coupon.model.vo.Coupon;
 
 /**
- * Servlet implementation class ReservationDelete
+ * Servlet implementation class coupon
  */
-@WebServlet("/reservationdelete.rc")
-public class ReservationDelete extends HttpServlet {
+@WebServlet("/coupon.cc")
+public class coupon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationDelete() {
+    public coupon() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,17 +31,16 @@ public class ReservationDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String rNo = request.getParameter("rNo");
-		String shopPid = request.getParameter("shopPid");
 		
-		System.out.println(rNo);
-		int result = new ReservationService().reservationDelete(rNo);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json; charset=UTF-8");
 		
-		if(result>0) {
-			response.sendRedirect("searchMain.sc");
-		}
-			
+		int cNo = Integer.parseInt(request.getParameter("cNo"));
 		
+		Coupon c = new CouponService().Coupon(cNo);
+		
+		new Gson().toJson(c,response.getWriter());
+	
 	}
 
 	/**
