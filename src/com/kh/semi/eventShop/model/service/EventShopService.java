@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.semi.eventShop.model.dao.EventShopDao;
+import com.kh.semi.eventShop.model.vo.EventShop;
 import com.kh.semi.shop.model.vo.Shop;
 
 public class EventShopService {
@@ -42,6 +43,19 @@ public class EventShopService {
 		Connection con = getConnection();
 		
 		int result = esDao.deleteShop(con,check);
+		
+		if(result >= 1) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int insertEventShop(EventShop es, String eno, String insertCheck) {
+		Connection con = getConnection();
+		
+		int result = esDao.insertEventShop(con,es,eno,insertCheck);
 		
 		if(result >= 1) commit(con);
 		else rollback(con);

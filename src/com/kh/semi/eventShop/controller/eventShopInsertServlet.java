@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.eventShop.model.service.EventShopService;
+import com.kh.semi.eventShop.model.vo.EventShop;
+
 /**
  * Servlet implementation class eventShopInsertServlet
  */
@@ -27,7 +30,21 @@ public class eventShopInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String insertCheck = request.getParameter("insertCheck");
+		
+		String eno = (String)request.getParameter("eno");
+		String insertCheck = (String)request.getParameter("insertCheck");
+		
+		EventShop es = new EventShop();
+		
+		EventShopService ess = new EventShopService();
+		
+		int result = ess.insertEventShop(es,eno,insertCheck);
+		
+		if(result > 0) {
+			response.sendRedirect("esList.es?eno="+eno);	
+		}else {
+			request.setAttribute("msg", "등록실패");
+		}
 		
 		
 		
