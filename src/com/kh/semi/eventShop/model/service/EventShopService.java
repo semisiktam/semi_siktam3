@@ -1,7 +1,9 @@
 package com.kh.semi.eventShop.model.service;
 
 import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
 import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -21,6 +23,32 @@ public class EventShopService {
 		close(con);
 		
 		return list;
+	}
+
+	public ArrayList<Shop> searchShop(String searchInfo) {
+		Connection con = getConnection();
+		
+		ArrayList<Shop> list = null;
+		
+		
+		list = esDao.searchShop(con,searchInfo);
+			
+		
+		return list;
+	}
+
+	public int deleteShop(String check) {
+
+		Connection con = getConnection();
+		
+		int result = esDao.deleteShop(con,check);
+		
+		if(result >= 1) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
 	}
 
 }
