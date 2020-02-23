@@ -112,7 +112,7 @@
 	                            <td colspan="2">
 	                            	<!-- <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="modify();"> &nbsp; -->
 	                            	<input type="button" value="변경" class="confirm" id="change"> &nbsp;
-	                            	<input type="button" value="취소" class="cancel" id="cancel" onclick="location.href='mypagePerson_5.html'">
+	                            	<input type="button" value="취소" class="cancel" id="cancel">
 	                            </td>
 	                        </tr>
                        <% } %>
@@ -269,6 +269,23 @@
             	/* console.log(shopPid); */
             	location.href="/siktam/reserveModify.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
             });
+             
+             $(".cancel").click(function(){
+            	 var reserveNo = $(this).parent().siblings(":eq(0)").val();
+             	/* console.log(reserveNo); */
+             	
+             	var shopPid = $(this).parent().siblings(":eq(1)").val();
+             	/* console.log(shopPid); */
+             	
+            	 var confirmAlert = confirm("예약을 취소하시겠습니까?");
+            	 if(confirmAlert == true){
+            		 location.href="/siktam/reserveModifyDelete.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
+            	 }
+            	 else if(confirmAlert == false){
+            	   self.close();
+            	 }
+             	
+             })
             
             
             

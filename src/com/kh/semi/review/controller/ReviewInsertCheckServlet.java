@@ -1,27 +1,25 @@
-package com.kh.semi.coupon.controller;
+package com.kh.semi.review.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.semi.coupon.model.vo.discount;
+import com.kh.semi.review.model.service.ReviewService;
 
 /**
- * Servlet implementation class coupon
+ * Servlet implementation class ReviewInsertCheckServlet
  */
-@WebServlet("/coupon.cc")
-public class coupon extends HttpServlet {
+@WebServlet("/rInsertCheck.ro")
+public class ReviewInsertCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public coupon() {
+    public ReviewInsertCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +30,16 @@ public class coupon extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		
-		int coupon = Integer.parseInt(request.getParameter("coupon"));
-		int useMile = Integer.parseInt(request.getParameter("useMile"));
-		int getMile = Integer.parseInt(request.getParameter("getMile"));
-		int total = Integer.parseInt(request.getParameter("total"));
+		String userId = request.getParameter("userId");
+		String shopPid = request.getParameter("shopPid");
 		
-		System.out.println(coupon);
-		System.out.println(total);
-		int mile = getMile - useMile;
-		int totalPay = total-coupon-useMile;
+		ReviewService rs = new ReviewService();
+		int rPossible = rs.rPossible(shopPid,userId);
 		
-		discount dc = new discount();
-		dc.setMile(mile);
-		dc.setTotalPay(totalPay);
-		dc.setUseMile(useMile);
-		dc.setGetMile(getMile);
-		new Gson().toJson(dc,response.getWriter());
+		response.getWriter().print(rPossible);
 		
-			
 	}
 
 	/**

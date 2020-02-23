@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.semi.coupon.model.service.CouponService;
+import com.kh.semi.coupon.model.vo.Coupon;
 import com.kh.semi.member.model.vo.Member;
-import com.kh.semi.pay.model.service.payService;
 import com.kh.semi.pay.model.vo.PayInfo;
 import com.kh.semi.reservation.model.service.ReservationService;
 
@@ -88,7 +89,7 @@ public class Pay extends HttpServlet {
 		System.out.println(time);
 		System.out.println(menu);
 		//예약 insert
-		int result = new ReservationService().reservationInsert(m.getUserId(),shopPid,rdate,time,menu); 
+		int result = new ReservationService().reservationInsert(m.getUserId(),shopPid,rdate,time,menu,total); 
 		/*String userId, String shopPid, Date rDate, String rTime, int mNo*/
 		
 		//마일리지/쿠폰 번호
@@ -122,13 +123,13 @@ public class Pay extends HttpServlet {
 			}
 		}
 		
-		Member mc = new payService().payinfo(m.getUserId());
-		System.out.println(m.getUserId());
+		Coupon c = new CouponService().Coupon(m.getCouponNo());
+		c.setMileage(m.getMileage());
 		
 		String page ="";
 		
-		if(mc != null && list != null) {
-			request.setAttribute("mc", mc);
+		if(c != null && list != null) {
+			request.setAttribute("c", c);
 			request.setAttribute("list", list);
 			page = "/views/pay_5.jsp";
 		}else {
