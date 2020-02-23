@@ -1,25 +1,27 @@
-package com.kh.semi.eventShop.controller;
+package com.kh.semi.qna.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventShop.model.service.EventShopService;
+import com.kh.semi.qna.model.service.QnaService;
+import com.kh.semi.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class eventShopDeleteServlet
+ * Servlet implementation class QnaAdminSelectServlet
  */
-@WebServlet("/esDelete.es")
-public class eventShopDeleteServlet extends HttpServlet {
+@WebServlet("/qAdminSelect.qna")
+public class QnaAdminSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventShopDeleteServlet() {
+    public QnaAdminSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,18 +30,24 @@ public class eventShopDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eno = request.getParameter("eno");
-		String check = request.getParameter("check");
+		int qno = Integer.parseInt(request.getParameter("qno"));
 		
-		EventShopService es = new EventShopService();
+		Qna q = new Qna();
+		QnaService qs = new QnaService();
 		
-		int result = es.deleteShop(check);
+		q = qs.qSelectOne(qno);
 		
-		if(result > 0) {
-			response.sendRedirect("esList.es?eno="+eno);
+		String page = "";
+		if(q != null) {
+			page = "views/admin_questionsDetail.jsp";
+			request.setAttribute("qna", q);
+			
 		}else {
-			request.setAttribute("msg", "업체 삭제 실패");
+			request.setAttribute("msg", "문의사항 상세보기 실패");
 		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
 
 	/**

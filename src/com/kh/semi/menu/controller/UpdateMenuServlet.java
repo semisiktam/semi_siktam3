@@ -55,7 +55,8 @@ public class UpdateMenuServlet extends HttpServlet {
 			request.getRequestDispatcher("/myMenulist.menu").forward(request, response);
 
 		}else {
-			
+			request.setAttribute("msg", "삭제 실패!");
+			request.getRequestDispatcher("/views/common/errorPage.jsp");
 		}
 	}
 

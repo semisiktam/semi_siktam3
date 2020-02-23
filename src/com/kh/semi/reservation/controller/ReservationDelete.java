@@ -1,25 +1,26 @@
-package com.kh.semi.eventShop.controller;
+package com.kh.semi.reservation.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventShop.model.service.EventShopService;
+import com.kh.semi.reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class eventShopDeleteServlet
+ * Servlet implementation class ReservationDelete
  */
-@WebServlet("/esDelete.es")
-public class eventShopDeleteServlet extends HttpServlet {
+@WebServlet("/reservationdelete.rc")
+public class ReservationDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventShopDeleteServlet() {
+    public ReservationDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,18 +29,17 @@ public class eventShopDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eno = request.getParameter("eno");
-		String check = request.getParameter("check");
+		String rNo = request.getParameter("rNo");
+		String shopPid = request.getParameter("shopPid");
 		
-		EventShopService es = new EventShopService();
+		System.out.println(rNo);
+		int result = new ReservationService().reservationDelete(rNo);
 		
-		int result = es.deleteShop(check);
-		
-		if(result > 0) {
-			response.sendRedirect("esList.es?eno="+eno);
-		}else {
-			request.setAttribute("msg", "업체 삭제 실패");
+		if(result>0) {
+			response.sendRedirect("searchMain.sc");
 		}
+			
+		
 	}
 
 	/**

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semi.black.model.vo.BlackList;
-import com.kh.semi.member.model.dao.MemberDao;
+import com.kh.semi.member.model.vo.Member;
 
 public class BlackDao {
 	
@@ -146,6 +146,44 @@ public class BlackDao {
 			close(pstmt);
 		}
 
+		return result;
+	}
+
+	public int deleteZero(Connection con) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteZero");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateZero(Connection con) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateZero");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
 		return result;
 	}
 

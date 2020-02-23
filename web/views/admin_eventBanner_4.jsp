@@ -14,12 +14,45 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/siktam/resources/css/admin_4.css">
-
-  
+ 
   <style>
     .tbl td{
       height: 200px;
     }
+    
+    #insertForm{
+    }
+    .insertEventName{
+    display: inline-block;
+    width: 30%;
+    margin: 0px 10px 0px 10px;
+    }
+    .insertEventImg{
+    display: inline-block !important;
+    }
+    .submitButton,.deleteEvent,.updateEvent{
+    	color: #fff;
+    	background-color: #d9534f;
+    	border-color: #d43f3a;
+    	display: inline-block;
+	    margin-bottom: 0;
+	    font-weight: 400;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    -ms-touch-action: manipulation;
+	    touch-action: manipulation;
+	    cursor: pointer;
+	    background-image: none;
+	    border: 1px solid transparent;
+	    padding: 6px 12px;
+	    font-size: 14px;
+	    line-height: 1.42857143;
+	    border-radius: 4px;
+	    float:right;
+	    margin-right:8px;
+    }
+    
   </style>
 </head>
 <body style="height:1080px">
@@ -57,76 +90,44 @@
   </div>
 
   <div class="tbl">
+  <div id="insertForm">
+  	<form action="<%= request.getContextPath() %>/evInsert.ev" method="get">
+  		<h5 style="display:inline-block; color:rgb(110, 0, 0); font-weight: bold;">이벤트 추가</h5>
+  		<input class="insertEventName" name="eventName" type="text" placeholder="이벤트명을 입력해주세요">
+  		<input class="insertEventImg" name="eventImg" type="file">
+  	
+  		<button type="submit" class="submitButton" style="width: 55px;">등록</button>
+          
+  	</form>
+  
+  </div>
+  	
+  	
     <table class="table table-hover" id="tbl">
       <tr>
-        <th class="eventInfo" colspan="2">이벤트명</th>
-        <th class="eventInfo" colspan="2">이벤트이미지</th>
-        <th class="text-right">
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addevent" id="registerBtn" style="width: 55px;">등록</button>
-          <div id="addevent" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">이벤트 등록</h4>
-                </div>
-                
-                
-                <!-- 이벤트 insert -->
-	            <form action="/siktam/eInsert.ev" method="post">    
-	                <div class="modal-body">                
-	                  <label>이벤트명</label><br>
-	                  <input type="text" name="eventName" id="modalEventName"><br><br>
-	                  <label>이벤트 대표이미지</label>
-	                  <input type="text" name="eventImg" id="modalEventImg">
-	                </div>
-	                <div class="modal-footer">
-	                	<input type="submit" class="btn btn-danger" data-dismiss="modal" value="등록">
-	                	<input type="reset" class="btn btn-danger" data-dismiss="modal" value="취소">
-	                </div>
-                </form>
-                
-              </div>
-
-            </div>
-          </div>
-        </th>
+        <th class="eventInfo" >이벤트명</th>
+        <th class="eventInfo">이벤트이미지</th>
+        <th></th>
+        
       </tr>
       
       <% for(EventBanner eb : list) { %>
       <tr>
       	<td style="display:none;"><%=eb.getEventNo() %></td>
-        <td colspan="2"><%=eb.getEventName() %></td>
+        <td class="eventNameTd" ><%=eb.getEventName() %></td>
         
-        <td colspan="2">
+        
+        <td>
           <img src="<%=eb.getEventImg() %>" alt="" style="width: 300px; height: 300px;">
         </td>
         <td class="text-right">
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delmember">삭제</button>
-
-          <!-- Modal -->
-          <div id="delmember" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">배너 삭제</h4>
-                </div>
-                <div class="modal-body">
-                  <p>해당배너를 삭제하시겠습니까?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
+          <button type="button" class="deleteEvent">삭제</button>
+          <button type="button" class="updateEvent">수정</button>
+          
         </td>
+        
       </tr>
+      <tr class="updateArea" style="display:none;"><td>하이</td></tr>
       <% } %>
       
     </table>
@@ -136,6 +137,9 @@
 </div>
 <!-- class container -->
 <script>
+//수정
+
+
 
 $(function(){
 	
@@ -143,10 +147,42 @@ $(function(){
 		$(this).parent().css({"background":"lightgray", "cursor":"pointer"});
 	}).mouseout(function(){
 		$(this).parent().css({"background":"white"});
-	}).click(function(){
+	})<%-- .click(function(){
 		//console.log($(this).parent().children().eq(0).text());
 		var eno = $(this).parent().children().eq(0).text();
 		location.href="<%=request.getContextPath()%>/esList.es?eno=" + eno;
+	}) --%>;
+	
+});
+// 수정
+$(function(){
+	$('.updateEvent').click(function(){
+		$('.updateArea').css('display','block');
+	});
+});
+
+// 선택
+$(function(){
+	 $('.eventNameTd').click(function(){
+		//console.log($(this).parent().children().eq(0).text());
+		var eno = $(this).parent().children().eq(0).text();
+		location.href="<%=request.getContextPath()%>/esList.es?eno=" + eno;
+	});
+});
+
+
+
+// 삭제
+$(function() {
+	$('.deleteEvent').click(function() {
+		var check1 = $(this).parent().parent().children('td').eq(0).text();
+		console.log(check1);
+		var conf = confirm("정말 삭제 하시겠습니까?");
+		if(conf == true){
+			location.href="/siktam/evDelete.ev?check1="+check1;
+		}
+		
+		
 	});
 });
 

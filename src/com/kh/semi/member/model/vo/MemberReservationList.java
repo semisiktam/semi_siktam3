@@ -19,7 +19,9 @@ public class MemberReservationList implements Serializable {
 	private String menuImg; //매뉴이미지
 	private int menuPrice; //메뉴가격
 	private int menuCount; //메뉴개수
-	
+	private String sStartTime; // 매장 시작시간
+	private String sEndTime; //매장 종료시간
+	private String sDay; //매장휴무일
 	private String shopName; //매장명
 	private Date rDate  ;//예약날짜
 	private String rTime  ;//예약시간
@@ -35,7 +37,7 @@ public class MemberReservationList implements Serializable {
 
 
 	public MemberReservationList(String resNo, String shopPid, String mNo, String pNo, String sAddr, String menuImg,
-			int menuPrice, int menuCount, String shopName, Date rDate, String rTime, String menuName, String acceptYN,
+			int menuPrice, int menuCount, String sStartTime, String sEndTime, String sDay, String shopName, Date rDate, String rTime, String menuName, String acceptYN,
 			String payType, int totalPay) {
 		super();
 		this.resNo = resNo;
@@ -46,6 +48,9 @@ public class MemberReservationList implements Serializable {
 		this.menuImg = menuImg;
 		this.menuPrice = menuPrice;
 		this.menuCount = menuCount;
+		this.sStartTime = sStartTime;
+		this.sEndTime = sEndTime;
+		this.sDay = sDay;
 		this.shopName = shopName;
 		this.rDate = rDate;
 		this.rTime = rTime;
@@ -54,18 +59,6 @@ public class MemberReservationList implements Serializable {
 		this.payType = payType;
 		this.totalPay = totalPay;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	public MemberReservationList(String shopName, Date rDate, String rTime, String menuName, String acceptYN, String payType, int totalPay) {
@@ -82,6 +75,49 @@ public class MemberReservationList implements Serializable {
 	
 	
 	
+	
+	public String getsDay() {
+		return sDay;
+	}
+
+
+
+
+	public void setsDay(String sDay) {
+		this.sDay = sDay;
+	}
+
+
+
+
+	public String getsStartTime() {
+		return sStartTime;
+	}
+
+
+
+
+	public void setsStartTime(String sStartTime) {
+		this.sStartTime = sStartTime;
+	}
+
+
+
+
+	public String getsEndTime() {
+		return sEndTime;
+	}
+
+
+
+
+	public void setsEndTime(String sEndTime) {
+		this.sEndTime = sEndTime;
+	}
+
+
+
+
 	public String getMenuImg() {
 		return menuImg;
 	}

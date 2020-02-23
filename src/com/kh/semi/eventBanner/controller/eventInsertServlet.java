@@ -13,7 +13,7 @@ import com.kh.semi.eventBanner.model.vo.EventBanner;
 /**
  * Servlet implementation class eventInsertServlet
  */
-@WebServlet("/eInsert.ev")
+@WebServlet("/evInsert.ev")
 public class eventInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

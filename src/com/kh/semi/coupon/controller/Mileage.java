@@ -1,25 +1,26 @@
-package com.kh.semi.eventShop.controller;
+package com.kh.semi.coupon.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventShop.model.service.EventShopService;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class eventShopDeleteServlet
+ * Servlet implementation class Mileage
  */
-@WebServlet("/esDelete.es")
-public class eventShopDeleteServlet extends HttpServlet {
+@WebServlet("/mileage.mc")
+public class Mileage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventShopDeleteServlet() {
+    public Mileage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,18 +29,14 @@ public class eventShopDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eno = request.getParameter("eno");
-		String check = request.getParameter("check");
-		
-		EventShopService es = new EventShopService();
-		
-		int result = es.deleteShop(check);
-		
-		if(result > 0) {
-			response.sendRedirect("esList.es?eno="+eno);
-		}else {
-			request.setAttribute("msg", "업체 삭제 실패");
-		}
+			int useMile = Integer.parseInt(request.getParameter("useMile"));
+			int getMile = Integer.parseInt(request.getParameter("getMile"));
+			int total = Integer.parseInt(request.getParameter("total"));
+			int totalPay = 0;
+			if(useMile <= getMile) {
+				totalPay = total - useMile;
+			}
+			new Gson().toJson(totalPay,response.getWriter());
 	}
 
 	/**

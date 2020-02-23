@@ -1,8 +1,6 @@
-package com.kh.semi.reservation.controller;
+package com.kh.semi.coupon.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.semi.reservation.model.vo.ReservationTest;
+import com.kh.semi.coupon.model.vo.discount;
 
 /**
- * Servlet implementation class ReservationPay
+ * Servlet implementation class coupon
  */
-@WebServlet("/reservationPay.rc")
-public class ReservationPay extends HttpServlet {
+@WebServlet("/coupon.cc")
+public class coupon extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationPay() { 
+    public coupon() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,38 +30,27 @@ public class ReservationPay extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
-			
-		//String[] mlist = request.getParameter("m0list").split(",");
-		String[] mlist = request.getParameterValues("m0list");
-
-		int sum = 0;
-		int total = 0;
-		ArrayList<ReservationTest> list = new ArrayList<ReservationTest>();
 		
-		for(int i=0; i<mlist.length; i=i+4) {
-			ReservationTest rt = new ReservationTest();
-			
-			rt.setMenuName(mlist[i]);
-			rt.setMenuPrice(Integer.parseInt(mlist[i+1]) * Integer.parseInt(mlist[i+2]));
-			rt.setMenuCount(Integer.parseInt(mlist[i+2]));
-			rt.setMenuNo(mlist[i+3]);
-			
-			total = (Integer.parseInt(mlist[i+1]) * Integer.parseInt(mlist[i+2]));
-			sum += total;
-			
-			rt.setTotal(sum);
-			
-			if(rt.getMenuCount() > 0) {
-				
-				list.add(rt);
-			}
-			
-		}
+		int coupon = Integer.parseInt(request.getParameter("coupon"));
+		int useMile = Integer.parseInt(request.getParameter("useMile"));
+		int getMile = Integer.parseInt(request.getParameter("getMile"));
+		int total = Integer.parseInt(request.getParameter("total"));
 		
+		System.out.println(coupon);
+		System.out.println(total);
+		int mile = getMile - useMile;
+		int totalPay = total-coupon-useMile;
 		
-		new Gson().toJson(list,response.getWriter());
+		discount dc = new discount();
+		dc.setMile(mile);
+		dc.setTotalPay(totalPay);
+		
+		new Gson().toJson(dc,response.getWriter());
+		
+			
 	}
 
 	/**

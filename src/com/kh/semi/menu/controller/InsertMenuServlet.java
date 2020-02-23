@@ -42,10 +42,14 @@ public class InsertMenuServlet extends HttpServlet {
 		Menu m=new Menu(shopPid, menuName, menuImg, menuPrice, menuInfo);
 		
 		int result=new MenuService().insertMenu(m);
+
 		if(result>0) {
-			
+			request.setAttribute("shopPid", shopPid);
+			request.getRequestDispatcher("/myMenulist.menu").forward(request, response);
+
 		}else {
-			
+			request.setAttribute("msg", "삭제 실패!");
+			request.getRequestDispatcher("/views/common/errorPage.jsp");
 		}
 		
 	}
