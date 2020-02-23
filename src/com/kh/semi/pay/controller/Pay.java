@@ -48,6 +48,8 @@ public class Pay extends HttpServlet {
 		String[] menuPrice = request.getParameterValues("menuPrice");
 		int total = Integer.parseInt(request.getParameter("hdtotal"));
 		
+		System.out.println(total);
+		
 		//예약 insert 정보
 		String[] menuNo = request.getParameterValues("menuNo");
 		String time = request.getParameter("time");
