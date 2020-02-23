@@ -65,4 +65,14 @@ public class EventBannerService {
 		return result;
 	}
 
+	public ArrayList<EventBanner> mainList() {
+		Connection con = getConnection();
+		
+		ArrayList<EventBanner> list = eDao.mainList(con);
+		
+		close(con);
+		
+		return list;
+	}
+
 }
