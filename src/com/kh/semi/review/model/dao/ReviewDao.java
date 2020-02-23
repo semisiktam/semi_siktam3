@@ -295,6 +295,53 @@ public class ReviewDao {
 		return result2;
 		
 	}
+
+	public int deleteReview(Connection con, String rno) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rno);
+		
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int reviewDeleteUpdate(Connection con, String shopPid, String userId) {
+		int result2 = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("reviewDeleteUpdate");
+		
+		try {
+			// 미완성된 SQL 준비
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, shopPid);
+			pstmt.setString(2, userId);
+			
+			result2 = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result2;
+	}
 	
 	
 	
