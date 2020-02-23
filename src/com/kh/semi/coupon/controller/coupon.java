@@ -35,7 +35,7 @@ public class coupon extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 		
 		int coupon = Integer.parseInt(request.getParameter("coupon"));
-		int useMile = Integer.parseInt(request.getParameter("useMile"));
+		int useMile = Integer.parseInt(request.getParameter("mileage"));
 		int getMile = Integer.parseInt(request.getParameter("getMile"));
 		int total = Integer.parseInt(request.getParameter("total"));
 		
