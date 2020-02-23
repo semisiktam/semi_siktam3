@@ -1,14 +1,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.semi.shop.model.vo.*, com.kh.semi.menu.model.vo.* ,
-     com.kh.semi.member.model.vo.*" %>
+     com.kh.semi.member.model.vo.*, java.util.*" %>
 
 <% 
 	Shop s = (Shop)request.getAttribute("shop");
 	ArrayList<Menu> list = (ArrayList<Menu>)request.getAttribute("mList");
 	Member mem = (Member)request.getAttribute("member");
 	String favorite = String.valueOf(request.getAttribute("favorite"));
-	
+	List<String> tt = Arrays.asList(s.getTableType().split(","));
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,9 @@
     <div id="detailbox">
         <!-- 메인 이미지 -->
         <input type="hidden" id="shopPid" value="<%= s.getShopPid() %>"/>
-        <div class="pagemainimg"></div>
+        <div class="pagemainimg">
+        	<img id="shopimg" src="/siktam/resources/images/<%=s.getShopImg()%>">
+        </div>
         
         <!-- 2020.02.10 수정 시작(현희) < 즐겨찾기 추가 > -->
 		
@@ -160,7 +162,7 @@
         
         <div class="pageselect">
             <!-- %% 업체정보연결-->
-            <a href="productDetailPage_6.jsp"><div id="information"><span>업체정보</span></div></a>
+            <a href="#"><div id="information"><span>업체정보</span></div></a>
 
             <!-- %% 리뷰연결-->
 
@@ -177,26 +179,32 @@
         </div>
 		
 		
+		
+		
+		
     <!-- 매장정보 -->
     <div id="pageinfo">
         <div id="pageinfodiv">
             <div id="infospan"> 매장정보 </div><div id="infohr"><hr></div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div><br>
+            
+            <% for(String ti : tt){ %>
+            	<div class="pageicon">
+            		<% if(ti.equals("1인석")) { %>
+            			<img class="iconimg" src="/siktam/resources/images/search1.png" alt="">
+            		<% } else if(ti.equals("2인석")) { %>
+        				<img class="iconimg" src="/siktam/resources/images/search2.png" alt="">
+        			<% } else if(ti.equals("칸막이")) { %>
+        				<img class="iconimg" src="/siktam/resources/images/search3.png" alt="">
+        			<% } else if(ti.equals("바테이블")) { %>
+        				<img class="iconimg" src="/siktam/resources/images/search4.png" alt="">
+        			<% } else { %>
+        				<img class="iconimg" src="/siktam/resources/images/search5.png" alt="">
+        			<% } %>
+	            	<p class="icontext"><%= ti %></p>
+            	</div>
+            <% } %>
+           
+            <br>
             <p class="infop">매장 전화번호 : </p> <p class="infop2"><%= s.getsPhone() %></p><br>
             <p class="infop">매장 주소 : </p> <p class="infop2"><%=s.getsAddr() %></p><br>
             <p class="infop">매장 영업시간 : </p> <p class="infop2"><%= s.getsTime() %> ~ <%= s.geteTime() %></p><br>
@@ -211,7 +219,7 @@
             <!-- 지원 잠시 주석처리 -->
             <% for(Menu me : list) { %>
             <div class="menubox">
-                <div class="menuimg"><img src="<%=me.getMenuImg() %>" alt=""></div>
+                <div class="menuimg"><img src="/siktam/resources/images/<%=me.getMenuImg() %>" alt=""></div>
                 <div class="menutext">
                     <h4><%=me.getMenuName() %></h4>
                     <p><%=me.getMenuInfo() %></p>
