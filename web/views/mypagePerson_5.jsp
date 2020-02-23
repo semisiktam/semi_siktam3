@@ -338,7 +338,7 @@
                     <li>
                         <div class="registStore2" onclick="location.href='productDetailPage_6.jsp'">
                         	<input type="hidden" id="shopPid" value="<%= s.getShopPid() %>"/>
-                            <img src="<%=s.getShopImg() %>" class="registStoreImg" alt="역전우동" width="170px" height="120px"><br>
+                            <img src="<%=s.getShopImg() %>" class="registStoreImg" alt="" width="170px" height="120px"><br>
                             <h4 align="center"><%=s.getShopName() %></h4>
                             <p align="center"><small><%=s.getsAddr() %></small></p>
                         </div>
