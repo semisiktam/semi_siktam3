@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>pay5</title>
+    <title>payModify</title>
     <link rel="stylesheet" href="/siktam/resources/css/headerfooterLayout.css">
     <link rel="stylesheet" href="/siktam/resources/css/pay_5.css">
     <script src="/siktam/resources/js/jquery-3.4.1.min.js"></script>
