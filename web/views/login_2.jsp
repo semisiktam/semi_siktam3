@@ -14,7 +14,7 @@
         <div id="area1">
             
             <div class="logo">
-            <a href="main_6.jsp"><img src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt="logo"></a>    
+            <a href="/siktam/listMain.ma"><img src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt="logo"></a>    
             </div>
         
         <div class="line"></div>
