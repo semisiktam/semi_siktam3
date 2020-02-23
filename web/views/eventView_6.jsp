@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.semi.shop.model.vo.*"%>
+
+<%
+	ArrayList<Shop> list = (ArrayList<Shop>) request.getAttribute("list");
+	String eno = (String)request.getParameter("eno");
+ %>
 
 <!DOCTYPE html>
 <html>
@@ -26,19 +31,20 @@
         </div>
     
         <div id="viewBody">
-            
-            <div class="bannerMenu">
-                <div class="menuImg">
-                    <img src="/siktam/resources/images/tamhate1.jpg" alt="">
-                </div>
-                <div class="menuText">
-                    <h3 class="rank">TOP 1</h3>
-                    <h3 class="storeName">에머이</h3>
-                    <p>서울 강남구 테헤란로2길 27</p>
-                    <input type="button" value="업체정보" onclick="location.href = 'productDetailPage_6.jsp'">
-                    <input type="button" value="예약하기" onclick="location.href = 'reservation_4.jsp'">
-                </div>
-            </div>
+            <% for(Shop s : list) { %>
+	            <div class="bannerMenu">
+	                <div class="menuImg">
+	                    <img src="/siktam/resources/images/<%= s.getShopImg() %>" alt="">
+	                </div>
+	                <div class="menuText">
+	                    <h3 class="rank">TOP 1</h3>
+	                    <h3 class="storeName">에머이</h3>
+	                    <p>서울 강남구 테헤란로2길 27</p>
+	                    <input type="button" value="업체정보" onclick="location.href = 'productDetailPage_6.jsp'">
+	                    <input type="button" value="예약하기" onclick="location.href = 'reservation_4.jsp'">
+	                </div>
+	            </div>
+            <% } %>
             <div class="bannerMenu">
                 <div class="menuImg">
                     <img src="/siktam/resources/images/ssal1.jpg" alt="">

@@ -102,7 +102,7 @@
             
         </div>
         <div id="navdiv2">
-            <div id="logodivMain"><a href="main_6.jsp"><img id="logoMain" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt=""></a></div>
+            <div id="logodivMain"><a href="listMain.ma"><img id="logoMain" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt=""></a></div>
         </div>
     </nav>
 
@@ -181,12 +181,22 @@
         <ul>
         	<% for (EventBanner eb : list) { %>
             <li class="banner">             
+            	<div style="display:none;"><%=eb.getEventNo() %></div>
                 <div class="bannertext1"><%=eb.getEventName() %><br>TOP 5</div>
                 <div style="background-image: url(/siktam/resources/images/<%=eb.getEventImg()%>);" class="bannerimgb1"></div>                              
             </li>
             <% } %>
         </ul>
     </div>
+    
+    <script>
+    	$('.banner').click(function(){
+    		var eno = $(this).children('div').eq(0).text();
+    		console.log(eno);
+    		
+    		location.href="<%=request.getContextPath()%>/msList.ms?eno=" + eno;
+    	});
+    </script>
     
 
     <!-- <script>

@@ -1,4 +1,4 @@
-package com.kh.semi.eventBanner.controller;
+package com.kh.semi.eventShop.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventBanner.model.service.EventBannerService;
-import com.kh.semi.eventBanner.model.vo.EventBanner;
+import com.kh.semi.eventShop.model.service.EventShopService;
+import com.kh.semi.shop.model.vo.Shop;
 
 /**
- * Servlet implementation class eventMainListServlet
+ * Servlet implementation class eventShopMainList
  */
-@WebServlet("/listMain.ma")
-public class eventMainListServlet extends HttpServlet {
+@WebServlet("/msList.ms")
+public class eventShopMainList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventMainListServlet() {
+    public eventShopMainList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,28 +31,26 @@ public class eventMainListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String eno = request.getParameter("eno");
+		
+		ArrayList<Shop> list = new ArrayList<Shop>();
 
-		ArrayList<EventBanner> list = new ArrayList<EventBanner>();
+		EventShopService ess = new EventShopService();
 		
-		EventBannerService es = new EventBannerService();
-		
-		list = es.mainList();
+		list = ess.mainShopList(eno);
 		
 		String page = "";
 		
 		if(list != null) {
-			page = "views/main_6.jsp";
+			page = "views/eventView_6.jsp";
 			request.setAttribute("list", list);
 			
 		}else {
-			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", " 불러오기 에러 ");
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
-		
-
-	}
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
