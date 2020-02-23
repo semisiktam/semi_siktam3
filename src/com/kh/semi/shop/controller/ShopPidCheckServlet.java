@@ -56,14 +56,12 @@ public class ShopPidCheckServlet extends HttpServlet {
 	address += "&"+URLEncoder.encode("bzowr_rgst_no","UTF-8") +"="+searchPid;
 	address += "&"+URLEncoder.encode("_type","UTF-8") + "=json";
 			
-			// "?serviceKey="
-			 //searchName + "&bzowr_rgst_no=" + searchPid+"&_returntype=json";
 		
 				
 		
-	System.out.println(searchPid);
-	System.out.println(searchName);
-	System.out.println(address);
+	//System.out.println(searchPid);
+	//System.out.println(searchName);
+	//System.out.println(address);
 	URL url = new URL(address);
 	
 	
@@ -81,20 +79,20 @@ public class ShopPidCheckServlet extends HttpServlet {
 	byte[] b = item.getBytes("UTF-8"); //바이트 배열화
 	String s= new String(b,"UTF-8");//바이트를 스트링으로 만들고
 	
-	System.out.println(s);
+	// System.out.println(s);
 	JSONParser paser = new JSONParser(); //json객체로 변환해줄 객체 생성
 	JSONObject pob = (JSONObject)paser.parse(s); //만들어진 결과 스트링을 json객체로 변환
 	
 	//JSONArray bookInfoArray JSONArray()
 	
 	
-	//response.setCharacterEncoding("UTF-8");
 	new Gson().toJson(pob,response.getWriter());//그 객체를 gson을 사용해 넘겨줌
 
 	
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
+	
 	}
 
 	/**
