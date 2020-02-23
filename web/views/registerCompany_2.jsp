@@ -77,8 +77,8 @@
             <tr>
                 <th align="left">사업자 등록번호 </th><!--사업자 등록 조회 API삽입-->
                 <td><input type="text" class="form-control" name="pid">
-                    <button id="shopNum" onclick="window.open('ShopPidCheck.jsp','사업자 번호 조회','width=300,height=100,location=no,status=no,scrollbars=no')">;
-                    </button>
+                   <!--  <<button id="shopNum" onclick="window.open('ShopPidCheck.jsp','사업자 번호 조회','width=300,height=100,location=no,status=no,scrollbars=no')">;
+                    </button> -->
                 </td>       
                 
             </tr>

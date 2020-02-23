@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="/siktam/resources/css/headerfooterLayout.css">
     <link rel="stylesheet" href="/siktam/resources/css/mypage_shop_5.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 </head>
 <body>
     <!-- 헤더 시작 -->
     <%@ include file="common/header.jsp" %>
-
     <!-- 이 안에 작업하기 -->
     
-   
     <div id="wrap">
         <div class ="content" id="content1">
             <h1 align="center">마이페이지_업체</h1><br>
@@ -27,7 +26,7 @@
                     <li><b>내가 등록한 업체</b>
                     <input type="button" class="btn1" value="확인하기" onclick="test5();"></li><hr>
                     <li><b>예약 내역</b>
-                    <input type="button" class="btn1" value="확인하기" onclick="test1();"></li><hr>
+                    <input type="button" class="btn1" id="reserveBtn" value="확인하기" onclick="test1();"></li><hr>
                     <li><b>결제 내역</b>
                     <input type="button" class="btn1" value="확인하기" onclick="test3();"></li><hr>
                 </ul>
@@ -44,91 +43,15 @@
                             <th>매장명</th>
                             <th>예약자명</th> 
                             <th>핸드폰 번호</th> 
-                            <th>예약 테이블 형태</th> 
                             <th>예약 메뉴</th> 
+                            <th>예약 날짜</th> 
                             <th>예약 시간</th> 
                             <th>결제 금액</th> 
                             <th colspan="2">예약 수락/거절</th>  
                          </tr>
                     </thead>
-                    <tbody>
-                        <tr class="reservationTr">
-                            <td></td>
-                            <td>안도건</td>
-                            <td>010-2222-3333</td>
-                            <td>1인 테이블</td>
-                            <td>김치우동 1</td>
-                            <td>12:00~13:00</td>
-                            <td>3,500원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>이탐희</td>
-                            <td>010-4443-2332</td>
-                            <td>1인 테이블</td>
-                            <td>곱창모듬 1</td>
-                            <td>18:00~19:00</td>
-                            <td>11,000원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>김현희</td>
-                            <td>010-3221-4533</td>
-                            <td>바 테이블</td>
-                            <td>어묵우동 1</td>
-                            <td>12:00~13:00</td>
-                            <td>4,000원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>서지원</td>
-                            <td>010-2678-3243</td>
-                            <td>2인 테이블</td>
-                            <td>보쌈정식XL 1</td>
-                            <td>13:00~14:00</td>
-                            <td>7,000원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>권지안</td>
-                            <td>010-8554-4313</td>
-                            <td>2인 테이블</td>
-                            <td>소막창 1</td>
-                            <td>18:00~19:00</td>
-                            <td>11,000원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>장한솔</td>
-                            <td>010-9911-7542</td>
-                            <td>1인 테이블</td>
-                            <td>족발정식XL 1</td>
-                            <td>13:00~14:00</td>
-                            <td>8,000원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>이녹영</td>
-                            <td>010-7422-2203</td>
-                            <td>바 테이블</td>
-                            <td>토마토찍먹우동 1</td>
-                            <td>11:00~12:00</td>
-                            <td>7,000원</td>
-                            <td><input type="button" value="수락" class="confirm" id="change"> &nbsp;
-                                <input type="button" value="거절" class="confirm" id="cancel"></td>
-                        </tr>
+                    <tbody id="resList">
+                       
                     </tbody>
                 </table>
                 <br><br>
@@ -214,7 +137,8 @@
             <div class="modal_content">
                 <h2>업체 정보 수정</h2>
                 <br><br>
-                <table id="reservationTb1">
+                
+                <table id="reservationTb1" class="myshop">
                     <thead>
                         <tr class="reservationTr">
                             <th>매장명</th>
@@ -227,35 +151,20 @@
                     </thead>
                     <tbody>
                     <%for(Shop s: slist){%>
+                    	
+                       	<tr style="display:none" id="label1">
+                       		<td><%=s.getShopPid() %></td>
+                     	</tr>
                         <tr class="reservationTr">
-                            <td><%=s.getShopName() %></td>
+                        	<td><%=s.getShopName() %></td>
                             <td><%=s.getOwnerId() %></td>
                             <td><%=s.getMenuCategory() %></td>
                             <td><%=s.getsPhone() %></td>
                             <td><%=s.getsAddr() %></td>
                             <td><input type="button" value="수정" class="confirm" id="change" onclick="location.href='registerCompany_2_5.jsp'">
-                                <input type="button" value="삭제" class="confirm" id="cancel"></td>
+                                <input type="button" value="삭제" class="confirm del" id="cancel" onclick="sososo(this);"></td>
                         </tr>
-                        <%} %>
-                        <!-- <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>645-88-44154</td>
-                            <td>한식</td>
-                            <td>02-558-1154</td>
-                            <td>서울 서초구 강남대로69길 10</td>
-                            <td><input type="button" value="수정" class="confirm" id="change" onclick="location.href='registerCompany_2_5.jsp'">
-                                <input type="button" value="삭제" class="confirm" id="cancel"></td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>321-55-11545</td>
-                            <td>한식</td>
-                            <td>02-887-8878</td>
-                            <td>서울 서대문구 명물길 20</td>
-                            <td><input type="button" value="수정" class="confirm" id="change" onclick="location.href='registerCompany_2_5.jsp'">
-                                <input type="button" value="삭제" class="confirm" id="cancel"></td>
-                        </tr> -->
-                        
+                     <%}%>
                     </tbody>
                 </table>
                 <br><br>
@@ -265,7 +174,11 @@
         </div>
 
         <script>
-        
+        	function sososo(obj){
+        		var shopPid = $(obj).parent().parent().prev().children('td').text();
+        		console.log(shopPid);
+        		location.href="/siktam/ShopDeleteServlet?shopPid="+shopPid;
+        	};
         	
             function test1(){
                 document.getElementById('modal1').style.display = "block";
@@ -351,7 +264,7 @@
 
 
 
-        <div class ="content" id="content3">
+        <!-- <div class ="content" id="content3">
             <h3 id="contentTxt" align="left">다가오는 예약 목록</h3 id="contentTxt">
             
             
@@ -408,19 +321,19 @@
                             <input type="button" value="예약정보확인">
                         </div>
                     </li>
-                    <!-- <li class="registStore2Add">
+                    <li class="registStore2Add">
                         <div>
                             <div id="plusBtn1">
                             <input type="button" id="plusBtn2" value="+">
                             </div>
                         </div>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
             
             
            
-        </div>
+        </div> -->
         </div>
     </div>
     <script>
@@ -447,23 +360,87 @@
 		});
      */
      
-     <!-- $(function(){
+     $(function(){
     	 $.ajax({
-    		 url:"/siktam//confirmResTest.do",
+    		 url:"/siktam/TestServlet.do",
     		 type:"get",
-    		 data:{
-    			shopPid:"S1"	 
-    		 },success:function(data){
+    		 tradtional:"true",
+    		 datatype:"json",
+    		 success:function(data){
     			 console.log(data);
-    			 $.each(data,function(index,value){
-    				 console.log(value);
-    			 })
+    			 var $resList=$("#resList");
+    			 for(var i=0;data.length;i++){
+    				 var $tr=$("<tr>");
+    				 var resNo=$("<input type='hidden'value ="+data[i].resNo +" class ='res'>");
+    				 var $shopName=$("<td>").text(data[i].shopName);
+    				 $shopName.append(resNo);
+    				 var $userName=$("<td>").text(data[i].userName);
+    				 var $userPhone=$("<td>").text(data[i].userPhone);
+    				 var $menu=$("<td>").text(data[i].menuNo);
+    				 var $rDate=$("<td>").text(data[i].rDate);
+    				 var $rTime=$("<td>").text(data[i].rTime);
+    				 var $price=$("<td>").text(data[i].totalPay+"원");
+    				 var $accept=$("<td>");
+    				 var $yes=$("<input type='button' class='confirm accept' value='수락'>");
+    				 var $no=$("<input type='button' class='confirm reject' value='거절'>");
+    				 var $acc=$("<input type='button' class='confirm' value='수락됨'>");
+    				 var $rej=$("<input type='button' class='confirm' value='거절됨'>");
+    				 $acc.attr("disable","true");
+    				 $rej.attr("disable","true");
+    				 console.log(data[i].acceptYn);
+    				 if(data[i].acceptYn=="Y"){
+    					 $accept.append($acc);
+    				 }else if(data[i].acceptYn=="N"){
+    					 $accept.append($rej);
+    				 }else{
+    					 $accept.append($yes);
+    					 $accept.append($no);
+    				 }
+    				 
+    				 /* if(true){
+    					 $yes.attr("disabled","true");
+    				 } */
+    				 
+    				 $tr.append($shopName);
+    				 $tr.append($userName);
+    				 $tr.append($userPhone);
+    				 $tr.append($menu);
+    				 $tr.append($rDate);
+    				 $tr.append($rTime);
+    				 $tr.append($price);
+    				 $tr.append($accept);
+    				 
+    				 $resList.append($tr);
+    			 }
     		 },error:function(){console.log("error");}
     		 
-    	 })
-     })
-    </script> -->
-
+    	 });
+     });
+     
+     $("#reservationTb1").mouseenter(function(){
+    	 $(".accept").click(function(){
+        	 console.log("버튼확인");
+        	// console.log($(this));
+        	var res =$(this).parents("tr").find(".res").val();
+        	 location.href="/siktam/updateAccept?resNo="+res;
+         });
+         
+         $(".reject").click(function(){
+        	 var res =$(this).parents("tr").find(".res").val();
+        	 location.href="/siktam/updateReject?resNo="+res;
+         });
+     
+     });
+     
+    </script>
+	<script>
+	 	function del(obj){
+	 		console.log("버튼확인");
+	 		console.log(obj);
+	 		console.log($(this).parents());
+	 		
+	 	}
+	</script>
 
 
 
