@@ -34,7 +34,7 @@ public class LogoutServlet extends HttpServlet {
 			session.invalidate();
 		}
 		  
-		response.sendRedirect("/siktam/views/main_6.jsp");
+		response.sendRedirect("listMain.ma");
 	}
 
 	/**
