@@ -47,7 +47,8 @@ public class coupon extends HttpServlet {
 		discount dc = new discount();
 		dc.setMile(mile);
 		dc.setTotalPay(totalPay);
-		
+		dc.setUseMile(useMile);
+		dc.setGetMile(getMile);
 		new Gson().toJson(dc,response.getWriter());
 		
 			

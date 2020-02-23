@@ -75,8 +75,8 @@
                         <div>
                             <input type="text" class="mileage" id="useMile" name="useMile" value="0"><label id="won1">원 <--</label>
                             <input type="text" class="mileage" id="getMile" name="getMile" value='<%= m.getMileage() %>' style="text-align: left;"><label id="won2">원</label>
+                        	<p>(사용가능 마일리지)</p>
                         </div>
-                        <p>(사용가능 마일리지)</p>
                     </div>
                     <button id="appliance" >적용</button>
                     
@@ -95,7 +95,7 @@
                 </div>
             </div>
             
-            
+           
             <div id="content2" class="content">
                 <div id="content1-1">
                     <div id="sub-title">
@@ -118,6 +118,7 @@
                         <tr class="menupan2">
                             <td class="allpay"><b>총 결제 금액</b></td>
                             <td><b><%=list.get(0).getTotalPay()%></b></td>
+                    		<td><input type="hidden" id="total"name="totalPay" value="<%=list.get(0).getTotalPay()%>">
                         </tr>
                     </table>
                 </div>
@@ -131,7 +132,7 @@
                       <li><label for="electronic_agree" class="chk_label"><input type="checkbox" id="electronic_agree" name="agree" class="chk">전자금융거래 이용약관(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
-                  <input type="button" id="payment" value="결제하기" onclick="location.href = 'payPrint_1.jsp'">
+                  <input type="button" id="payment" value="결제하기" onclick="location.href = 'payResult.jsp?totalPay='+<%=list.get(0).getTotalPay()%>">
                   <input type="button" id="payment" name="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>
             </div>
@@ -163,11 +164,16 @@
     			},success:function(data){
     				console.log(data);
     				$('#menutable2').find('td:eq(1)').remove();
+    				$('#menutable2').find('td:eq(2)').remove();
     				var $b = $('<b>').text(data.totalPay);
     				var $td = $('<td>');
+    				var $td2 = $('<td>');
+    				var $input = $('<input type="hidden" id="total"name="totalPay" value="'+data.totalPay+'">');
     				$td.append($b);
-    				$('#menutable2 tr').append($td);
+    				$td2.append($input);
+    				$('#menutable2 tr').append($td).append($td2);
     				
+    				console.log($('#total').val());
     			}
     		});
     	});
@@ -191,24 +197,37 @@
 					"getMile" : getMile,
 					"total" : total
 				},success:function(data){
-					$('#menutable2').find('td:eq(1)').remove();
-    				var $b = $('<b>').text(data.totalPay);
-    				var $td = $('<td>');
-    				$td.append($b);
-    				$('#menutable2 tr').append($td);
     				
-    				
-    				var $div = $('<div>');
-    				var $usemile = $('<input type="text" class="mileage" id="useMile" name="useMile" value="0">');
-    				var $label = $('<label id="won1">').text("원 <--");
-    				var $mile = $('<input type="text" class="mileage" id="getMile" name="getMile" value="'+data.mile+'" style="text-align: left;">');
-    				var $label2 = $('<label id="won2">').text("원");
-    				$div.append($usemile);
-    				$div.append($label);
-    				$div.append($mile);
-    				$div.append($label2);
-    				
-    				$('#mileageDiv').append($div);
+    				if(data.useMile <= data.getMile && data.useMile <= data.totalPay){
+						$('#menutable2').find('td:eq(1)').remove();
+						$('#menutable2').find('td:eq(2)').remove();
+						$('#mileageDiv').find('div').remove();
+	    				var $b = $('<b>').text(data.totalPay);
+	    				var $td = $('<td>');
+	    				var $td2 = $('<td>');
+	    				var $input = $('<input type="hidden" id="total"name="totalPay" value="'+data.totalPay+'">');
+	    				$td.append($b);
+	    				$td2.append($input);
+	    				$('#menutable2 tr').append($td).append($td2);
+	    				
+    					var $div = $('<div>');
+	    				var $usemile = $('<input type="text" class="mileage" id="useMile" name="useMile" value="'+data.useMile+'">');
+	    				var $label = $('<label id="won1">').text("원 <--");
+	    				var $mile = $('<input type="text" class="mileage" id="getMile" name="getMile" value="'+data.mile+'" style="text-align: left;">');
+	    				var $label2 = $('<label id="won2">').text("원");
+	    				var $p = $('<p>').text("(사용가능 마일리지)");
+	    				
+	    				
+	    				
+	    				$div.append($usemile);
+	    				$div.append($label);
+	    				$div.append($mile);
+	    				$div.append($label2);
+	    				$div.append($p)
+	    				$('#mileageDiv').append($div);
+    				}else{
+    					alert("마일리지 다시입력");
+    				}
 				}
 			});
 		});
