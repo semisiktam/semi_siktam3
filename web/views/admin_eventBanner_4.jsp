@@ -105,13 +105,13 @@
 		<div class="tbl">
 			<div id="insertForm">
 				<form action="<%=request.getContextPath()%>/evInsert.ev"
-					method="get">
+					method="post" enctype="multipart/form-data">
 					<h5
 						style="display: inline-block; color: rgb(110, 0, 0); font-weight: bold;">이벤트
 						추가</h5>
 					<input class="insertEventName" name="eventName" type="text"
-						placeholder="이벤트명을 입력해주세요"> <input class="insertEventImg"
-						name="eventImg" type="file">
+						placeholder="이벤트명을 입력해주세요"> 
+						<input class="insertEventImg" name="eventImg" type="file" accept="image/*">
 
 					<button type="submit" class="submitButton" style="width: 55px;">등록</button>
 
@@ -136,11 +136,11 @@
 					<td class="eventNameTd"><%=eb.getEventName()%></td>
 
 
-					<td><img src="<%=eb.getEventImg()%>" alt=""
+					<td><img src="/siktam/resources/images/<%=eb.getEventImg()%>" alt=""
 						style="width: 300px; height: 300px;"></td>
 					<td class="text-right">
 						<button type="button" class="deleteEvent">삭제</button>
-						<button type="button" class="updateEvent">수정</button>
+						<button type="button" class="updateEvent" style="display:none;">수정</button>
 
 					</td>
 

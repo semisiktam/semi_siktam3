@@ -175,4 +175,53 @@ public class EventShopDao {
 		return result;
 	}
 
+	public ArrayList<Shop> mainShopList(Connection con, String eno) {
+
+		ArrayList<Shop> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("esMainShopList");
+		
+		list = new ArrayList<Shop>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, eno);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Shop s = new Shop();
+				
+				s.setShopPid(rset.getString("SHOP_PID"));
+				s.setUserId(rset.getString("USERID"));
+				s.setShopName(rset.getString("SHOP_NAME"));
+				s.setShopImg(rset.getString("SHOP_IMG"));
+				s.setsAddr(rset.getString("SHOP_ADDR"));
+				s.setsPhone(rset.getString("SHOP_PHONE"));
+				s.setsInfo(rset.getString("SHOP_INFO"));
+				s.setOwnerId(rset.getString("OWNER_ID"));
+				s.setsTime(rset.getString("SHOP_STARTTIME"));
+				s.seteTime(rset.getString("SHOP_ENDTIME"));
+				s.setShopDay(rset.getString("SHOP_DAY"));
+				s.setMenuCategory(rset.getString("MENU_CATEGORY"));
+				s.setTableType(rset.getString("TABLE_TYPE"));
+				s.setAvgPay(rset.getInt("AVG_PAY"));
+				s.setOutYn(rset.getString("OUT_YN"));
+				
+				list.add(s);
+			}
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }

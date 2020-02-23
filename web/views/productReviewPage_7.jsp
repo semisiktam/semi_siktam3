@@ -32,12 +32,12 @@
     <!-- 이 안에 작업하기 -->
 
     <div id="all"> <!-- 전체 div-->
-        <div class="pagemainimg"></div>
+        <div class="pagemainimg"><img id="shopimg" src="/siktam/resources/images/<%=s.getShopImg()%>"></div>
         <div class="pageselect">
             <!-- %% 업체정보연결-->
-            <a href="productDetailPage_6.jsp"><div id="information"><span>업체정보</span></div></a>
+            <a href="/siktam/sSelect.so?shopPid=<%=s.getShopPid()%>"><div id="information"><span>업체정보</span></div></a>
             <!-- %% 리뷰연결-->
-            <a href="productReviewPage_7.jsp"><div id="review"><span>리뷰(<%= allReviewList.size() %>)</span></div></a>
+            <a href="#"><div id="review"><span>리뷰(<%= allReviewList.size() %>)</span></div></a>
         </div>
 
         <div id="pagetop">
@@ -70,7 +70,7 @@
                 
             </div>
             <div id="scores" class="scoreIn">
-                <h4 class="jum">5점&nbsp;&nbsp;<progress value="<%= rScore.getFive() %>" max="<%= allReviewList.size() %>" class="var">Progress : 30%</progress></h4><br>
+                <h4 class="jum">5점&nbsp;&nbsp;<progress value="<%= rScore.getFive() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
                 <h4 class="jum">4점&nbsp;&nbsp;<progress value="<%= rScore.getFour() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
                 <h4 class="jum">3점&nbsp;&nbsp;<progress value="<%= rScore.getThree() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
                 <h4 class="jum">2점&nbsp;&nbsp;<progress value="<%= rScore.getTwo() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
@@ -151,7 +151,7 @@
             </div>
             
             <div id="personReview1" class="personReview">
-            	<div class="scoreScore" style="display : none;"><%= r.getScore() %></div><br>
+            	<div class="scoreScore" style="display : none;"><%= r.getScore() %></div>
                 <label>별점 : </label>
                 <label id="star_view1">
                     <a href="#">★</a>
@@ -160,13 +160,24 @@
                     <a href="#">★</a>
                     <a href="#">★</a>
                 </label>
+                
+                <% if(m!=null) { 
+                	if(m.getUserId().equals(r.getUserId())) {
+                %>
+                <label style="display:none"><%=r.getrNo() %></label>
                 <button class="deleteBtn"><img src="/siktam/resources/images/delete.jpg" class="deleteimg"></button>
+                <% 	}
+                   }
+                %>
+                
                 <br><br>
+                <% if(!r.getReviewImg().equals("review.png")) { %>
                 <div class="imgDiv">
                     <img src="/siktam/resources/images/<%=r.getReviewImg() %>" class="reviewImg" alt="">
                 </div>
+                <% } %>
                 <br>
-                <p><%= r.getrContent() %></p>
+                <p style="font-size:20px;"><%= r.getrContent() %></p>
             </div>
 		<% } %>
         </div>
@@ -296,6 +307,14 @@
 	    		  
 	    	  	$('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="
           			+$('#star_grade_review a.on').length);
+	    	  });
+	    	  
+	    	  $('.deleteBtn').click(function(){
+	    		  var check = $(this).prev('label').text();
+	    		  console.log(check);
+	    		  if(confirm("정말 삭제 하시겠습니까?")){
+	    		 	location.href="/siktam/rDelete.ro?reviewNo="+check+"&shopPid=<%=s.getShopPid()%>"+"&userId=<%=m.getUserId()%>";
+	    		  }
 	    	  });
 	    	  
 	      });

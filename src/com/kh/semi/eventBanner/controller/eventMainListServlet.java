@@ -1,25 +1,28 @@
-package com.kh.semi.member.controller;
+package com.kh.semi.eventBanner.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.kh.semi.eventBanner.model.service.EventBannerService;
+import com.kh.semi.eventBanner.model.vo.EventBanner;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class eventMainListServlet
  */
-@WebServlet("/logout.do")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/listMain.ma")
+public class eventMainListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public eventMainListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +31,26 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+
+		ArrayList<EventBanner> list = new ArrayList<EventBanner>();
 		
-		if(session != null) {
-			session.invalidate();
+		EventBannerService es = new EventBannerService();
+		
+		list = es.mainList();
+		
+		String page = "";
+		
+		if(list != null) {
+			page = "views/main_6.jsp";
+			request.setAttribute("list", list);
+		}else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", " 불러오기 에러 ");
 		}
-		  
-		response.sendRedirect("listMain.ma");
+		
+		request.getRequestDispatcher(page).forward(request, response);
+		
+
 	}
 
 	/**

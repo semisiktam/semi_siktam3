@@ -154,4 +154,42 @@ public class EventBannerDao {
 		return result;
 	}
 
+	public ArrayList<EventBanner> mainList(Connection con) {
+
+		ArrayList<EventBanner> list = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("MainList");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(sql);
+			
+			list = new ArrayList<EventBanner>();
+			
+			while(rset.next()) {
+				EventBanner eb = new EventBanner();
+				
+				eb.setEventNo(rset.getString(1));
+				eb.setEventName(rset.getString("EVENT_NAME"));
+				eb.setEventImg(rset.getString("EVENT_IMG"));
+				
+				list.add(eb);
+			}
+			
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return list;
+	}
+
 }
