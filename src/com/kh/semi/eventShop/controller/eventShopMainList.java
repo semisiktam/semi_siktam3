@@ -1,25 +1,28 @@
-package com.kh.semi.member.controller;
+package com.kh.semi.eventShop.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.kh.semi.eventShop.model.service.EventShopService;
+import com.kh.semi.shop.model.vo.Shop;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class eventShopMainList
  */
-@WebServlet("/logout.do")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/msList.ms")
+public class eventShopMainList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public eventShopMainList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +31,28 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		String eno = request.getParameter("eno");
+		String ename = request.getParameter("ename");
 		
-		if(session != null) {
-			session.invalidate();
+		ArrayList<Shop> list = new ArrayList<Shop>();
+
+		EventShopService ess = new EventShopService();
+		
+		list = ess.mainShopList(eno);
+		
+		String page = "";
+		
+		if(list != null) {
+			page = "views/eventView_6.jsp";
+			request.setAttribute("list", list);
+			request.setAttribute("ename",ename);
+			
+		}else {
+			request.setAttribute("msg", " 불러오기 에러 ");
 		}
-		  
-		response.sendRedirect("listMain.ma");
-	}
+		
+		request.getRequestDispatcher(page).forward(request, response);
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

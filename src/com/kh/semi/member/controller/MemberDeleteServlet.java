@@ -46,7 +46,7 @@ public class MemberDeleteServlet extends HttpServlet {
 			// 세션 정보 삭제
 			session.invalidate();
 			
-			response.sendRedirect("views/main_6.jsp");
+			response.sendRedirect("listMain.ma");
 	    }catch(Exception e) {
 	    	request.setAttribute("msg", "회원탈퇴 중 오류 발생");
 	    	request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

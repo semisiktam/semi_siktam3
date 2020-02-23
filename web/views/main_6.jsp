@@ -1,8 +1,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.*"%>
+    pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.*,com.kh.semi.eventBanner.model.vo.*"%>
 <%
-/* 	 Member m = (Member)session.getAttribute("member"); */
+	/* 	 Member m = (Member)session.getAttribute("member"); */
+	ArrayList<EventBanner> list = (ArrayList<EventBanner>) request.getAttribute("list");
 %>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/siktam/resources/css/main_6.css">
-
+	
     <style>
         /* 이벤트 배너(bootstrap)*/
         .carousel-inner > .item > img,
@@ -101,7 +102,7 @@
             
         </div>
         <div id="navdiv2">
-            <div id="logodivMain"><a href="main_6.jsp"><img id="logoMain" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt=""></a></div>
+            <div id="logodivMain"><a href="listMain.ma"><img id="logoMain" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt=""></a></div>
         </div>
     </nav>
 
@@ -122,6 +123,7 @@
 		function search(){
 			location.href="<%=request.getContextPath()%>/searchMain.sc?keyword="+$('#searchtext').val();
 		}
+		
 	</script>
 	<!-- 2020-02-11 현희 수정(서치기능) 끝 -->
 	
@@ -177,37 +179,30 @@
     <!-- TOP5 배너 -->
     <div id="bannersection">
         <ul>
-            <li class="banner">               
-                <div class="bannertext1">서울 곱창 맛집<br>TOP 5</div>
-                <div class="bannerimgb1"></div>                              
+        	<% for (EventBanner eb : list) { %>
+            <li class="banner">             
+            	<div style="display:none;"><%=eb.getEventNo() %></div>
+            	<div style="display:none;"><%=eb.getEventName() %></div>
+                <div class="bannertext1"><%=eb.getEventName() %><br>TOP 5</div>
+                <div style="background-image: url(/siktam/resources/images/<%=eb.getEventImg()%>);" class="bannerimgb1"></div>                              
             </li>
-            
-            
-            <li class="banner" onclick="location.href = 'eventView_6.jsp'">               
-                <div class="bannertext2">전국 쌀국수 맛집<br>TOP 5</div>
-                <div class="bannerimgb2"></div>                              
-            </li>
-            <li class="banner">               
-                <div class="bannertext3">서울 닭발 맛집<br>TOP 5</div>
-                <div class="bannerimgb3"></div>                              
-            </li>
-            <li class="banner">               
-                <div class="bannertext4">서울 초계탕 맛집<br>TOP 5</div>
-                <div class="bannerimgb4"></div>                              
-            </li>
-            <li class="banner">               
-                <div class="bannertext5">서울 족발 맛집<br>TOP 5</div>
-                <div class="bannerimgb5"></div>                              
-            </li>
-            <li class="banner">               
-                <div class="bannertext6">서울 돈까스 맛집 <br>TOP 5</div>
-                <div class="bannerimgb6"></div>                              
-            </li>
+            <% } %>
         </ul>
     </div>
     
-
     <script>
+    	$('.banner').click(function(){
+    		var eno = $(this).children('div').eq(0).text();
+    		var ename = $(this).children('div').eq(1).text();
+    		console.log(eno);
+    		console.log(ename);
+    		
+    		location.href="<%=request.getContextPath()%>/msList.ms?eno=" + eno+"&ename="+ename;
+    	});
+    </script>
+    
+
+    <!-- <script>
         $(function(){
             // 배너 1
             $('.bannerimgb1').hover(function(){
@@ -295,7 +290,7 @@
                 $('.bannerimgb6').css('opacity','0.3');
             });
         });
-    </script>
+    </script> -->
 
     <!-- 푸터 시작 -->
     <%@ include file="common/footer.jsp" %>

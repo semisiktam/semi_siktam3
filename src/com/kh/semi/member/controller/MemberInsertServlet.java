@@ -48,7 +48,7 @@ public class MemberInsertServlet extends HttpServlet {
      int result =  new MemberService().insertMember(m);
       
       if(result > 0) {
-    	  response.sendRedirect("views/main_6.jsp");
+    	  response.sendRedirect("listMain.ma");
       }else{
     	  request.setAttribute("msg", "회원가입실패!");
     	  PrintWriter out = response.getWriter();

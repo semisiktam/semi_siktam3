@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.kh.semi.eventBanner.model.service.EventBannerService;
 import com.kh.semi.eventBanner.model.vo.EventBanner;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class eventInsertServlet
@@ -29,11 +33,51 @@ public class eventInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String eventName = request.getParameter("eventName");
-		String eventImg = request.getParameter("eventImg");
-		System.out.println(eventName+"  "+eventImg);
-		EventBanner eb = new EventBanner(eventName,eventImg);
 		
+		int maxSize = 1024*1024*10;
+		
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			// 만약 올바른 multipart/form-data로 전송되지 않았을 경우
+			// 에러페이지로 즉시 이동시킨다.
+			request.setAttribute("msg", "multipart를 통한 전송이 아닙니다.");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+		// 3. 웹 상의 루트(최상위 경로) 경로를 활용하여 저장할 폴더의 위치 지정하기
+		String root = request.getServletContext().getRealPath("/");
+		System.out.println("root : " + root);
+		// 게시판의 첨부파일을 저장할 폴더 이름 지정하기
+		String savePath = root + "resources/images";
+		
+		MultipartRequest mrequest = new MultipartRequest(
+									request, // 변경하기 위한 원본 객체
+									savePath, // 파일 저장 경로
+									maxSize,	// 저장할 파일의 최대 크기
+									"UTF-8",	// 저장할 문자셋 설정
+									new DefaultFileRenamePolicy()
+									// 동일한 이름의 파일을 저장했을 경우
+									// 기존의 파일과 구분하기 위해
+									// 새로운 파일명 뒤에 숫자를 붙이는 규칙				
+		);
+		
+		// 기본 값
+		String eventName = mrequest.getParameter("eventName");
+		
+		System.out.println(eventName);
+		// 5-2 전송된 파일 처리하기
+		// 전달받은 파일을 먼저 저장하고, 그 파일의 이름을 가져오는 메소드를 실행한다.
+		String fileName = mrequest.getFilesystemName("eventImg");
+		EventBanner eb = new EventBanner(eventName,fileName);
+		
+		System.out.println(fileName);
+		if(fileName==null) {
+			fileName = "event.png";
+		}
+		System.out.println(fileName);
+		System.out.println(eventName);
+		if(eventName.equals("")) {
+			eventName="입력안함";
+		}
+		System.out.println(eventName);
 		EventBannerService es= new EventBannerService();
 		
 		int result = es.InsertEvent(eb);
@@ -41,7 +85,7 @@ public class eventInsertServlet extends HttpServlet {
 		System.out.println("servlet"+result);
 		
 		if(result > 0) {
-			response.sendRedirect("eSelectList.ev");			
+			response.sendRedirect("/siktam/eSelectList.ev");			
 		}else {
 			request.setAttribute("msg", "등록실패");
 		}
