@@ -14,7 +14,7 @@
 <body>
     <!-- 헤더 시작 -->
     <%@ include file="common/header.jsp" %>
-<form action="">
+
     <!-- 이 안에 작업하기 -->
     <div id="area1">
     <div id="StoreTitle">
@@ -47,7 +47,7 @@
                             <tr>
                                 <th class="paytableth">일반결제</th>
                                 <td class="noline">
-                                    <input type="radio" id="creditcard1" name="payType" class="pay" value="cardPay"><label for="creditcard1">신용카드</label>
+                                    <input type="radio" id="creditcard1" name="payType" value="cardPay"class="pay"><label for="creditcard1">신용카드</label>
                                 </td>
                             </tr>
                             <tr>
@@ -86,13 +86,12 @@
                         <p class="title-1"><b>할인쿠폰 선택</b></p>
                     </div>
                     <input type="text" list="mylist" id="coupon" value="0" style="width: 75%;height: 30px;font-size: 15px;">
-                    <input type="hidden" list="mylist" id="coupon" name="couponNo" value='<%=c.getCouponNo() %>' style="width: 75%;height: 30px;font-size: 15px;">
                     <datalist id="mylist">
                         <option value="0">쿠폰 없음</option>
                         <option value='<%=c.getDiscount() %>'><%=c.getCouponName() %></option>
                     </datalist>
                     <button id="couponclick">적용</button>
-                    
+                    <input type="hidden" name="couponNo" value='<%=c.getCouponName()%>'> 
                 </div>
             </div>
             
@@ -133,7 +132,7 @@
                       <li><label for="electronic_agree" class="chk_label"><input type="checkbox" id="electronic_agree" name="agree" class="chk">전자금융거래 이용약관(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
-                  <input type="submit" id="payment" value="결제하기" onclick="location.href = 'payResult.jsp?totalPay='+<%=list.get(0).getTotalPay()%>">
+                  <input type="button" id="payment" value="결제하기" onclick="location.href = 'payResult.jsp?totalPay='+<%=list.get(0).getTotalPay()%>">
                   <input type="button" id="payment" name="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>
             </div>
@@ -141,7 +140,7 @@
         
     </div>
     </div>
-    </form>
+    
     <script>
     	$('input[name="cancle"]').click(function(){
     		location.href="<%=request.getContextPath()%>/reservationdelete.rc?rNo="+'<%=list.get(0).getrNo()%>'
@@ -164,15 +163,19 @@
     				"total" : total
     			},success:function(data){
     				console.log(data);
-    				$('#menutable2').find('td:eq(1)').remove();
-    				$('#menutable2').find('td:eq(2)').remove();
-    				var $b = $('<b>').text(data.totalPay);
-    				var $td = $('<td>');
+    				$('#menutable2').find('tr').remove();
+    				var $b1 = $('<b>').text("총 결제 금액");
+    				var $b2 = $('<b>').text(data.totalPay);
+    				var $td0 = $('<td class="allpay">');
+    				var $td1 = $('<td>');
     				var $td2 = $('<td>');
+    				var $tr = $('<tr>');
     				var $input = $('<input type="hidden" id="total"name="totalPay" value="'+data.totalPay+'">');
-    				$td.append($b);
+    				$td0.append($b1);
+    				$td1.append($b2);
     				$td2.append($input);
-    				$('#menutable2 tr').append($td).append($td2);
+    				$tr.append($td0).append($td1).append($td1);
+    				$('#menutable2').append($tr)
     				
     				console.log($('#total').val());
     			}
@@ -200,16 +203,20 @@
 				},success:function(data){
     				
     				if(data.useMile <= data.getMile && data.useMile <= data.totalPay){
-						$('#menutable2').find('td:eq(1)').remove();
-						$('#menutable2').find('td:eq(2)').remove();
-						$('#mileageDiv').find('div').remove();
-	    				var $b = $('<b>').text(data.totalPay);
-	    				var $td = $('<td>');
-	    				var $td2 = $('<td>');
-	    				var $input = $('<input type="hidden" id="total"name="totalPay" value="'+data.totalPay+'">');
-	    				$td.append($b);
-	    				$td2.append($input);
-	    				$('#menutable2 tr').append($td).append($td2);
+    					$('#menutable2').find('tr').remove();
+    					$('#mileageDiv').find('div').remove();
+        				var $b1 = $('<b>').text("총 결제 금액");
+        				var $b2 = $('<b>').text(data.totalPay);
+        				var $td0 = $('<td class="allpay">');
+        				var $td1 = $('<td>');
+        				var $td2 = $('<td>');
+        				var $tr = $('<tr>');
+        				var $input = $('<input type="hidden" id="total"name="totalPay" value="'+data.totalPay+'">');
+        				$td0.append($b1);
+        				$td1.append($b2);
+        				$td2.append($input);
+        				$tr.append($td0).append($td1).append($td1);
+        				$('#menutable2').append($tr)
 	    				
     					var $div = $('<div>');
 	    				var $usemile = $('<input type="text" class="mileage" id="useMile" name="useMile" value="'+data.useMile+'">');
@@ -217,6 +224,8 @@
 	    				var $mile = $('<input type="text" class="mileage" id="getMile" name="getMile" value="'+data.mile+'" style="text-align: left;">');
 	    				var $label2 = $('<label id="won2">').text("원");
 	    				var $p = $('<p>').text("(사용가능 마일리지)");
+	    				
+	    				
 	    				
 	    				$div.append($usemile);
 	    				$div.append($label);
