@@ -125,7 +125,7 @@ public class PayModifyServlet extends HttpServlet {
 		if(c != null && list != null) {
 			request.setAttribute("c", c);
 			request.setAttribute("list", list);
-			page = "/views/pay_5.jsp";
+			page = "/views/payModify_5.jsp";
 		}else {
 					
 		}

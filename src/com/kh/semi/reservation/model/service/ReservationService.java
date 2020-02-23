@@ -81,4 +81,21 @@ public class ReservationService {
 		return result;
 	}
 
+	/**
+	 * 마이페이지(개인) 예약 취소
+	 * @param reserveNo
+	 * @param shopPid
+	 * @return
+	 */
+	public int reservationModifyDelete(String reserveNo, String shopPid) {
+		Connection con = getConnection();
+		int result = rDao.reservationModifyDelete(con,reserveNo,shopPid);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		return result;
+	}
+
 }

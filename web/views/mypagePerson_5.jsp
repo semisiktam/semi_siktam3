@@ -269,6 +269,15 @@
             	/* console.log(shopPid); */
             	location.href="/siktam/reserveModify.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
             });
+             
+             $(".cancel").click(function(){
+            	 var reserveNo = $(this).parent().siblings(":eq(0)").val();
+             	/* console.log(reserveNo); */
+             	
+             	var shopPid = $(this).parent().siblings(":eq(1)").val();
+             	/* console.log(shopPid); */
+             	location.href="/siktam/reserveModifyDelete.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
+             })
             
             
             
