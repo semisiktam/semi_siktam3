@@ -32,8 +32,13 @@ public class ReservationDelete extends HttpServlet {
 		String rNo = request.getParameter("rNo");
 		String shopPid = request.getParameter("shopPid");
 		
+		System.out.println(rNo);
 		int result = new ReservationService().reservationDelete(rNo);
 		
+		if(result>0) {
+			response.sendRedirect("searchMain.sc");
+		}
+			
 		
 	}
 

@@ -58,9 +58,9 @@ table thead tr{
                               <th>아이디</th>
                               <th>주소</th>
                               <th>이름</th>
-                              <th>주민번호</th>
                               <th>전화번호</th>
                               <th>업체</th>
+                              <th>블랙리스트</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,10 +68,10 @@ table thead tr{
 							<tr>
 								<td><%= mem.getUserId() %></td>
 								<td><%= mem.getAddr() %></td>		
-								<td><%= mem.getName() %></td>		
-								<td><%= mem.getPid() %></td>		
+								<td><%= mem.getName() %></td>				
 								<td><%= mem.getPhone() %></td>		
-								<td><%= mem.getShopYN() %></td>		
+								<td><%= mem.getShopYN() %></td>
+								<td><%= mem.getBlackYN() %></td>
 							</tr>
 							<% } %>
                         </tbody>
@@ -138,8 +138,6 @@ table thead tr{
 			}).mouseout(function(){
 				$(this).parent().css({"background":"white"});
 			}).click(function(){
-				console.log($(this).parent().children().eq(0).text());
-				alert("stop");
 				var userId = $(this).parent().children().eq(0).text();
 				location.href="<%=request.getContextPath()%>/selectOne.me?userId=" + userId;
 			});

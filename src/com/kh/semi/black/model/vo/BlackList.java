@@ -1,19 +1,27 @@
 package com.kh.semi.black.model.vo;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class BlackList implements Serializable{
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3550295093482221301L;
+	private static final long serialVersionUID = 7474943525142290561L;
 	private String bno;
 	private String userId;
 	private Date banDate;
 	private String banTerm;
+	private long remainTerm;
+	private String endDate;
 	private String banReason;
 	
+
+
 	public BlackList() {}
 
 	
@@ -22,6 +30,45 @@ public class BlackList implements Serializable{
 		this.userId = userId;
 		this.banTerm = banTerm;
 		this.banReason = banReason;
+	}
+
+	public String getEndDate() {
+		SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(banDate);
+		cal.add(Calendar.DATE, Integer.parseInt(banTerm));
+		
+		endDate = sdf.format(cal.getTime());
+		
+		return endDate;
+	}
+
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public long getRemainTerm() {
+		SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			Date end = sdf.parse(endDate);
+			Date current = new Date();
+			
+			long calDate = end.getTime() - current.getTime();
+			remainTerm = calDate / (24*60*60*1000);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	
+		return remainTerm;
+	}
+	
+	
+	public void setRemainTerm(long remainTerm) {
+		this.remainTerm = remainTerm;
 	}
 
 	public BlackList(String bno, String userId, Date banDate, String banTerm, String banReason) {

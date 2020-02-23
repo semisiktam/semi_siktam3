@@ -26,11 +26,11 @@ public class ReservationService {
 	}
 
 	public int reservationInsert(String userId, String shopPid, Date rdate,
-			String time, String menu) {
+			String time, String menu, int total) {
 		
 		Connection con = getConnection();
 		
-		int result = rDao.reservationInsert(con,userId,shopPid,rdate,time,menu);
+		int result = rDao.reservationInsert(con,userId,shopPid,rdate,time,menu,total);
 		
 		if (result > 0) commit(con);
 		else rollback(con);
@@ -52,9 +52,11 @@ public class ReservationService {
 		
 		Connection con = getConnection();
 		
-		int result = rDao.reservationDelete(rNo);
+		int result = rDao.reservationDelete(con,rNo);
 		
-				
+		System.out.println(result);
+		if(result >0) commit(con);
+		else rollback(con);
 		return result;
 	}
 	
@@ -65,6 +67,35 @@ public class ReservationService {
 		
 		close(con);
 		return mrList;
+	}
+
+	public int reservationUpdate(String userid, String shopPid, String resNo, Date rdate, String time, String menu, int total) {
+		Connection con = getConnection();
+		int result = rDao.reservationUpdate(con,userid,shopPid,resNo,rdate,time,menu,total);
+		
+		if (result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	/**
+	 * 마이페이지(개인) 예약 취소
+	 * @param reserveNo
+	 * @param shopPid
+	 * @return
+	 */
+	public int reservationModifyDelete(String reserveNo, String shopPid) {
+		Connection con = getConnection();
+		int result = rDao.reservationModifyDelete(con,reserveNo,shopPid);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		return result;
 	}
 
 }

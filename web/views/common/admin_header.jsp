@@ -58,7 +58,7 @@
           <ul class="dropdown-menu">
             <li><a href="/siktam/nselectList.no">공지사항</a></li>
             <li><a href="/siktam/eSelectList.ev">이벤트배너</a></li>
-            <li><a href="/siktam/views/admin_questions_4.jsp">문의사항</a></li>
+            <li><a href="/siktam/qAdminList.qna">문의사항</a></li>
           </ul>
         </li>
       </ul>

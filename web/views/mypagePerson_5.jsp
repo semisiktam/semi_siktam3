@@ -30,7 +30,8 @@
 	    				var $recentDiv = $('<div class="registStore2" id="recentDiv">');
 	    				var $imgArea = $('<img src="" class="registStoreImg" alt="" width="170px" height="120px"><br>').text(value.shopImg);
 	    				var $h4 = $('<h4 align="center">').text(value.shopName);
-	    				var $p = $('<p align="center"><small>').text(value.sAddr);
+	    				var $p = $('<p align="center" style="word-break: keep-all;">');
+	    				var $small = $('<small>').text(value.sAddr);
     				
 	    				$content3.append($recent);
 	    				$recent.append($ul);
@@ -39,6 +40,7 @@
 	    				$recentDiv.append($imgArea);
 	    				$recentDiv.append($h4);
 	    				$recentDiv.append($p);
+	    				$p.append($small);
     				
     				});
     			},error:function(){
@@ -110,7 +112,7 @@
 	                            <td colspan="2">
 	                            	<!-- <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="modify();"> &nbsp; -->
 	                            	<input type="button" value="변경" class="confirm" id="change"> &nbsp;
-	                            	<input type="button" value="취소" class="cancel" id="cancel" onclick="location.href='mypagePerson_5.html'">
+	                            	<input type="button" value="취소" class="cancel" id="cancel">
 	                            </td>
 	                        </tr>
                        <% } %>
@@ -182,13 +184,16 @@
                          </tr>
                     </thead>
                     <tbody>
+                    
                     	<%for(MemberReservationList rp : mrList){ %>
+                    	<%if(rp.getTotalPay()!=0){ %>
                         <tr class="reservationTr">
                             <td><%=rp.getShopName() %></td>
                             <td><%=rp.getmNo() %></td>
                             <td><%=rp.getTotalPay() %></td>
                             <td><%=rp.getPayType() %></td>
                         </tr>
+                        <%}  %>
                         <% } %>
                         <!-- <tr class="reservationTr">
                             <td>역전우동</td>
@@ -264,6 +269,23 @@
             	/* console.log(shopPid); */
             	location.href="/siktam/reserveModify.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
             });
+             
+             $(".cancel").click(function(){
+            	 var reserveNo = $(this).parent().siblings(":eq(0)").val();
+             	/* console.log(reserveNo); */
+             	
+             	var shopPid = $(this).parent().siblings(":eq(1)").val();
+             	/* console.log(shopPid); */
+             	
+            	 var confirmAlert = confirm("예약을 취소하시겠습니까?");
+            	 if(confirmAlert == true){
+            		 location.href="/siktam/reserveModifyDelete.rm?reserveNo="+reserveNo+"&shopPid="+shopPid;
+            	 }
+            	 else if(confirmAlert == false){
+            	   self.close();
+            	 }
+             	
+             })
             
             
             
@@ -445,7 +467,7 @@
                                 </div>
                             </div>
                         </li> -->
-                    </ul>
+                    <!-- </ul> -->
                 </div>
             
             
