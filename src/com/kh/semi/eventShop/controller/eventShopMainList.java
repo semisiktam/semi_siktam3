@@ -32,6 +32,7 @@ public class eventShopMainList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String eno = request.getParameter("eno");
+		String ename = request.getParameter("ename");
 		
 		ArrayList<Shop> list = new ArrayList<Shop>();
 
@@ -44,6 +45,7 @@ public class eventShopMainList extends HttpServlet {
 		if(list != null) {
 			page = "views/eventView_6.jsp";
 			request.setAttribute("list", list);
+			request.setAttribute("ename",ename);
 			
 		}else {
 			request.setAttribute("msg", " 불러오기 에러 ");

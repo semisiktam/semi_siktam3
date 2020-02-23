@@ -140,7 +140,7 @@
 						style="width: 300px; height: 300px;"></td>
 					<td class="text-right">
 						<button type="button" class="deleteEvent">삭제</button>
-						<button type="button" class="updateEvent">수정</button>
+						<button type="button" class="updateEvent" style="display:none;">수정</button>
 
 					</td>
 

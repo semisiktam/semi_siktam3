@@ -182,6 +182,7 @@
         	<% for (EventBanner eb : list) { %>
             <li class="banner">             
             	<div style="display:none;"><%=eb.getEventNo() %></div>
+            	<div style="display:none;"><%=eb.getEventName() %></div>
                 <div class="bannertext1"><%=eb.getEventName() %><br>TOP 5</div>
                 <div style="background-image: url(/siktam/resources/images/<%=eb.getEventImg()%>);" class="bannerimgb1"></div>                              
             </li>
@@ -192,9 +193,11 @@
     <script>
     	$('.banner').click(function(){
     		var eno = $(this).children('div').eq(0).text();
+    		var ename = $(this).children('div').eq(1).text();
     		console.log(eno);
+    		console.log(ename);
     		
-    		location.href="<%=request.getContextPath()%>/msList.ms?eno=" + eno;
+    		location.href="<%=request.getContextPath()%>/msList.ms?eno=" + eno+"&ename="+ename;
     	});
     </script>
     
