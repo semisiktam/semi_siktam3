@@ -211,6 +211,90 @@ public class ReviewDao {
 		
 		return allReviewList;
 	}
+
+	public int rPossible(Connection con, String shopPid, String userId) {
+		
+		int rPossible = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("rPossible");
+		
+		try {
+			// 미완성된 SQL 준비
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, shopPid);
+			pstmt.setString(2, userId);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {				
+				rPossible = Integer.parseInt(rset.getString("COUNT(*)"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return rPossible;
+	}
+
+	public int insertNotice(Connection con, Review r) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,r.getUserId());
+			pstmt.setString(2,r.getShopPid());
+			pstmt.setString(3,r.getrContent());
+			pstmt.setString(4,r.getReviewImg());
+			pstmt.setInt(5,r.getScore());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int reviewInsertUpdate(Connection con, String shopPid, String userId) {
+		
+		int result2 = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("reviewInsertUpdate");
+		
+		try {
+			// 미완성된 SQL 준비
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, shopPid);
+			pstmt.setString(2, userId);
+			
+			result2 = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result2;
+		
+	}
 	
 	
 	
