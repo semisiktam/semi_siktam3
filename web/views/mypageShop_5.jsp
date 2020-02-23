@@ -408,13 +408,13 @@
                             <input type="button" value="예약정보확인">
                         </div>
                     </li>
-                    <li class="registStore2Add">
+                    <!-- <li class="registStore2Add">
                         <div>
                             <div id="plusBtn1">
                             <input type="button" id="plusBtn2" value="+">
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             
@@ -446,7 +446,23 @@
     		});
 		});
      */
-    </script>
+     
+     <!-- $(function(){
+    	 $.ajax({
+    		 url:"/siktam//confirmResTest.do",
+    		 type:"get",
+    		 data:{
+    			shopPid:"S1"	 
+    		 },success:function(data){
+    			 console.log(data);
+    			 $.each(data,function(index,value){
+    				 console.log(value);
+    			 })
+    		 },error:function(){console.log("error");}
+    		 
+    	 })
+     })
+    </script> -->
 
 
 
