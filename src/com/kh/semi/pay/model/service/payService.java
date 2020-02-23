@@ -1,11 +1,12 @@
 package com.kh.semi.pay.model.service;
 
+import static com.kh.semi.common.JDBCTemplate.*;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 
-import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.pay.model.dao.payDao;
 import com.kh.semi.pay.model.vo.Pay;
-import static com.kh.semi.common.JDBCTemplate.*;
 public class payService {
 	
 	payDao pDao = new payDao();
@@ -14,16 +15,23 @@ public class payService {
 		Connection con = getConnection();
 		
 		Pay p = pDao.PayPrint(con);
+		
+		close(con);
 		return p;
 	}
 
-	public Member payinfo(String userId) {
-
+	public int insertPay(Pay pay) {
 		Connection con = getConnection();
-		Member mc = pDao.payInfo(con,userId);
-		close(con);
 		
-		return mc;
+		int result = pDao.insertPay(con, pay);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+				
+		return result;
 	}
+
 
 }

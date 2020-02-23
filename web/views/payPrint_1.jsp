@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.kh.semi.pay.model.vo.*"%>
 
-<%Pay p = (Pay)request.getAttribute("p"); %>
+<%
+	String msg = request.getParameter("msg");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -20,16 +22,20 @@
 
 <title>paid print</title>
 
+<script>
+	alert('<%=msg%>');
+</script>
+
 </head>
 
 
 
 <body>
-	<%@ include file="common/header.jsp"%>
+	<%@ include file="common/header.jsp" %>
 
 	<div class="div1">
-		<h2>예약을 완료하였습니다</h2>
-
+		<h2>예약 및 결제를 완료하였습니다</h2>
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
@@ -39,8 +45,7 @@
 						<h4>테이블방식</h4>
 					</div>
 					<div class="div4">
-						<h4><%=p.getPayNo() %></h4>
-						<h4><%=p.getPayDate() %></h4>
+
 						<h4>1인 &nbsp;테이블</h4>
 					</div>
 				</div>
@@ -57,7 +62,7 @@
 						<div class="mileage">
 							<ul>
 								<li class="mil">마일리지</li>
-								<li><%= p.getMileage() %></li>
+
 							</ul>
 						</div>
 					</div>
@@ -68,13 +73,13 @@
 						<div class="row">
 							<div class="price">
 								<div class="priceH1">결제금액</div>
-								<div><%= p.getTotalPay() %></div>
+
 							</div>
 							<div class="ex">
 								<div class="exH1">결제정보</div>
 								<div>
 									<ul>
-										<li><%=p.getPayType() %></li>
+
 										<li>일시불</li>
 										<li>승인일시:&nbsp;2019-12-20</li>
 									</ul>

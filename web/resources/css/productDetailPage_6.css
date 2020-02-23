@@ -18,10 +18,11 @@
     /* border: 1px solid black; */
     width: 100%;
     height: 500px;
-    background-image: url(../images/detailimg.png);
-    background-size: cover;
-    background-position: center;
-    
+}
+
+#shopimg{
+	width:100%;
+	height:100%;
 }
 
 /* 2020.02.10 수정 시작(현희) < 즐겨찾기 추가 >  */

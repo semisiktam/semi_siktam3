@@ -32,12 +32,12 @@
     <!-- 이 안에 작업하기 -->
 
     <div id="all"> <!-- 전체 div-->
-        <div class="pagemainimg"></div>
+        <div class="pagemainimg"><img id="shopimg" src="/siktam/resources/images/<%=s.getShopImg()%>"></div>
         <div class="pageselect">
             <!-- %% 업체정보연결-->
-            <a href="productDetailPage_6.jsp"><div id="information"><span>업체정보</span></div></a>
+            <a href="/siktam/sSelect.so?shopPid=<%=s.getShopPid()%>"><div id="information"><span>업체정보</span></div></a>
             <!-- %% 리뷰연결-->
-            <a href="productReviewPage_7.jsp"><div id="review"><span>리뷰(<%= allReviewList.size() %>)</span></div></a>
+            <a href="#"><div id="review"><span>리뷰(<%= allReviewList.size() %>)</span></div></a>
         </div>
 
         <div id="pagetop">
@@ -70,7 +70,7 @@
                 
             </div>
             <div id="scores" class="scoreIn">
-                <h4 class="jum">5점&nbsp;&nbsp;<progress value="<%= rScore.getFive() %>" max="<%= allReviewList.size() %>" class="var">Progress : 30%</progress></h4><br>
+                <h4 class="jum">5점&nbsp;&nbsp;<progress value="<%= rScore.getFive() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
                 <h4 class="jum">4점&nbsp;&nbsp;<progress value="<%= rScore.getFour() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
                 <h4 class="jum">3점&nbsp;&nbsp;<progress value="<%= rScore.getThree() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
                 <h4 class="jum">2점&nbsp;&nbsp;<progress value="<%= rScore.getTwo() %>" max="<%= allReviewList.size() %>" class="var"></progress></h4><br>
@@ -105,7 +105,7 @@
         <br>
 		<% if(m != null){ %>
 	        <div id="reviewWriteText">
-				<form action="/siktam/rInsert.ro" method="post" enctype="multipart/form-data" id="reviewForm">
+				<form method="post" enctype="multipart/form-data" id="reviewForm">
 	            <div class="allReview" id="writeReview">
 	                <div>
 	                    <img class="id1" src="/siktam/resources/images/person1.png" alt="">&nbsp;&nbsp;<label class="idLabel"><%= m.getUserId() %></label>
@@ -126,12 +126,13 @@
 	                        <input type="file" id="ex_file" accept="image/*" name="file">
 	                    </label>
 	                    <br><br>
-	                    <textarea name="review" id="reviewText" cols="105" rows="10" placeholder="리뷰를 작성해 주세요"></textarea>
+	                    <textarea name="rContent" id="reviewText" cols="105" rows="10" placeholder="리뷰를 작성해 주세요"></textarea>
 	                    <br>
-	                    <button id="rwbtn" class="rwbtn">리뷰등록</button>
 	                </div>
 	            </div>
-	   			</form>    
+	                    <button id="rwbtn1" class="rwbtn" style="display:none">리뷰등록</button>
+	   			</form>
+	   					<button id="rwbtn2" class="rwbtn">작성 여부 확인</button>
 	        </div>
         <% }%>
         
@@ -159,12 +160,24 @@
                     <a href="#">★</a>
                     <a href="#">★</a>
                 </label>
+                
+                <% if(m!=null) { 
+                	if(m.getUserId().equals(r.getUserId())) {
+                %>
+                <label style="display:none"><%=r.getrNo() %></label>
+                <button class="deleteBtn"><img src="/siktam/resources/images/delete.jpg" class="deleteimg"></button>
+                <% 	}
+                   }
+                %>
+                
                 <br><br>
+                <% if(!r.getReviewImg().equals("review.png")) { %>
                 <div class="imgDiv">
                     <img src="/siktam/resources/images/<%=r.getReviewImg() %>" class="reviewImg" alt="">
                 </div>
+                <% } %>
                 <br>
-                <p><%= r.getrContent() %></p>
+                <p style="font-size:20px;"><%= r.getrContent() %></p>
             </div>
 		<% } %>
         </div>
@@ -174,11 +187,11 @@
         <!-- 페이지 버튼 -->
         
          <div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=1'"><<</button>
-			<%  if(currentPage <= 1){  %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=1&howSelect=<%=howSelect%>'"><<</button>
+			<%  if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage - 1 %>'"><</button>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage - 1 %>&howSelect=<%=howSelect%>'"><</button>
 			<%  } %>
 			
 			<% for(int p = startPage; p <= endPage; p++){
@@ -186,16 +199,16 @@
 			%>
 				<button disabled><%= p %></button>
 			<%      }else{ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= p %>'"><%= p %></button>
+				<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= p %>&howSelect=<%=howSelect%>'"><%= p %></button>
 			<%      } %>
 			<% } %>
 				
 			<%  if(currentPage >= maxPage){  %>
 			<button disabled>></button>
 			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage + 1 %>'">></button>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage + 1 %>&howSelect=<%=howSelect%>'">></button>
 			<%  } %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= maxPage %>'">>></button>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= maxPage %>&howSelect=<%=howSelect%>'">>></button>
 			
 		</div>
         <br>
@@ -223,13 +236,7 @@
             		
             	});
             	
-            	$('#rwbtn').click(function(){
-            		
-            		alert("버튼 입력");
-            			
-	            	<%-- $('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="+$('#star_grade_review a.on').length+"&rContent="+$('#reviewText').val()); --%> 
-            		
-            	});
+            	
             	
                 $('.personReview').css('display','none');
                 
@@ -263,6 +270,53 @@
 	    	  $('#wReviewbtn').click(function(){
                  	$('#reviewWriteText').slideToggle();
               });
+	    	  
+	    	  $('#rwbtn2').click(function(){
+	    		  
+          		if($('#star_grade_review a.on').length>=1){
+          			
+          			$.ajax({
+   	    			 url:"/siktam/rInsertCheck.ro",
+   	    			 type:"get",
+   	    			 data: {
+   	    				 userId : "<%=m.getUserId()%>",
+   	    				 shopPid : "<%=s.getShopPid()%>"
+   	    			 }, success:function(data){
+   	    				 
+   	    				 if(data>=1){
+   	    					 alert('작성 가능 합니다.');
+   	    					 $('#rwbtn1').css("display","block");
+   	    					 $('#rwbtn2').css("display","none");
+   	    					
+   	    				 }else{
+   	    					 alert("작성 할 수 있는 리뷰가 없습니다.");
+   	    				 }
+   	    				 
+   	    			 }, error:function(){
+   	    				 console.log("ajax실패");
+   	    			 }
+   	    		  });
+		    
+          		}else {
+          			alert("별점을 입력해 주세요.");
+          		}
+          	
+          	});
+	    	  
+	    	  $('#rwbtn1').click(function(){
+	    		  
+	    	  	$('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="
+          			+$('#star_grade_review a.on').length);
+	    	  });
+	    	  
+	    	  $('.deleteBtn').click(function(){
+	    		  var check = $(this).prev('label').text();
+	    		  console.log(check);
+	    		  if(confirm("정말 삭제 하시겠습니까?")){
+	    		 	location.href="/siktam/rDelete.ro?reviewNo="+check+"&shopPid=<%=s.getShopPid()%>"+"&userId=<%=m.getUserId()%>";
+	    		  }
+	    	  });
+	    	  
 	      });
         <% }else{%>
         	$(function(){

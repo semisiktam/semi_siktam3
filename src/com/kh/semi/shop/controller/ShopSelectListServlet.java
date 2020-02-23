@@ -43,7 +43,7 @@ public class ShopSelectListServlet extends HttpServlet {
 				System.out.println(s.get(i));
 			}
 			session.setAttribute("shop", s);
-			response.sendRedirect("/siktam/views/main_6.jsp");
+			response.sendRedirect("listMain.ma");
 		}
 	}
 

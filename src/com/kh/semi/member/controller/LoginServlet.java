@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("/sSelectList.sh").forward(request, response);
 			// forword, sendredirect
 			else
-				response.sendRedirect("/siktam/views/main_6.jsp");
+				response.sendRedirect("listMain.ma");
 		} catch (Exception e) {// 에러가 났을때
 			request.setAttribute("msg", "회원 로그인 실패!");
 			request.setAttribute("exception", e);

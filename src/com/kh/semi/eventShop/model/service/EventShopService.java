@@ -65,4 +65,14 @@ public class EventShopService {
 		return result;
 	}
 
+	public ArrayList<Shop> mainShopList(String eno) {
+		Connection con = getConnection();
+		
+		ArrayList<Shop> list = esDao.mainShopList(con,eno);
+		
+		close(con);
+		
+		return list;
+	}
+
 }

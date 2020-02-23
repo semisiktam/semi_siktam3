@@ -1,14 +1,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.semi.shop.model.vo.*, com.kh.semi.menu.model.vo.* ,
-     com.kh.semi.member.model.vo.*" %>
+     com.kh.semi.member.model.vo.*, java.util.*" %>
 
 <% 
 	Shop s = (Shop)request.getAttribute("shop");
 	ArrayList<Menu> list = (ArrayList<Menu>)request.getAttribute("mList");
 	Member mem = (Member)request.getAttribute("member");
 	String favorite = String.valueOf(request.getAttribute("favorite"));
-	
+	List<String> tt = Arrays.asList(s.getTableType().split(","));
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,9 @@
     <div id="detailbox">
         <!-- 메인 이미지 -->
         <input type="hidden" id="shopPid" value="<%= s.getShopPid() %>"/>
-        <div class="pagemainimg"></div>
+        <div class="pagemainimg">
+        	<img id="shopimg" src="/siktam/resources/images/<%=s.getShopImg()%>">
+        </div>
         
         <!-- 2020.02.10 수정 시작(현희) < 즐겨찾기 추가 > -->
 		
@@ -160,7 +162,7 @@
         
         <div class="pageselect">
             <!-- %% 업체정보연결-->
-            <a href="productDetailPage_6.jsp"><div id="information"><span>업체정보</span></div></a>
+            <a href="#"><div id="information"><span>업체정보</span></div></a>
 
             <!-- %% 리뷰연결-->
 
@@ -177,26 +179,32 @@
         </div>
 		
 		
+		
+		
+		
     <!-- 매장정보 -->
     <div id="pageinfo">
         <div id="pageinfodiv">
             <div id="infospan"> 매장정보 </div><div id="infohr"><hr></div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div>
-            <div class="pageicon">
-                <img class="iconimg" src="/siktam/resources/images/search.png" alt="">
-                <p class="icontext">1인 테이블</p>
-            </div><br>
+            
+            <% for(String ti : tt){ %>
+            	<div class="pageicon">
+            		<% if(ti.equals("1인석")) { %>
+            			<img class="iconimg" src="/siktam/resources/images/search1.png" alt="">
+            		<% } else if(ti.equals("2인석")) { %>
+        				<img class="iconimg" src="/siktam/resources/images/search2.png" alt="">
+        			<% } else if(ti.equals("칸막이")) { %>
+        				<img class="iconimg" src="/siktam/resources/images/search3.png" alt="">
+        			<% } else if(ti.equals("바테이블")) { %>
+        				<img class="iconimg" src="/siktam/resources/images/search4.png" alt="">
+        			<% } else { %>
+        				<img class="iconimg" src="/siktam/resources/images/search5.png" alt="">
+        			<% } %>
+	            	<p class="icontext"><%= ti %></p>
+            	</div>
+            <% } %>
+           
+            <br>
             <p class="infop">매장 전화번호 : </p> <p class="infop2"><%= s.getsPhone() %></p><br>
             <p class="infop">매장 주소 : </p> <p class="infop2"><%=s.getsAddr() %></p><br>
             <p class="infop">매장 영업시간 : </p> <p class="infop2"><%= s.getsTime() %> ~ <%= s.geteTime() %></p><br>
@@ -211,7 +219,7 @@
             <!-- 지원 잠시 주석처리 -->
             <% for(Menu me : list) { %>
             <div class="menubox">
-                <div class="menuimg"><img src="<%=me.getMenuImg() %>" alt=""></div>
+                <div class="menuimg"><img src="/siktam/resources/images/<%=me.getMenuImg() %>" alt=""></div>
                 <div class="menutext">
                     <h4><%=me.getMenuName() %></h4>
                     <p><%=me.getMenuInfo() %></p>
@@ -236,54 +244,36 @@
             
             <!-- 지도 api -->
             <div id="map" style="width: 430px;height: 300px;border:1px solid black;"></div>
-            
-            
-            
-            
-            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86ac46e343755ab8ce65f87ac019437b"></script>
-            
-            <script>
-            
-           
+     
+            <script>           
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
              mapOption = {
                  center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
                  level: 3 // 지도의 확대 레벨
              };  
-
 	         // 지도를 생성합니다    
-	         var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
+	         var map = new kakao.maps.Map(mapContainer, mapOption); 	
 	         // 주소-좌표 변환 객체를 생성합니다
-	         var geocoder = new kakao.maps.services.Geocoder();
-	
+	         var geocoder = new kakao.maps.services.Geocoder();	
 	         // 주소로 좌표를 검색합니다
-	         geocoder.addressSearch('<%=s.getsAddr()%>', function(result, status) {
-	
+	         geocoder.addressSearch('<%=s.getsAddr()%>', function(result, status) {	
 	             // 정상적으로 검색이 완료됐으면 
 	              if (status === kakao.maps.services.Status.OK) {
-	
-	                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
+	                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);	
 	                 // 결과값으로 받은 위치를 마커로 표시합니다
 	                 var marker = new kakao.maps.Marker({
 	                     map: map,
 	                     position: coords
 	                 });
-	
 	                 // 인포윈도우로 장소에 대한 설명을 표시합니다
 	                 var infowindow = new kakao.maps.InfoWindow({
-	                     content: '<div style="width:150px;text-align:center;padding:6px 0;">하..</div>'
+	                     content: '<div style="width:150px;text-align:center;padding:6px 0;">식탐 맛집!</div>'
 	                 });
 	                 infowindow.open(map, marker);
-	
 	                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 	                 map.setCenter(coords);
 	             } 
 	         });    
-	             
-             
-
          </script>
 	    		
        

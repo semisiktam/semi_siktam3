@@ -40,7 +40,7 @@
   
     <div class="container-fluid">
       <div class="navbar-header">
-        <div id="logodiv"><a href="/siktam/views/main_6.jsp"><img id="logo" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt="" style="width:50px; height:50px"></a></div>
+        <div id="logodiv"><a href="listMain.ma"><img id="logo" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt="" style="width:50px; height:50px"></a></div>
       </div>
       <ul class="nav navbar-nav">
         <li class=""><a href="/siktam/views/admin_main_4.jsp">관리자메인</a></li>

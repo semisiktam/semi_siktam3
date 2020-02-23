@@ -19,16 +19,16 @@ import com.kh.semi.pay.model.vo.PayInfo;
 import com.kh.semi.reservation.model.service.ReservationService;
 
 /**
- * Servlet implementation class Pay
+ * Servlet implementation class PayServlet
  */
 @WebServlet("/pay.pc")
-public class Pay extends HttpServlet {
+public class PayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Pay() {
+    public PayServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +37,6 @@ public class Pay extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session=request.getSession();
 	    Member m = (Member)session.getAttribute("member");
 	    //결제 정보
@@ -47,8 +46,6 @@ public class Pay extends HttpServlet {
 		String[] menuCount = request.getParameterValues("menuCount");
 		String[] menuPrice = request.getParameterValues("menuPrice");
 		int total = Integer.parseInt(request.getParameter("hdtotal"));
-		
-		System.out.println(total);
 		
 		//예약 insert 정보
 		String[] menuNo = request.getParameterValues("menuNo");

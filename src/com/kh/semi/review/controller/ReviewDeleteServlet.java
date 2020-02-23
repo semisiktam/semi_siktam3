@@ -1,4 +1,4 @@
-package com.kh.semi.member.controller;
+package com.kh.semi.review.controller;
 
 import java.io.IOException;
 
@@ -7,22 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.semi.member.model.service.MemberService;
 import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.review.model.service.ReviewService;
 
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class ReviewDeleteServlet
  */
-@WebServlet("/deleteMember.dm")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/rDelete.ro")
+public class ReviewDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public ReviewDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +30,24 @@ public class MemberDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-	    Member m=(Member)session.getAttribute("member");
-	    
-	    String userId = m.getUserId();
-	    String password = request.getParameter("password");
-	    
-	    MemberService ms = new MemberService();
-	    
-	    try {
-	    	ms.deleteMember(userId,password);
-	    	System.out.println("회원탈퇴성공!");
-			
-			// 세션 정보 삭제
-			session.invalidate();
-			
-			response.sendRedirect("listMain.ma");
-	    }catch(Exception e) {
-	    	request.setAttribute("msg", "회원탈퇴 중 오류 발생");
-	    	request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-	    }
+		
+		String rno = request.getParameter("reviewNo");
+		String shopPid = request.getParameter("shopPid");
+		String userId = request.getParameter("userId");
+		ReviewService rs = new ReviewService();
+		
+		int result = rs.deleteReview(rno);
+		
+		int result2 = rs.deleteReviewUpdate(shopPid,userId);
+		
+		if(result>0) {
+			response.sendRedirect("/siktam/rPage.ro?shopPid="+shopPid+"&howSelect=new");
+		}else {
+			request.setAttribute("msg", "공지사항 삭제 실패");
+		}
+		
+		
+		
 	}
 
 	/**

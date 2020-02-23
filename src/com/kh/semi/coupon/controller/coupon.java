@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.semi.coupon.model.service.CouponService;
-import com.kh.semi.coupon.model.vo.Coupon;
+import com.kh.semi.coupon.model.vo.discount;
 
 /**
  * Servlet implementation class coupon
@@ -35,12 +34,26 @@ public class coupon extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 		
-		int cNo = Integer.parseInt(request.getParameter("cNo"));
+		int coupon = Integer.parseInt(request.getParameter("coupon"));
+		int useMile = Integer.parseInt(request.getParameter("useMile"));
+		int getMile = Integer.parseInt(request.getParameter("getMile"));
+		int total = Integer.parseInt(request.getParameter("total"));
 		
-		Coupon c = new CouponService().Coupon(cNo);
+		System.out.println(getMile);
+		System.out.println(useMile);
+		System.out.println(coupon);
+		System.out.println(total);
+		int mile = getMile - useMile;
+		int totalPay = total-coupon-useMile;
 		
-		new Gson().toJson(c,response.getWriter());
-	
+		discount dc = new discount();
+		dc.setMile(mile);
+		dc.setTotalPay(totalPay);
+		dc.setUseMile(useMile);
+		dc.setGetMile(getMile);
+		new Gson().toJson(dc,response.getWriter());
+		
+			
 	}
 
 	/**
