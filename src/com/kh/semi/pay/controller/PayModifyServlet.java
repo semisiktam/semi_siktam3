@@ -93,7 +93,7 @@ public class PayModifyServlet extends HttpServlet {
 		System.out.println(menu);
 		
 		//예약 update
-		int result = new ReservationService().reservationUpdate(userid,shopPid,resNo,rdate,time,menu);
+		int result = new ReservationService().reservationUpdate(userid,shopPid,resNo,rdate,time,menu,total);
 		System.out.println(result);
 		//payInfo
 		PayInfo pi = null;
@@ -125,7 +125,7 @@ public class PayModifyServlet extends HttpServlet {
 		if(c != null && list != null) {
 			request.setAttribute("c", c);
 			request.setAttribute("list", list);
-			page = "/views/pay_5.jsp";
+			page = "/views/payModify_5.jsp";
 		}else {
 					
 		}
