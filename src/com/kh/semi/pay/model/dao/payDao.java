@@ -65,32 +65,5 @@ public class payDao {
 		return p;
 	}
 
-	public Member payInfo(Connection con, String userId) {
-		Member mc = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("payInfo");
-		
-		try {
-			System.out.println(userId);
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,userId);
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				mc = new Member();
-				mc.setMileage(rset.getInt("MILEAGE"));
-				mc.setCouponNo(rset.getInt("COUPON_NO"));
-			}
-				
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		return mc;
-	}
 
 }
