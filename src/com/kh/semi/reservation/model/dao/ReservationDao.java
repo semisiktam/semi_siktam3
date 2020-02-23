@@ -188,7 +188,7 @@ public class ReservationDao {
 		return mrList;
 	}
 
-	public int reservationUpdate(Connection con,String userid, String shopPid, String resNo, Date rdate, String time, String menu) {
+	public int reservationUpdate(Connection con,String userid, String shopPid, String resNo, Date rdate, String time, String menu, int total) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -199,9 +199,10 @@ public class ReservationDao {
 			pstmt.setDate(1, rdate);
 			pstmt.setString(2, time);
 			pstmt.setString(3, menu);
-			pstmt.setString(4, userid);
-			pstmt.setString(5, shopPid);
-			pstmt.setString(6, resNo);
+			pstmt.setInt(4, total);
+			pstmt.setString(5, userid);
+			pstmt.setString(6, shopPid);
+			pstmt.setString(7, resNo);
 			
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {

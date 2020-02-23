@@ -69,9 +69,9 @@ public class ReservationService {
 		return mrList;
 	}
 
-	public int reservationUpdate(String userid, String shopPid, String resNo, Date rdate, String time, String menu) {
+	public int reservationUpdate(String userid, String shopPid, String resNo, Date rdate, String time, String menu, int total) {
 		Connection con = getConnection();
-		int result = rDao.reservationUpdate(con,userid,shopPid,resNo,rdate,time,menu);
+		int result = rDao.reservationUpdate(con,userid,shopPid,resNo,rdate,time,menu,total);
 		
 		if (result > 0) commit(con);
 		else rollback(con);
