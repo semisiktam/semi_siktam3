@@ -99,6 +99,29 @@ public class ReviewService {
 		close(con);
 		return result2;
 	}
+
+	public int deleteReview(String rno) {
+		
+		Connection con = getConnection();
+		
+		int result = rDao.deleteReview(con,rno);
+		
+		if(result >= 1) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int deleteReviewUpdate(String shopPid, String userId) {
+		Connection con = getConnection();
+		int result2 = rDao.reviewDeleteUpdate(con,shopPid,userId);
+		if(result2 >= 1) commit(con);
+		else rollback(con);
+		close(con);
+		return result2;
+	}
 	
 	
 }
