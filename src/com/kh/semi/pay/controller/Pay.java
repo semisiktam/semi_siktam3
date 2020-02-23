@@ -21,16 +21,16 @@ import com.kh.semi.reservation.model.service.ReservationService;
 /**
  * Servlet implementation class Pay
  */
-@WebServlet("/pay.pc")
+//@WebServlet("/pay.pc")
 public class Pay extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
-     * @see HttpServlet#HttpServlet()
+     * @see HttpServlet#HttpSQervlet()
      */
     public Pay() {
         super();
-        // TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor Qstub
     }
 
 	/**
