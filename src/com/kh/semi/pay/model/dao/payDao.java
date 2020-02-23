@@ -65,5 +65,27 @@ public class payDao {
 		return p;
 	}
 
+	public int insertPay(Connection con, Pay pay) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPay");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pay.getResNo());
+			pstmt.setString(2, pay.getPayType());
+			pstmt.setInt(3, pay.getTotalPay());
+			pstmt.setInt(4, pay.getMileage());
+			pstmt.setInt(5, pay.getCouponNo());
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 
 }

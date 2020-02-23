@@ -1,6 +1,6 @@
 package com.kh.semi.pay.model.service;
 
-import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.*;
 import static com.kh.semi.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -18,6 +18,19 @@ public class payService {
 		
 		close(con);
 		return p;
+	}
+
+	public int insertPay(Pay pay) {
+		Connection con = getConnection();
+		
+		int result = pDao.insertPay(con, pay);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+				
+		return result;
 	}
 
 

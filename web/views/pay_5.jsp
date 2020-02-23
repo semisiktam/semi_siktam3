@@ -14,7 +14,7 @@
 <body>
     <!-- 헤더 시작 -->
     <%@ include file="common/header.jsp" %>
-<form action="">
+<form action="/siktam/views/payResult.jsp" method="post">
     <!-- 이 안에 작업하기 -->
     <div id="area1">
     <div id="StoreTitle">
@@ -133,7 +133,8 @@
                       <li><label for="electronic_agree" class="chk_label"><input type="checkbox" id="electronic_agree" name="agree" class="chk">전자금융거래 이용약관(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
-                  <input type="submit" id="payment" value="결제하기" onclick="location.href = 'payResult.jsp?totalPay='+<%=list.get(0).getTotalPay()%>">
+                  <%-- <input type="submit" id="payment" value="결제하기" onclick="location.href = 'payResult.jsp?totalPay='+<%=list.get(0).getTotalPay()%>"> --%>
+                  <input type="submit" value="결제">
                   <input type="button" id="payment" name="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>
             </div>
