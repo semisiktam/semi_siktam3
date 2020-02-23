@@ -52,9 +52,11 @@ public class ReservationService {
 		
 		Connection con = getConnection();
 		
-		int result = rDao.reservationDelete(rNo);
+		int result = rDao.reservationDelete(con,rNo);
 		
-				
+		System.out.println(result);
+		if(result >0) commit(con);
+		else rollback(con);
 		return result;
 	}
 	
@@ -65,6 +67,18 @@ public class ReservationService {
 		
 		close(con);
 		return mrList;
+	}
+
+	public int reservationUpdate(String userid, String shopPid, String resNo, Date rdate, String time, String menu) {
+		Connection con = getConnection();
+		int result = rDao.reservationUpdate(con,userid,shopPid,resNo,rdate,time,menu);
+		
+		if (result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
 	}
 
 }

@@ -1,6 +1,7 @@
-package com.kh.semi.eventShop.controller;
+package com.kh.semi.qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.eventShop.model.service.EventShopService;
-import com.kh.semi.eventShop.model.vo.EventShop;
+import com.kh.semi.qna.model.service.QnaService;
+import com.kh.semi.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class eventShopInsertServlet
+ * Servlet implementation class QnaAdminUpdateServlet
  */
-@WebServlet("/esInsert.es")
-public class eventShopInsertServlet extends HttpServlet {
+@WebServlet("/qAdminUpdate.qna")
+public class QnaAdminUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public eventShopInsertServlet() {
+    public QnaAdminUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +31,27 @@ public class eventShopInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int qno = Integer.parseInt(request.getParameter("qno"));
+		String qReply = request.getParameter("qReply");
 		
-		String eno = (String)request.getParameter("eno");
-		String insertCheck = (String)request.getParameter("insertCheck");
+		QnaService qs = new QnaService();
 		
-		EventShop es = new EventShop();
+		int result = qs.updateAdminList(qno, qReply);
 		
-		EventShopService ess = new EventShopService();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
-		int result = ess.insertEventShop(es,eno,insertCheck);
+		PrintWriter out = response.getWriter();
 		
-		if(result > 0) {
-			response.sendRedirect("esList.es?eno="+eno);	
+		if(result>0) {
+			out.println("<html><script>alert('"+ result +"개의 답변이 등록되었습니다');");
 		}else {
-			request.setAttribute("msg", "등록실패");
+			out.println("<html><script>alert('답변이 등록되지 않았습니다.');");
 		}
-		
-		
-		
-		
-		
+		out.println("document.location.href='qAdminList.qna'");
+		out.println("</script></html>");
+		out.flush();
+		out.close();
 	}
 
 	/**

@@ -30,7 +30,8 @@
 	    				var $recentDiv = $('<div class="registStore2" id="recentDiv">');
 	    				var $imgArea = $('<img src="" class="registStoreImg" alt="" width="170px" height="120px"><br>').text(value.shopImg);
 	    				var $h4 = $('<h4 align="center">').text(value.shopName);
-	    				var $p = $('<p align="center"><small>').text(value.sAddr);
+	    				var $p = $('<p align="center" style="word-break: keep-all;">');
+	    				var $small = $('<small>').text(value.sAddr);
     				
 	    				$content3.append($recent);
 	    				$recent.append($ul);
@@ -39,6 +40,7 @@
 	    				$recentDiv.append($imgArea);
 	    				$recentDiv.append($h4);
 	    				$recentDiv.append($p);
+	    				$p.append($small);
     				
     				});
     			},error:function(){
@@ -182,13 +184,16 @@
                          </tr>
                     </thead>
                     <tbody>
+                    
                     	<%for(MemberReservationList rp : mrList){ %>
+                    	<%if(rp.getTotalPay()!=0){ %>
                         <tr class="reservationTr">
                             <td><%=rp.getShopName() %></td>
                             <td><%=rp.getmNo() %></td>
                             <td><%=rp.getTotalPay() %></td>
                             <td><%=rp.getPayType() %></td>
                         </tr>
+                        <%}  %>
                         <% } %>
                         <!-- <tr class="reservationTr">
                             <td>역전우동</td>
@@ -445,7 +450,7 @@
                                 </div>
                             </div>
                         </li> -->
-                    </ul>
+                    <!-- </ul> -->
                 </div>
             
             

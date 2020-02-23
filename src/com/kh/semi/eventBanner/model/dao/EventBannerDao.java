@@ -46,6 +46,7 @@ public class EventBannerDao {
 			pstmt.setString(2, eb.getEventImg());
 			
 			result = pstmt.executeUpdate();
+			
 			System.out.println("DAO"+result);
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -130,6 +131,27 @@ public class EventBannerDao {
 		
 		
 		return eb;
+	}
+
+	public int deleteEvent(Connection con, String check1) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteEvent");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, check1);
+		
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

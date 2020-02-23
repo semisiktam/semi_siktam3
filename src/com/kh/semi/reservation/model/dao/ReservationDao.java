@@ -124,12 +124,22 @@ public class ReservationDao {
 		return rNo;
 	}
 
-	public int reservationDelete(String rNo) {
+	public int reservationDelete(Connection con, String rNo) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("");
-		
+		String sql = prop.getProperty("reservationDelete");
+		System.out.println(rNo);
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rNo);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println(result);
 		return result;
 	}
 	
@@ -152,7 +162,6 @@ public class ReservationDao {
 				MemberReservationList mr = new MemberReservationList();
 				mr.setResNo(rset.getString("RESERVE_NO"));
 				mr.setmNo(rset.getString("MENU_NO"));
-				mr.setpNo(rset.getString("PAY_NO"));
 				mr.setShopPid(rset.getString("SHOP_PID"));
 				mr.setsAddr(rset.getString("SHOP_ADDR"));
 				mr.setsStartTime(rset.getString("SHOP_STARTTIME"));
@@ -165,8 +174,7 @@ public class ReservationDao {
 				mr.setrTime(rset.getString("RESERVE_TIME"));
 				mr.setMenuName(rset.getString("MENU_NAME"));
 				mr.setAcceptYN(rset.getString("ACCEPT_YN"));
-				mr.setPayType(rset.getString("PAY_TYPE"));
-				mr.setTotalPay(rset.getInt("TOTAL_PAY"));
+
 				
 				mrList.add(mr);
 			}
@@ -178,6 +186,30 @@ public class ReservationDao {
 			close(pstmt);
 		}
 		return mrList;
+	}
+
+	public int reservationUpdate(Connection con,String userid, String shopPid, String resNo, Date rdate, String time, String menu) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("reservationUpdate");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setDate(1, rdate);
+			pstmt.setString(2, time);
+			pstmt.setString(3, menu);
+			pstmt.setString(4, userid);
+			pstmt.setString(5, shopPid);
+			pstmt.setString(6, resNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 

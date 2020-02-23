@@ -50,6 +50,7 @@ table thead tr{
 	<div class="wrap" align="center">
             <div class="noticeTitle">
                 <h1>블랙리스트</h1>
+                <input type="button" style="background:rgb(110, 0, 0); color:white" id="refresh" value="차단갱신" onclick="location.href='bRelease.bl'">
             </div>
             <div class="tableDiv">
                     <table id="listArea">
@@ -58,6 +59,8 @@ table thead tr{
                               <th>아이디</th>
                               <th>차단일자</th>
                               <th>차단기간(일)</th>
+                              <th>종료일자</th>
+                              <th>남은기간</th>
                               <th>차단사유</th>
                             </tr>
                         </thead>
@@ -67,6 +70,8 @@ table thead tr{
 								<td><%= bl.getUserId() %></td>
 								<td><%= bl.getBanDate() %></td>
 								<td><%= bl.getBanTerm() %></td>
+								<td><%= bl.getEndDate() %></td>
+								<td><%= bl.getRemainTerm() %></td>
 								<td><%= bl.getBanReason() %></td>
 							</tr>
 							<% } %>
@@ -108,7 +113,6 @@ table thead tr{
 			        <li><a onclick="location.href='<%= request.getContextPath() %>/bList.bl?currentPage=<%= maxPage %>'">>></a></li>
 			      </ul>
 			    </div>
-				
 			</div>
             
             <fieldset>

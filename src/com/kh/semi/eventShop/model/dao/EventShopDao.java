@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import com.kh.semi.eventBanner.model.vo.EventBanner;
 import com.kh.semi.eventShop.model.vo.EventShop;
 import com.kh.semi.shop.model.vo.Shop;
 
@@ -22,7 +20,7 @@ public class EventShopDao {
 	public EventShopDao() {
 		prop = new Properties();
 		
-		String filePath= EventBanner.class.getResource("/config/event-query.properties").getPath();
+		String filePath= EventShop.class.getResource("/config/event-query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(filePath));
@@ -147,6 +145,33 @@ public class EventShopDao {
 		}finally {
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public int insertEventShop(Connection con,EventShop es, String eno, String insertCheck) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertEventShop");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, eno);
+			pstmt.setString(2, insertCheck);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
 		return result;
 	}
 
