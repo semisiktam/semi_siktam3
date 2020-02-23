@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.semi.pay.model.vo.*, com.kh.semi.member.model.vo.*, java.util.*"%>
-    <%Member mc = (Member)request.getAttribute("mc");
+    pageEncoding="UTF-8" import="com.kh.semi.pay.model.vo.*, com.kh.semi.coupon.model.vo.*, java.util.*"%>
+    <%Coupon c = (Coupon)request.getAttribute("c");
       ArrayList<PayInfo>list = (ArrayList<PayInfo>)request.getAttribute("list");%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,6 @@
             <h1><b><%= list.get(0).getRshopName() %></b>(결제하기)</h1>
             <p><%= list.get(0).getRshopAddr() %></p>
             <input type=hidden id="rNo" name="rNo" value=<%=list.get(0).getrNo()%>>
-            <input type=hidden id="cNo" name="cNo" value=<%=mc.getCouponNo()%>>
         </div>
     </div>
 
@@ -75,7 +74,7 @@
                     <div id="mileageDiv">
                         <div>
                             <input type="text" class="mileage" id="useMile" name="useMile" value="0"><label id="won1">원 <--</label>
-                            <input type="text" class="mileage" id="getMile" name="getMile" value='<%= mc.getMileage() %>' style="text-align: left;"><label id="won2">원</label>
+                            <input type="text" class="mileage" id="getMile" name="getMile" value='<%= m.getMileage() %>' style="text-align: left;"><label id="won2">원</label>
                         </div>
                         <p>(사용가능 마일리지)</p>
                     </div>
@@ -86,9 +85,10 @@
                     <div id="sub-title">
                         <p class="title-1"><b>할인쿠폰 선택</b></p>
                     </div>
-                    <input type="text" list="mylist" id="coupon" style="width: 75%;height: 30px;font-size: 15px;">
+                    <input type="text" list="mylist" id="coupon" value="0" style="width: 75%;height: 30px;font-size: 15px;">
                     <datalist id="mylist">
-                        <option value="0원 할인">쿠폰 없음</option>
+                        <option value="0">쿠폰 없음</option>
+                        <option value='<%=c.getDiscount() %>'><%=c.getCouponName() %></option>
                     </datalist>
                     <button id="couponclick">적용</button>
                     
@@ -124,7 +124,7 @@
                 <div id="content1-4">
                   <ul id="agree">
                       <li><label for="all_chk" class="chk_label" id="all_chk"><input type="checkbox" id="all_chk" class="chk" onclick="allselect(this.checked)">전체동의</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li><hr>
-                      <li><label for="sms_agree" class="chk_label"><input type="checkbox" id="sms_agree" name="agree" class="chk">SMS 수신동의</label></li>
+                      <li><label for="sms_agree" class="chk_label"><input type="checkbox" id="sms_agree" name="selectAgree" class="chk">SMS 수신동의</label></li>
                       <li><label for="use_agree" class="chk_label"><input type="checkbox" id="use_agree" name="agree" class="chk">이용약관 동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="collect_chk" class="chk_label"><input type="checkbox" id="collect_agree" name="agree" class="chk">개인정보 수집 및 이용동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="third_agree" class="chk_label"><input type="checkbox" id="third_agree" name="agree" class="chk">개인정보 제3자 제공동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
@@ -132,7 +132,7 @@
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
                   <input type="button" id="payment" value="결제하기" onclick="location.href = 'payPrint_1.jsp'">
-                  <input type="button" id="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
+                  <input type="button" id="payment" name="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>
             </div>
         </div>
@@ -141,43 +141,80 @@
     </div>
     
     <script>
-    	$('#cancle').click(function(){
+    	$('input[name="cancle"]').click(function(){
     		location.href="<%=request.getContextPath()%>/reservationdelete.rc?rNo="+'<%=list.get(0).getrNo()%>'
     	});
     </script>
     
     <script>
-    	$('#coupon').click(function(){
+    	$('#couponclick').click(function(){
+    		var coupon = $('#coupon').val();
+    		var useMile = $('#useMile').val();
+			var getMile = '<%=c.getMileage()%>'
+    		var total = <%=list.get(0).getTotalPay()%>;
     		$.ajax({
     			url:"/siktam/coupon.cc",
-    			 traditional : true,
-		         dataType:"json",
     			type:"get",
     			data:{
- 					"cNo" : '<%=mc.getCouponNo()%>'   				
+    				"coupon" : coupon,
+    				"useMile" : useMile,
+					"getMile" : getMile,
+    				"total" : total
     			},success:function(data){
     				console.log(data);
-    				var $coupon ;
-    				
-    			},error:{
+    				$('#menutable2').find('td:eq(1)').remove();
+    				var $b = $('<b>').text(data.totalPay);
+    				var $td = $('<td>');
+    				$td.append($b);
+    				$('#menutable2 tr').append($td);
     				
     			}
     		});
     	});
     </script>
 
+	<script>
+		
+	
+		$('#appliance').click(function(){
+			var coupon = $('#coupon').val();
+    		var useMile = $('#useMile').val();
+			var getMile = '<%=c.getMileage()%>'
+    		var total = <%=list.get(0).getTotalPay()%>;
+			
+			$.ajax({
+				url:"/siktam/coupon.cc",
+				type:"get",
+				data:{
+					"coupon" : coupon,
+					"useMile" : useMile,
+					"getMile" : getMile,
+					"total" : total
+				},success:function(data){
+					$('#menutable2').find('td:eq(1)').remove();
+    				var $b = $('<b>').text(data.totalPay);
+    				var $td = $('<td>');
+    				$td.append($b);
+    				$('#menutable2 tr').append($td);
+    				
+    				
+    				var $div = $('<div>');
+    				var $usemile = $('<input type="text" class="mileage" id="useMile" name="useMile" value="0">');
+    				var $label = $('<label id="won1">').text("원 <--");
+    				var $mile = $('<input type="text" class="mileage" id="getMile" name="getMile" value="'+data.mile+'" style="text-align: left;">');
+    				var $label2 = $('<label id="won2">').text("원");
+    				$div.append($usemile);
+    				$div.append($label);
+    				$div.append($mile);
+    				$div.append($label2);
+    				
+    				$('#mileageDiv').append($div);
+				}
+			});
+		});
+	</script>
     <script>
-        // 사용 가능한 마일리지 사용할 마일리지 보여주기 A가 사용 가능 B가 사용가능한
-        $(document).ready(function(){
-            
-             $('#appliance').on('click', function() {
-                var res =$('#B').val() - $('#A').val() 
-                $('#B').val(res);
-                $('#A').val('0');
-            })
-        })
-
-
+     
     // 전체동의 체크박스
         function allselect(chd) {
             var agree = document.getElementsByName("agree");
