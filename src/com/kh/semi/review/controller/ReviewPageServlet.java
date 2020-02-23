@@ -41,9 +41,6 @@ public class ReviewPageServlet extends HttpServlet {
 		String shopPid = request.getParameter("shopPid");
 		String howSelect = request.getParameter("howSelect");
 		
-		System.out.println(shopPid);
-		System.out.println(howSelect);
-		
 		ArrayList<Review> allReviewList = new ArrayList<Review>();
 		ArrayList<Review> rList = new ArrayList<Review>();
 		
@@ -127,10 +124,7 @@ public class ReviewPageServlet extends HttpServlet {
 		
 		String page="";
 		
-		System.out.println(rList);
-		System.out.println(rList.size());
-		
-		
+	
 		if(rList != null) {
 			
 			page = "/views/productReviewPage_7.jsp";

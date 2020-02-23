@@ -1,9 +1,6 @@
 eclipse.preferences.version=1
-<<<<<<< HEAD
 encoding//src/config/event-query.properties=UTF-8
 encoding//src/config/member-query.properties=UTF-8
 encoding//src/config/reservation-query.properties=UTF-8
-=======
-encoding//src/config/member-query.properties=UTF-8
-encoding//src/config/reservation-query.properties=UTF-8
->>>>>>> branch 'master' of https://github.com/semisiktam/semi_siktam3.git
+encoding//src/config/notice-query.properties=UTF-8
+encoding//src/config/review-query.properties=UTF-8
