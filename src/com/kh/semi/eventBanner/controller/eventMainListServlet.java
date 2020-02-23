@@ -43,7 +43,6 @@ public class eventMainListServlet extends HttpServlet {
 		if(list != null) {
 			page = "views/main_6.jsp";
 			request.setAttribute("list", list);
-			
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", " 불러오기 에러 ");
