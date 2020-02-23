@@ -1,7 +1,9 @@
 package com.kh.semi.review.model.service;
 
 import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
 import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -65,6 +67,37 @@ public class ReviewService {
 		ArrayList<Review> allReviewList = rDao.selectAllReviewList(con,shopPid);
 		
 		return allReviewList;
+	}
+
+	public int rPossible(String shopPid, String userId) {
+		Connection con = getConnection();
+		int rPossible = rDao.rPossible(con,shopPid,userId);
+		close(con);
+		return rPossible;
+	}
+
+	public int reviewInsert(Review r) {
+		
+		Connection con = getConnection();
+		
+		int result = rDao.insertNotice(con,r);
+		
+		if(result >= 1) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int reviewInsertUpdate(String shopPid, String userId) {
+		
+		Connection con = getConnection();
+		int result2 = rDao.reviewInsertUpdate(con,shopPid,userId);
+		if(result2 >= 1) commit(con);
+		else rollback(con);
+		close(con);
+		return result2;
 	}
 	
 	

@@ -105,7 +105,7 @@
         <br>
 		<% if(m != null){ %>
 	        <div id="reviewWriteText">
-				<form action="/siktam/rInsert.ro" method="post" enctype="multipart/form-data" id="reviewForm">
+				<form method="post" enctype="multipart/form-data" id="reviewForm">
 	            <div class="allReview" id="writeReview">
 	                <div>
 	                    <img class="id1" src="/siktam/resources/images/person1.png" alt="">&nbsp;&nbsp;<label class="idLabel"><%= m.getUserId() %></label>
@@ -126,12 +126,13 @@
 	                        <input type="file" id="ex_file" accept="image/*" name="file">
 	                    </label>
 	                    <br><br>
-	                    <textarea name="review" id="reviewText" cols="105" rows="10" placeholder="리뷰를 작성해 주세요"></textarea>
+	                    <textarea name="rContent" id="reviewText" cols="105" rows="10" placeholder="리뷰를 작성해 주세요"></textarea>
 	                    <br>
-	                    <button id="rwbtn" class="rwbtn">리뷰등록</button>
 	                </div>
 	            </div>
-	   			</form>    
+	                    <button id="rwbtn1" class="rwbtn" style="display:none">리뷰등록</button>
+	   			</form>
+	   					<button id="rwbtn2" class="rwbtn">작성 여부 확인</button>
 	        </div>
         <% }%>
         
@@ -150,7 +151,7 @@
             </div>
             
             <div id="personReview1" class="personReview">
-            	<div class="scoreScore" style="display : none;"><%= r.getScore() %></div>
+            	<div class="scoreScore" style="display : none;"><%= r.getScore() %></div><br>
                 <label>별점 : </label>
                 <label id="star_view1">
                     <a href="#">★</a>
@@ -159,6 +160,7 @@
                     <a href="#">★</a>
                     <a href="#">★</a>
                 </label>
+                <button class="deleteBtn"><img src="/siktam/resources/images/delete.jpg" class="deleteimg"></button>
                 <br><br>
                 <div class="imgDiv">
                     <img src="/siktam/resources/images/<%=r.getReviewImg() %>" class="reviewImg" alt="">
@@ -174,11 +176,11 @@
         <!-- 페이지 버튼 -->
         
          <div class="pagingArea" align="center">
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=1'"><<</button>
-			<%  if(currentPage <= 1){  %>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=1&howSelect=<%=howSelect%>'"><<</button>
+			<%  if(currentPage <= 1){ %>
 			<button disabled><</button>
 			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage - 1 %>'"><</button>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage - 1 %>&howSelect=<%=howSelect%>'"><</button>
 			<%  } %>
 			
 			<% for(int p = startPage; p <= endPage; p++){
@@ -186,16 +188,16 @@
 			%>
 				<button disabled><%= p %></button>
 			<%      }else{ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= p %>'"><%= p %></button>
+				<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= p %>&howSelect=<%=howSelect%>'"><%= p %></button>
 			<%      } %>
 			<% } %>
 				
 			<%  if(currentPage >= maxPage){  %>
 			<button disabled>></button>
 			<%  }else{ %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage + 1 %>'">></button>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%=currentPage + 1 %>&howSelect=<%=howSelect%>'">></button>
 			<%  } %>
-			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= maxPage %>'">>></button>
+			<button onclick="location.href='<%= request.getContextPath() %>/rPage.ro?shopPid=<%=s.getShopPid()%>&currentPage=<%= maxPage %>&howSelect=<%=howSelect%>'">>></button>
 			
 		</div>
         <br>
@@ -223,13 +225,7 @@
             		
             	});
             	
-            	$('#rwbtn').click(function(){
-            		
-            		alert("버튼 입력");
-            			
-	            	<%-- $('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="+$('#star_grade_review a.on').length+"&rContent="+$('#reviewText').val()); --%> 
-            		
-            	});
+            	
             	
                 $('.personReview').css('display','none');
                 
@@ -263,6 +259,45 @@
 	    	  $('#wReviewbtn').click(function(){
                  	$('#reviewWriteText').slideToggle();
               });
+	    	  
+	    	  $('#rwbtn2').click(function(){
+	    		  
+          		if($('#star_grade_review a.on').length>=1){
+          			
+          			$.ajax({
+   	    			 url:"/siktam/rInsertCheck.ro",
+   	    			 type:"get",
+   	    			 data: {
+   	    				 userId : "<%=m.getUserId()%>",
+   	    				 shopPid : "<%=s.getShopPid()%>"
+   	    			 }, success:function(data){
+   	    				 
+   	    				 if(data>=1){
+   	    					 alert('작성 가능 합니다.');
+   	    					 $('#rwbtn1').css("display","block");
+   	    					 $('#rwbtn2').css("display","none");
+   	    					
+   	    				 }else{
+   	    					 alert("작성 할 수 있는 리뷰가 없습니다.");
+   	    				 }
+   	    				 
+   	    			 }, error:function(){
+   	    				 console.log("ajax실패");
+   	    			 }
+   	    		  });
+		    
+          		}else {
+          			alert("별점을 입력해 주세요.");
+          		}
+          	
+          	});
+	    	  
+	    	  $('#rwbtn1').click(function(){
+	    		  
+	    	  	$('#reviewForm').attr("action","/siktam/rInsert.ro?shopPid=<%=s.getShopPid()%>&userId=<%=m.getUserId()%>&rScore="
+          			+$('#star_grade_review a.on').length);
+	    	  });
+	    	  
 	      });
         <% }else{%>
         	$(function(){
