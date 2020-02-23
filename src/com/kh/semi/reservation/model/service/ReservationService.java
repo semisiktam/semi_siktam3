@@ -26,11 +26,11 @@ public class ReservationService {
 	}
 
 	public int reservationInsert(String userId, String shopPid, Date rdate,
-			String time, String menu) {
+			String time, String menu, int total) {
 		
 		Connection con = getConnection();
 		
-		int result = rDao.reservationInsert(con,userId,shopPid,rdate,time,menu);
+		int result = rDao.reservationInsert(con,userId,shopPid,rdate,time,menu,total);
 		
 		if (result > 0) commit(con);
 		else rollback(con);
