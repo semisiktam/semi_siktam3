@@ -74,7 +74,7 @@ public class ReservationDao {
 		return list;
 	}
 
-	public int reservationInsert(Connection con, String userId, String shopPid, Date rdate, String time, String menu) {
+	public int reservationInsert(Connection con, String userId, String shopPid, Date rdate, String time, String menu, int total) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("reservationInsert");
@@ -86,6 +86,7 @@ public class ReservationDao {
 			pstmt.setDate(3, rdate);
 			pstmt.setString(4, time);
 			pstmt.setString(5, menu);
+			pstmt.setInt(6, total);
 			
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {

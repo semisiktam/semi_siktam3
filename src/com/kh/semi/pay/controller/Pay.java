@@ -89,7 +89,7 @@ public class Pay extends HttpServlet {
 		System.out.println(time);
 		System.out.println(menu);
 		//예약 insert
-		int result = new ReservationService().reservationInsert(m.getUserId(),shopPid,rdate,time,menu); 
+		int result = new ReservationService().reservationInsert(m.getUserId(),shopPid,rdate,time,menu,total); 
 		/*String userId, String shopPid, Date rDate, String rTime, int mNo*/
 		
 		//마일리지/쿠폰 번호
