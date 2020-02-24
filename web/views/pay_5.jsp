@@ -78,7 +78,7 @@
                         	<p>(사용가능 마일리지)</p>
                         </div>
                     </div>
-                    <button id="appliance" >적용</button>
+                    <button type="button" id="appliance" >적용</button>
                     
                 </div>
                 <div id="content1-3">
@@ -91,7 +91,7 @@
                         <option value="0">쿠폰 없음</option>
                         <option value='<%=c.getDiscount() %>'><%=c.getCouponName() %></option>
                     </datalist>
-                    <button id="couponclick">적용</button>
+                    <button type="button" id="couponclick">적용</button>
                     
                 </div>
             </div>
@@ -133,7 +133,6 @@
                       <li><label for="electronic_agree" class="chk_label"><input type="checkbox" id="electronic_agree" name="agree" class="chk">전자금융거래 이용약관(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
-                
                   <input type="submit" id="payment" value="결제하기">
                   <input type="button" id="payment" name="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>

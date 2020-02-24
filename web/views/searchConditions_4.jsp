@@ -114,9 +114,8 @@
 	         <td id="txt"  style="word-break:break-all">
 	            <h4><b><%= sc.getShopName() %> </b></h4>
 	            <ul>
-	              <li><span class="star">★<%= sc.getStar() %></span><span class="review_num">리뷰 <%= sc.getReviewCount() %></span><span class="reserve_num">예약 <%= sc.getReviewCount() %></span></li>
-	              <li><span class="area"><%= sc.getShopAddr() %></span><span class="tableInfo"> <%= sc.getTableType()%></span><span class="sectors"> <%= sc.getMenuCategory() %></span></li>
-	              <li><span class="mainMenu">대표메뉴 : 역전우동, 김치우동, 어묵우동 등</span></li>
+	              <li><span class="star">★<%=sc.getStar() %></span><span class="review_num">리뷰 <%= sc.getReviewCount() %></span><span class="reserve_num">예약 <%= sc.getReviewCount() %></span></li>
+	              <li><span class="area"><%=sc.getShopAddr() %></span><span class="tableInfo"> <%= sc.getTableType()%></span><span class="sectors"> <%= sc.getMenuCategory() %></span></li>
 	            </ul>
 	         </td>
 	      </tr>

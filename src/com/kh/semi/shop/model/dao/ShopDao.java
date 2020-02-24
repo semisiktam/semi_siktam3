@@ -171,7 +171,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -189,7 +189,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -214,7 +214,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -234,7 +234,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -260,7 +260,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -280,7 +280,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -305,7 +305,7 @@ public class ShopDao {
 				query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 						.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 						.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 						.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 						
 						.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -326,7 +326,7 @@ public class ShopDao {
 				query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 						.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 						.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 						.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 						
 						.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -354,7 +354,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -375,7 +375,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -401,7 +401,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -422,7 +422,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -450,7 +450,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -471,7 +471,7 @@ public class ShopDao {
 					query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 							.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 							.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+							.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 							.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 							
 							.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -497,7 +497,7 @@ public class ShopDao {
 				query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 						.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 						.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 						.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 						
 						.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -519,7 +519,7 @@ public class ShopDao {
 				query = new SelectQueryMaker.Builder().select().column("S.SHOP_PID").comma()
 						.column("S.SHOP_IMG").comma().column("S.SHOP_NAME").comma().column("S.SHOP_ADDR")
 						.comma().column("S.TABLE_TYPE").comma().column("S.MENU_CATEGORY").comma()
-						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),1),0)").comma()
+						.column("S.MENU_CATEGORY").comma().column("ROUND(NVL(AVG(RE.SCORE),0),1)").comma()
 						.column("COUNT(RE.SHOP_PID)").comma().column("COUNT(RES.SHOP_PID)").enter()
 						
 						.from().tableName("Shop").as("S").Leftjoin().tableName("REVIEW").as("RE").on()
@@ -557,7 +557,7 @@ public class ShopDao {
 			while (rset.next()) {
 				ShopSearch sc = new ShopSearch();
 				
-				sc.setStar(rset.getDouble("ROUND(NVL(AVG(RE.SCORE),1),0)"));
+				sc.setStar(rset.getDouble("ROUND(NVL(AVG(RE.SCORE),0),1)"));
 				sc.setReviewCount(rset.getInt("COUNT(RE.SHOP_PID)"));
 				sc.setReservationCount(rset.getInt("COUNT(RES.SHOP_PID)"));
 				sc.setShopPid(rset.getString("SHOP_PID"));
