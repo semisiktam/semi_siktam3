@@ -16,7 +16,7 @@
 
 <header>
     <nav id="nav">
-    	<div id="logodiv"><a href="listMain.ma"><img id="logo" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt="" style="width:50px; height:50px; margin-top:10px;"></a></div>
+    	<div id="logodiv"><a href="/siktam/listMain.ma"><img id="logo" src="/siktam/resources/images/KakaoTalk_20200101_193858750.png" alt="" style="width:50px; height:50px; margin-top:10px;"></a></div>
 
     	<div id="navp">
 	        <% if(m!=null && m.getUserId().equals("4dich")){ %>
