@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.pay.model.service.payService;
 import com.kh.semi.pay.model.vo.Pay;
 
@@ -43,11 +45,28 @@ public class PayInsertServlet extends HttpServlet {
 		
 	    System.out.println(totalPrice);
 	    
+	    // Pay insert
 	    Pay pay = new Pay(resNo, payType, totalPrice, mileage, couponNo);
 	    payService ps = new payService();
 	    int insertPay = ps.insertPay(pay);
-		
-	    response.sendRedirect("/siktam/views/main_6.jsp");
+	    
+	    // Mileage update
+	    HttpSession session = request.getSession();
+	    Member mem = (Member)session.getAttribute("member");
+	    String userId = mem.getUserId();
+	    ps.updateMile(userId, mileage);
+	    
+	    // coupon update
+	    ps.updateCoupon(userId);
+	    
+		String page = "";
+		if(insertPay > 0) {
+			page="views/payPrint_1.jsp";
+		}else {
+			page="views/common/errorPage.jsp";
+			request.setAttribute("msg", "결제 결과 출력 실패");
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

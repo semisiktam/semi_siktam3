@@ -87,5 +87,69 @@ public class payDao {
 		return result;
 	}
 
+	public int updateMile(Connection con, String userId, int mileage) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMile");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mileage);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectMile(Connection con, String userId) {
+		int selectMile = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectMile");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			selectMile = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return selectMile;
+	}
+
+	/**
+	 * 쿠폰사용시(쿠폰은 1개만 소유, 사용시 0)
+	 * @param con
+	 * @param userId
+	 * @return
+	 */
+	public int updateCoupon(Connection con, String userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCoupon");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 }

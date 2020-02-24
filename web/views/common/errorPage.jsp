@@ -18,7 +18,7 @@
 		<% if(msg !=null) {%>
 			<h4><%= msg %></h4><br>
 		<%} %>	
-		<p onclick="location.href='/siktam/views/main_6.jsp'" style="background:firebrick; color:white; width: 40%; margin: auto">메인으로</p>
+		<p onclick="location.href='listMain.ma'" style="background:firebrick; color:white; width: 40%; margin: auto">메인으로</p>
 	</div>
 </body>
 </html>

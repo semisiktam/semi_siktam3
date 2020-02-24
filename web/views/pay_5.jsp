@@ -126,7 +126,7 @@
                 <div id="content1-4">
                   <ul id="agree">
                       <li><label for="all_chk" class="chk_label" id="all_chk"><input type="checkbox" id="all_chk" class="chk" onclick="allselect(this.checked)">전체동의</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li><hr>
-                      <li><label for="sms_agree" class="chk_label"><input type="checkbox" id="sms_agree" name="selectAgree" class="chk">SMS 수신동의</label></li>
+                      <li><label for="sms_agree" class="chk_label"><input type="checkbox" id="sms_agree" name="agree" class="chk">SMS 수신동의</label></li>
                       <li><label for="use_agree" class="chk_label"><input type="checkbox" id="use_agree" name="agree" class="chk">이용약관 동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="collect_chk" class="chk_label"><input type="checkbox" id="collect_agree" name="agree" class="chk">개인정보 수집 및 이용동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="third_agree" class="chk_label"><input type="checkbox" id="third_agree" name="agree" class="chk">개인정보 제3자 제공동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
