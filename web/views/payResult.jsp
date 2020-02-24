@@ -82,7 +82,6 @@
                 msg +='&millage=<%= millage %>';
                 msg +='&saveMillage=<%= finalPay*0.05%>';
                 msg +='&csNo=<%= csNo %>';
-                
         		location.href="/semi/paySuccess.cp?cno="+msg; --%>
         		
         		var msg = "";
