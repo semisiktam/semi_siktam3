@@ -50,7 +50,6 @@
             <li><a href="/siktam/selectList.me">회원리스트</a></li>
             <li><a href="/siktam/sAdminList.sh">업체리스트</a></li>
             <li><a href="/siktam/bList.bl">블랙리스트</a></li>
-            <li><a href="/siktam/views/admin_storeRegister_4.jsp">업체등록관리</a></li>
           </ul>
         </li>
         <li class="dropdown">

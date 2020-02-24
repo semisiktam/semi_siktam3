@@ -63,6 +63,16 @@
                                    </div>
                                </td>
                            </tr>
+                           <% if(q.getqReply()!=null) {%>
+                           <tr>
+                               <td>
+                                   <div class="data-cont" style="border: 2px dotted rgb(13, 78, 100)">
+                                   		[ 운영자답변 ] <br><br>
+                                     	<%=q.getqReply() %>
+                                   </div>
+                               </td>
+                           </tr>
+                           <%} %>
                        </tbody>
                    </table>
                    <!-- 댓글달기 -->

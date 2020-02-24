@@ -2,5 +2,6 @@ eclipse.preferences.version=1
 encoding//src/config/event-query.properties=UTF-8
 encoding//src/config/member-query.properties=UTF-8
 encoding//src/config/reservation-query.properties=UTF-8
+encoding//src/config/testzone-query.properties=UTF-8
 encoding//src/config/notice-query.properties=UTF-8
 encoding//src/config/review-query.properties=UTF-8

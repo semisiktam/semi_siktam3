@@ -14,7 +14,7 @@
 <body>
     <!-- 헤더 시작 -->
     <%@ include file="common/header.jsp" %>
-
+<form action="/siktam/views/payResult.jsp" method="post">
     <!-- 이 안에 작업하기 -->
     <div id="area1">
     <div id="StoreTitle">
@@ -47,7 +47,7 @@
                             <tr>
                                 <th class="paytableth">일반결제</th>
                                 <td class="noline">
-                                    <input type="radio" id="creditcard1" name="payType" value="cardPay"class="pay"><label for="creditcard1">신용카드</label>
+                                    <input type="radio" id="creditcard1" name="payType" class="pay" value="cardPay"><label for="creditcard1">신용카드</label>
                                 </td>
                             </tr>
                             <tr>
@@ -86,12 +86,13 @@
                         <p class="title-1"><b>할인쿠폰 선택</b></p>
                     </div>
                     <input type="text" list="mylist" id="coupon" value="0" style="width: 75%;height: 30px;font-size: 15px;">
+                    <input type="hidden" list="mylist" id="coupon" name="couponNo" value='<%=c.getCouponNo() %>' style="width: 75%;height: 30px;font-size: 15px;">
                     <datalist id="mylist">
                         <option value="0">쿠폰 없음</option>
                         <option value='<%=c.getDiscount() %>'><%=c.getCouponName() %></option>
                     </datalist>
                     <button id="couponclick">적용</button>
-                    <input type="hidden" name="couponNo" value='<%=c.getCouponName()%>'> 
+                    
                 </div>
             </div>
             
@@ -125,14 +126,15 @@
                 <div id="content1-4">
                   <ul id="agree">
                       <li><label for="all_chk" class="chk_label" id="all_chk"><input type="checkbox" id="all_chk" class="chk" onclick="allselect(this.checked)">전체동의</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li><hr>
-                      <li><label for="sms_agree" class="chk_label"><input type="checkbox" id="sms_agree" name="selectAgree" class="chk">SMS 수신동의</label></li>
+                      <li><label for="sms_agree" class="chk_label"><input type="checkbox" id="sms_agree" name="agree" class="chk">SMS 수신동의</label></li>
                       <li><label for="use_agree" class="chk_label"><input type="checkbox" id="use_agree" name="agree" class="chk">이용약관 동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="collect_chk" class="chk_label"><input type="checkbox" id="collect_agree" name="agree" class="chk">개인정보 수집 및 이용동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="third_agree" class="chk_label"><input type="checkbox" id="third_agree" name="agree" class="chk">개인정보 제3자 제공동의(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="electronic_agree" class="chk_label"><input type="checkbox" id="electronic_agree" name="agree" class="chk">전자금융거래 이용약관(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                       <li><label for="fourteen_agree" class="chk_label"><input type="checkbox" id="fourteen_agree" name="agree" class="chk">만 14세 이상 사용자(필수)</label><a href="termsOfUse2_5.jsp" target="_blank"><small>내용보기</small></a></li>
                   </ul>
-                  <input type="button" id="payment" value="결제하기" onclick="location.href = 'payResult.jsp?totalPay='+<%=list.get(0).getTotalPay()%>">
+                
+                  <input type="submit" id="payment" value="결제하기">
                   <input type="button" id="payment" name="cancle" value="취소하기" onclick="location.href = 'reservationdelete.rc'">
                 </div>
             </div>
@@ -140,7 +142,7 @@
         
     </div>
     </div>
-    
+    </form>
     <script>
     	$('input[name="cancle"]').click(function(){
     		location.href="<%=request.getContextPath()%>/reservationdelete.rc?rNo="+'<%=list.get(0).getrNo()%>'
@@ -203,7 +205,7 @@
 				},success:function(data){
     				
     				if(data.useMile <= data.getMile && data.useMile <= data.totalPay){
-    					$('#menutable2').find('tr').remove();
+						$('#menutable2').find('tr').remove();
     					$('#mileageDiv').find('div').remove();
         				var $b1 = $('<b>').text("총 결제 금액");
         				var $b2 = $('<b>').text(data.totalPay);
@@ -224,8 +226,6 @@
 	    				var $mile = $('<input type="text" class="mileage" id="getMile" name="getMile" value="'+data.mile+'" style="text-align: left;">');
 	    				var $label2 = $('<label id="won2">').text("원");
 	    				var $p = $('<p>').text("(사용가능 마일리지)");
-	    				
-	    				
 	    				
 	    				$div.append($usemile);
 	    				$div.append($label);

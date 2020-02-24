@@ -19,53 +19,14 @@
 <body style="height:1080px">
 
 <%@ include file="common/admin_header.jsp" %>
-
-<div class="container" style="margin-top:50px">
-  <div class="title"><h1><b>새로 온 소식</b></h1></div>
-    <div class="card1">
-      <div class="cardsum">
-        <a href="admin_storeRegister_4.jsp">
-          <div class="card2">
-            <div class="cardTop">
-              <img src="/siktam/resources/images/shop.png" alt="image">
-              업체 등록 요청
-            </div> 
-            <div class="cardBottom"> 
-              15건
-            </div> 
-          </div>
-        </a>
-        <a href="admin_questions_4.jsp">
-          <div class="card2"> 
-            <div class="cardTop">
-              <img src="/siktam/resources/images/qna.png" alt="image">
-              문의 사항
-            </div> 
-            <div class="cardBottom"> 
-              89건
-            </div> 
-          </div>
-        </a>
-        <div class="card2"> 
-          <div class="cardTop">
-            area1
-          </div> 
-          <div class="cardBottom"> 
-            area2
-          </div> 
-        </div>
-        <div class="card2"> 
-          <div class="cardTop">
-            area1
-          </div> 
-          <div class="cardBottom"> 
-            area2
-          </div> 
-        </div>
-    </div>
-  </div>
+   
+<div style="text-align:center; margin: auto; margin-top: 10%; padding: 50px; border: 3px dotted firebrick; width: 50%" >
+	<img src="/siktam/resources/images/admin_icon.png" style="height: 100px; width: 100px">
+	<h1><b>관리자 페이지</b></h1><br>
+	<h5>관리자 페이지에서는 회원관리(회원리스트/업체리스트/블랙리스트)와</h5>
+	<h5>사이트관리(공지사항/문의사항/이벤트배너)가 상단바를 통해 가능합니다</h5><br>
+	<p onclick="location.href='/siktam/listMain.ma'" style="background:firebrick; color:white; width: 40%; margin: auto">식탐 메인으로</p>
 </div>
-
 
 </body>
 </html>

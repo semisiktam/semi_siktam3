@@ -141,21 +141,8 @@
  					$('input:hidden[name=banTerm]').val(banTerm);
 					$('input:hidden[name=banReason]').val(banReason); 
 				}
-
 			});
         });
-        
-        /*$(function(){
-			$("#blackyn").click(function(){
-				if($(this).val()=='Y'){
-					$(this).val('N');
-				}else{
-					$(this).val('Y');
-					var banTerm = prompt("정지기간(일)을 입력하세요");
-					var banReason = prompt("정지사유를 입력하세요");
-				}
-			});
-        });*/
 	</script>
 </body>
 </html>

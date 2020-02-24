@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Pay implements Serializable {
+	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2087769670539926091L;
 	private String payNo       ; //결제고유번호
 	private String resNo   ; //예약고유번호
 	private String payType     ; //결제방식
@@ -19,6 +21,20 @@ public class Pay implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+
+	public Pay(String resNo, String payType, int totalPay, int mileage, int couponNo) {
+		super();
+		this.resNo = resNo;
+		this.payType = payType;
+		this.totalPay = totalPay;
+		this.mileage = mileage;
+		this.couponNo = couponNo;
+	}
+
+
+
 	public Pay(String payNo, String resNo, String payType, Date payDate, int totalPay, int mileage, int couponNo) {
 		super();
 		this.payNo = payNo;

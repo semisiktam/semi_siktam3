@@ -38,7 +38,14 @@ public class ShopInsertServlet extends HttpServlet {
       Member m=(Member)session.getAttribute("member");
 	  String shopName = request.getParameter("shopName"); //매장명
       String shopImg = request.getParameter("shopImg"); //매장사진
-      String userId=m.getUserId();
+      System.out.println((String)session.getAttribute("userId"));
+//      String userId=(String)session.getAttribute("userId");
+      String userId="";
+      if(m!=null) {
+    	  userId=m.getUserId();
+      }else {
+    	  userId=(String)session.getAttribute("userId");
+      }
       String sAddr = request.getParameter("zipCode")+", "
 				+ request.getParameter("address1")+", "
 				+ request.getParameter("address2"); //매장주소
@@ -51,7 +58,7 @@ public class ShopInsertServlet extends HttpServlet {
       String menuCategory = String.join(", ", request.getParameterValues("eatType")); //메뉴카테고리
       String tableType = String.join(", ", request.getParameter("table")); //테이블형태
       Shop s=new Shop(shopName,userId,shopImg,sAddr,sPhone,sInfo,ownerId,sTime,eTime,shopDay,menuCategory,tableType);
-//      System.out.println(s);
+      System.out.println(s);
       ShopService ss=new ShopService();
       int result=ss.insertShop(s);
       if(result>0&&session.getAttribute("shop")!=null) {
@@ -64,7 +71,7 @@ public class ShopInsertServlet extends HttpServlet {
     	  session.setAttribute("shop", slist);
       }
       
-      response.sendRedirect("views/mypageShop_5.jsp");
+      response.sendRedirect("views/main_6.jsp");
       
    }
 
