@@ -76,15 +76,14 @@
              
             <tr>
                 <th align="left">사업자 등록번호 </th><!--사업자 등록 조회 API삽입-->
-<<<<<<< HEAD
-                <td><input type="text" class="form-control" name="pid">
+
+                <!--<td> <input type="text" class="form-control" name="pid"> -->
                    <!--  <<button id="shopNum" onclick="window.open('ShopPidCheck.jsp','사업자 번호 조회','width=300,height=100,location=no,status=no,scrollbars=no')">;
                     </button> -->
-=======
                 <td><input type="text" class="form-control" name="pid" id="ShopPid_reg" placeholder="체크하기 버튼을 누르세요" readonly>
                     
                     <input type="button" id="shopNum" value="체크하기" placeholder="앞자리6자리" onclick="openPidChk()">
->>>>>>> branch 'master' of https://github.com/semisiktam/semi_siktam3.git
+
                 </td>       
                 
             </tr>
@@ -159,7 +158,7 @@
         </table><br>
         </form>
         <button class="button" type="submit">업체 등록 완료</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="main_6.jsp"><button class="button" type="button">업체 등록 취소</button></a>
+        <a href="/siktam/listMain.ma"><button class="button" type="button">업체 등록 취소</button></a>
         
         <script>
             $("#upload").click(function(){
@@ -227,8 +226,8 @@
     
         function openPidChk()
         {
-            window.name = "reigeterCompany_2.jsp";
-            openChk = window.open("ShopPidCheck.jsp",
+            window.name = "/siktam/spc.me";
+            openChk = window.open("/siktam/views/ShopPidCheck.jsp",
                     "사업자번호체크", "width=560, height=50, resizable = no, scrollbars = no status= no");    
         }
     		    

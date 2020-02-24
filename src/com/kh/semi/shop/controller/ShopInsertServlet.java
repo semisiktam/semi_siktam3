@@ -71,7 +71,7 @@ public class ShopInsertServlet extends HttpServlet {
     	  session.setAttribute("shop", slist);
       }
       
-      response.sendRedirect("views/main_6.jsp");
+      response.sendRedirect("listMain.ma");
       
    }
 
