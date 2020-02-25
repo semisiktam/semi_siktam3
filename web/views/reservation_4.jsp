@@ -284,7 +284,8 @@
 				timeFormat : 'HH:mm',
 				interval : 30,
 				minTime :'<%=list.get(0).getShopStartTime()%>',
-				maxTime :'<%=list.get(0).getShopEndTime()%>',
+				<%-- maxTime :'<%=list.get(0).getShopEndTime()%>', --%>
+				maxTime :'23:59',
 				defaultTime : '<%=list.get(0).getShopStartTime()%>',
 				startTime : '<%=list.get(0).getShopStartTime()%>',
 				dynamic : false,

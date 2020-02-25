@@ -80,7 +80,7 @@
                 <!--<td> <input type="text" class="form-control" name="pid"> -->
                    <!--  <<button id="shopNum" onclick="window.open('ShopPidCheck.jsp','사업자 번호 조회','width=300,height=100,location=no,status=no,scrollbars=no')">;
                     </button> -->
-                <td><input type="text" class="form-control" name="pid" id="ShopPid_reg" placeholder="체크하기 버튼을 누르세요" readonly>
+                <td><input type="text" class="form-control" name="pid" id="ShopPid_reg" placeholder="체크하기 버튼을 누르세요">
                     
                     <input type="button" id="shopNum" value="체크하기" placeholder="앞자리6자리" onclick="openPidChk()">
 

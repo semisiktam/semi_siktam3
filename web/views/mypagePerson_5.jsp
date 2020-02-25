@@ -88,8 +88,7 @@
                             <th>예약날짜</th>
                             <th>예약시간</th> 
                             <th>예약메뉴</th> 
-                            <th>예약상태</th>
-                            <th colspan="2">예약 변경/취소</th> 
+                            <th>예약상태</th> 
                          </tr>
                     </thead>
                     <tbody>
@@ -108,12 +107,12 @@
 	                            <%} else { %>
 	                            <td>예약거절</td>
 	                            <%} %>
-	                            <!-- 변경 클릭 시 예약변경 페이지로 이동 -->
+<!-- 	                            변경 클릭 시 예약변경 페이지로 이동
 	                            <td colspan="2">
-	                            	<!-- <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="modify();"> &nbsp; -->
+	                            	<td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="modify();"> &nbsp;
 	                            	<input type="button" value="변경" class="confirm" id="change"> &nbsp;
 	                            	<input type="button" value="취소" class="cancel" id="cancel">
-	                            </td>
+	                            </td> -->
 	                        </tr>
                        <% } %>
                        

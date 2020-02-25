@@ -78,7 +78,7 @@
 				var menuNo=$(this).parent().parent().children().eq(1).children().val();
 				/* console.log(menuNo); */
 				var shopPid = $(this).parent().parent().children().eq(0).children().val();
-				if(confirm("메뉴를 삭제할텐가 씨벌새끼야??")){
+				if(confirm("메뉴를 삭제하시겠습니까?")){
 					location.href="<%=request.getContextPath()%>/DeleteMenuServlet?shopPid="+shopPid + 
 																						"&menuNo=" + menuNo;
 				}
