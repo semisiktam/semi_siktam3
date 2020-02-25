@@ -175,7 +175,7 @@
     				$td0.append($b1);
     				$td1.append($b2);
     				$td2.append($input);
-    				$tr.append($td0).append($td1).append($td1);
+    				$tr.append($td0).append($td1).append($td2);
     				$('#menutable2').append($tr)
     				
     				console.log($('#total').val());
@@ -216,7 +216,7 @@
         				$td0.append($b1);
         				$td1.append($b2);
         				$td2.append($input);
-        				$tr.append($td0).append($td1).append($td1);
+        				$tr.append($td0).append($td1).append($td2);
         				$('#menutable2').append($tr)
 	    				
     					var $div = $('<div>');
