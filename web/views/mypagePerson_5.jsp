@@ -115,50 +115,7 @@
 	                            </td> -->
 	                        </tr>
                        <% } %>
-                       
-
-                       <!--  <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>2020.01.24</td>
-                            <td>13:00~14:00</td>
-                            <td>김치우동 1</td>
-                            변경 클릭 시 예약변경 페이지로 이동
-                            <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="location.href='modify_3.html'"> &nbsp;
-                            <input type="button" value="취소" class="confirm" id="cancel" onclick="location.href='mypagePerson_5.html'"></td>
-                            <td>대기중</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>청목</td>
-                            <td>2020.01.25</td>
-                            <td>17:00~18:00</td>
-                            <td>오늘의메뉴 1</td>
-                            변경 클릭 시 예약변경 페이지로 이동
-                            <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="location.href='modify_3.html'"> &nbsp;
-                            <input type="button" value="취소" class="confirm" id="cancel" onclick="location.href='mypagePerson_5.html'"></td>
-                            <td>대기중</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>2020.01.26</td>
-                            <td>18:00~19:00</td>
-                            <td>소막창 1</td>
-                            변경 클릭 시 예약변경 페이지로 이동
-                            <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="location.href='modify_3.html'"> &nbsp;
-                            <input type="button" value="취소" class="confirm" id="cancel" onclick="location.href='mypagePerson_5.html'"></td>
-                            <td>대기중</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>2020.01.27</td>
-                            <td>13:00~14:00</td>
-                            <td>보쌈정식XL 1</td>
-                            변경 클릭 시 예약변경 페이지로 이동
-                            <td colspan="2"><input type="button" value="변경" class="confirm" id="change" onclick="location.href='modify_3.html'"> &nbsp;
-                            <input type="button" value="취소" class="confirm" id="cancel" onclick="location.href='mypagePerson_5.html'"></td>
-                            <td>대기중</td>
-                        </tr> -->
-                        
-                        
+                                      
                     </tbody>
                 </table>
                 <br><br>
@@ -194,30 +151,7 @@
                         </tr>
                         <%}  %>
                         <% } %>
-                        <!-- <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>김치우동 1</td>
-                            <td>3,500원</td>
-                            <td>네이버페이</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>청목</td>
-                            <td>오늘의메뉴 1</td>
-                            <td>7,000원</td>
-                            <td>신용카드</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>소막창 1</td>
-                            <td>11,000원</td>
-                            <td>카카오페이</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>보쌈정식XL 1</td>
-                            <td>7,000원</td>
-                            <td>네이버페이</td>
-                        </tr> -->
+                       
                         
                     </tbody>
                 </table>
@@ -247,18 +181,7 @@
                 document.getElementById('content2').style.display = "block";
             }
             
-            /*  function modify(){
-            	var reserveNo = $("#reserveNo").val();
-            	var shopPid = $("#shopPid").val();
-            	location.href="/siktam/reserveModify.rm?reserveNo=" + reserveNo +"&shopPid="+shopPid;
-            } */
-             
-             /* function modify(){
-             	var reserveNo = $(".reserveNo").val();
-             	var shopPid = $(".shopPid").val();
-             	location.href="/siktam/reserveModify.rm?reserveNo=" + reserveNo +"&shopPid="+shopPid;
-             }
-             */
+
             
             $(".confirm").click(function(){
             	var reserveNo = $(this).parent().siblings(":eq(0)").val();
@@ -325,8 +248,6 @@
             });
            */
         </script>
-        <!-- 마이페이지로 넘어가는 mypageMember.mm 서블릿에 arraylist<shop>했더니 되지 않아서
-       	 즐겨찾기 div에 form을 추가하여  새로운 servlet을 생성함 but 널포인트 오류^^-->
        	 
 		<!-- <form action="/siktam/mypageFavorite.mf" method="post"> -->
         <div class ="content" id="content2">
@@ -346,43 +267,7 @@
                         </div>                        
                     </li>
                     <%} %>
-                    <!-- <li>
-                        <div class="registStore2" onclick="location.href='productDetailPage_6.jsp'">
-                            <img src="/siktam/resources/images/역전우동.png" class="registStoreImg" alt="역전우동" width="170px" height="120px"><br>
-                            <h4 align="center">역전우동</h4>
-                            <p align="center"><small>서울 강남구 테헤란로10길 25</small></p>
-                        </div>
-                        <div class="bookmark">
-                        <p class="star">★</a>
-                        </div>                        
-                    </li>
-                    <li>
-                        <div class="registStore2" onclick="location.href=''">
-                            <img src="/siktam/resources/images/곱창이야기.png" class="registStoreImg" alt="곱창이야기" width="170px" height="120px"><br>
-                            <h4 align="center">곱창이야기</h4>
-                            <p align="center"><small>서울 서초구 강남대로69길 10</small></p>
-                        </div>
-                        <div class="bookmark">
-                        <p class="star">★</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="registStore2" onclick="location.href=''">
-                            <img src="/siktam/resources/images/싸움의고수.png" class="registStoreImg" alt="싸움의고수" width="170px" height="120px"><br>
-                            <h4 align="center">싸움의고수</h4>
-                            <p align="center"><small>서울 서대문구 명물길 20</small></p>
-                        </div>
-                        <div class="bookmark">
-                        <p class="star">★</a>
-                        </div>
-                    </li>
-                    <li class="registStore2Add">
-                        <div>
-                            <div id="plusBtn1">
-                            <input type="button" id="plusBtn2" value="+" onclick="location.href='searchConditions_4.jsp'">
-                            </div>
-                        </div>
-                    </li> -->
+                    
                 </ul>
             </div>
            </div>
@@ -430,48 +315,9 @@
                 
             
                 <div id="registStore" class="recent">
-                 <!-- <ul>
-                  <li>
-                            <div class="registStore2" id="recentDiv">
-                                <img src="/siktam/resources/images/역전우동.png" class="registStoreImg" alt="" width="170px" height="120px"><br>
-                                <h4 align="center"></h4>
-                                <p align="center"><small></small></p>
-                            </div>
-                        </li>  -->
-						 <!-- <li>
-                            <div class="registStore2" id="recentDiv" onclick="location.href='productDetailPage_6.jsp'">
-                                <img src="/siktam/resources/images/역전우동.png" class="registStoreImg" alt="역전우동" width="170px" height="120px"><br>
-                                <h4 align="center">역전우동</h4>
-                                <p align="center"><small>서울 강남구 테헤란로10길 25</small></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="registStore2" id="recentDiv" onclick="location.href=''">
-                                <img src="/siktam/resources/images/곱창이야기.png" class="registStoreImg" alt="곱창이야기" width="170px" height="120px"><br>
-                                <h4 align="center">곱창이야기</h4>
-                                <p align="center"><small>서울 서초구 강남대로69길 10</small></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="registStore2" id="recentDiv" onclick="location.href=''">
-                                <img src="/siktam/resources/images/싸움의고수.png" class="registStoreImg" alt="싸움의고수" width="170px" height="120px"><br>
-                                <h4 align="center">싸움의고수</h4>
-                                <p align="center"><small>서울 서대문구 명물길 20</small></p>
-                            </div>
-                        </li>
-                        <li class="registStore2Add">
-                            <div>
-                                <div id="plusBtn1">
-                                <input type="button" id="plusBtn2" value="+" onclick="location.href='searchConditions_4.jsp'">
-                                </div>
-                            </div>
-                        </li> -->
-                    <!-- </ul> -->
+                 
                 </div>
-            
-            
-           
-        
+
         </div>
     
         
