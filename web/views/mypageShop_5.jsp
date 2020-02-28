@@ -74,57 +74,7 @@
                             <th>결제방식</th>  
                          </tr>
                     </thead>
-                    <tbody>
-                        <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>안도건</td>
-                            <td>김치우동 1</td>
-                            <td>3,500원</td>
-                            <td>네이버페이</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>이탐희</td>
-                            <td>곱창모듬 1</td>
-                            <td>11,000원</td>
-                            <td>신용카드</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>김현희</td>
-                            <td>어묵우동 1</td>
-                            <td>4,000원</td>
-                            <td>카카오페이</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>서지원</td>
-                            <td>보쌈정식XL 1</td>
-                            <td>7,000원</td>
-                            <td>네이버페이</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>곱창이야기</td>
-                            <td>권지안</td>
-                            <td>소막창 1</td>
-                            <td>11,000원</td>
-                            <td>신용카드</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>싸움의고수</td>
-                            <td>장한솔</td>
-                            <td>족발정식XL 1</td>
-                            <td>8,000원</td>
-                            <td>네이버페이</td>
-                        </tr>
-                        <tr class="reservationTr">
-                            <td>역전우동</td>
-                            <td>이녹영</td>
-                            <td>토마토찍먹우동 1</td>
-                            <td>7,000원</td>
-                            <td>카카오페이</td>
-                        </tr>
-                        
+                    <tbody id="payList">                        
                     </tbody>
                 </table>
                 <br><br>
@@ -417,6 +367,41 @@
     	 });
      });
      
+     /* 탐희 결제내역 */
+     $(function(){
+    	 $.ajax({
+    		 url:"/siktam/shopPayList.mp",
+    		 type:"get",
+    		 tradtional:"true",
+    		 datatype:"json",
+    		 success:function(data){
+    			 console.log(data);
+    			 var $payList = $("#payList");
+    			 for(var i =0;data.length;i++){
+    				 var $tr=$("<tr>");
+    				 var $payNo=$("<input type='hidden'value ="+data[i].pNo +" class ='pNo'>");
+    				 var $shopName=$("<td>").text(data[i].shopName);
+    				 $shopName.append($payNo);
+    				 var $userName=$("<td>").text(data[i].userName);
+    				 var $menuName=$("<td>").text(data[i].menuName);
+    				 var $price=$("<td>").text(data[i].totalPay+"원");
+    				 var $payType = $("<td>").text(data[i].payType);
+    				 
+    				 $tr.append($shopName);
+    				 $tr.append($userName);
+    				 $tr.append($menuName);
+    				 $tr.append($price);
+    				 $tr.append($payType);
+    				 
+    				 $payList.append($tr);
+    				 
+    			 }
+    			 
+    			 
+    		 },error:function(){console.log("error");}
+    		 
+    	 });
+     });
      $("#reservationTb1").mouseenter(function(){
     	 $(".accept").click(function(){
         	 console.log("버튼확인");

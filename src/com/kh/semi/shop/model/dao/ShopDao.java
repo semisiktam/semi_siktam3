@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semi.common.SelectQueryMaker;
+import com.kh.semi.member.model.vo.MemberPayListShop;
 import com.kh.semi.shop.model.vo.Shop;
 import com.kh.semi.shop.model.vo.ShopSearch;
 
@@ -888,6 +889,42 @@ public class ShopDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<MemberPayListShop> shopPayList(Connection con, String userId) {
+		ArrayList<MemberPayListShop> shopPayList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("shopPayList");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			
+			shopPayList = new ArrayList<MemberPayListShop>();
+			while(rset.next()) {
+				MemberPayListShop mr = new MemberPayListShop();
+				mr.setpNo(rset.getString("PAY_NO"));
+				mr.setResNo(rset.getString("RESERVE_NO"));
+				mr.setPayType(rset.getString("PAY_TYPE"));
+				mr.setrDate(rset.getDate("PAY_DATE"));
+				mr.setTotalPay(rset.getInt("TOTAL_PAY"));
+				mr.setMenuName(rset.getString("MENU_NO"));
+				mr.setShopName(rset.getString("SHOP_NAME"));
+				mr.setUserName(rset.getString("NAME"));
+				
+				shopPayList.add(mr);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return shopPayList;
 	}
 
 

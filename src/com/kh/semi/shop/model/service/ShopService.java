@@ -8,6 +8,7 @@ import static com.kh.semi.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.semi.member.model.vo.MemberPayListShop;
 import com.kh.semi.shop.model.dao.ShopDao;
 import com.kh.semi.shop.model.vo.Shop;
 import com.kh.semi.shop.model.vo.ShopSearch;
@@ -194,6 +195,20 @@ public class ShopService {
 		if(result>0)commit(con);
 		else rollback(con);
 		return result;
+	}
+
+	/**
+	 * 탐희 마이페이지(업체) 결제내역 불러오기
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<MemberPayListShop> shopPayList(String userId) {
+		Connection con = getConnection();
+		
+		ArrayList<MemberPayListShop> shopPayList = new ShopDao().shopPayList(con,userId);
+		
+		close(con);
+		return shopPayList;
 	}
 
  
